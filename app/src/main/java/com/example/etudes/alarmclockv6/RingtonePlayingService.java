@@ -12,12 +12,16 @@ import com.example.etudes.alarmclockv6.R;
 
 /**
  * Created by Etudes on 05/11/2017.
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * https://www.youtube.com/watch?v=R3AzhgzbpTc
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 
 public class RingtonePlayingService extends Service {
 
 
     MediaPlayer media_song;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -28,7 +32,7 @@ public class RingtonePlayingService extends Service {
 
         Log.d("in the on start command", "yey" + startId + " : "+ intent);
 
-        media_song = MediaPlayer.create(this, R.raw.sncf);
+        media_song = MediaPlayer.create(this, R.raw.iphone);
         media_song.start();
 
 

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.etudes.alarmclockv6.ScrollingActivity"
+    tools:showIn="@layout/activity_scrolling">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <Switch
+            android:id="@+id/switch0"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/monday"
+            android:textSize="36sp"
+            android:checked="true"
+            />
+
+        <TimePicker
+            android:id="@+id/timePicker0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled"
+            android:focusableInTouchMode="true"/>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/tuesday"
+            android:textSize="36sp"
+            android:checked="true"
+            />
+
+        <TimePicker
+            android:id="@+id/timePicker1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled"
+            android:focusableInTouchMode="true"/>
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/wednesday"
+            android:textSize="36sp"
+            android:checked="true"/>
+
+        <TimePicker
+            android:id="@+id/timePicker2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
+
+        <Switch
+            android:id="@+id/switch3"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/thursday"
+            android:textSize="36sp"
+            android:checked="true"/>
+
+        <TimePicker
+            android:id="@+id/timePicker3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled"
+            />
+
+        <Switch
+            android:id="@+id/switch4"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/friday"
+            android:textSize="36sp"
+            android:checked="true"/>
+
+        <TimePicker
+            android:id="@+id/timePicker4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
+
+        <Switch
+            android:id="@+id/switch5"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/saturday"
+            android:textSize="36sp"
+            android:checked="true"/>
+
+        <TimePicker
+            android:id="@+id/timePicker5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
+
+        <Switch
+            android:id="@+id/switch6"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/com_facebook_button_send_background"
+            android:text="@string/sunday"
+            android:textSize="36sp"
+            android:checked="true"/>
+
+        <TimePicker
+            android:id="@+id/timePicker6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
+
+        <Button
+            android:id="@+id/buttonSetWeek"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="@string/buttonSetWeek"
+            android:textAlignment="center" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
