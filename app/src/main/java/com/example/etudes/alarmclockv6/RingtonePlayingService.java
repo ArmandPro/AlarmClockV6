@@ -28,8 +28,8 @@ public class RingtonePlayingService extends Service {
 
         Log.d("in the on start command", "yey" + startId + " : "+ intent);
 
-        media_song = MediaPlayer.create(this, R.raw.sncf);
-        media_song.start();
+       // media_song = MediaPlayer.create(this, R.raw.sncf);
+       // media_song.start();
 
 
 

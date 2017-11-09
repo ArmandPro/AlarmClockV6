@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DatabaseManager.getInstance(getApplicationContext());
 
         this.context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -54,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         alarm_timepicker = (TimePicker) findViewById(R.id.timePicker);
 
         Button test = (Button) findViewById(R.id.button);
+        //DatabaseTester tester = new DatabaseTester(getApplicationContext());
+        //tester.runTests();
+
+
 
         test.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)

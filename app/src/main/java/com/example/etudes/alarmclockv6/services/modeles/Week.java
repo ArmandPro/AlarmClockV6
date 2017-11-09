@@ -1,4 +1,12 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.services.modeles;
+
+import android.util.Log;
+import android.util.TimeFormatException;
+
+import com.example.etudes.alarmclockv6.services.WeekService;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Florian on 02/11/2017.
@@ -30,6 +38,7 @@ public class Week {
 
     public void setMonday(String monday) {
         this.monday = monday;
+        WeekService.getInstance().updateWeek();
     }
 
     public String getTuesday() {
@@ -38,6 +47,7 @@ public class Week {
 
     public void setTuesday(String tuesday) {
         this.tuesday = tuesday;
+        WeekService.getInstance().updateWeek();
     }
 
     public String getWednesday() {
@@ -46,6 +56,7 @@ public class Week {
 
     public void setWednesday(String wednesday) {
         this.wednesday = wednesday;
+        WeekService.getInstance().updateWeek();
     }
 
     public String getThursday() {
@@ -54,6 +65,7 @@ public class Week {
 
     public void setThursday(String thursday) {
         this.thursday = thursday;
+        WeekService.getInstance().updateWeek();
     }
 
     public String getFriday() {
@@ -62,6 +74,7 @@ public class Week {
 
     public void setFriday(String friday) {
         this.friday = friday;
+        WeekService.getInstance().updateWeek();
     }
 
     public String getSaturday() {
@@ -70,6 +83,7 @@ public class Week {
 
     public void setSaturday(String saturday) {
         this.saturday = saturday;
+        WeekService.getInstance().updateWeek();
     }
 
     public String getSunday() {
@@ -78,5 +92,45 @@ public class Week {
 
     public void setSunday(String sunday) {
         this.sunday = sunday;
+        WeekService.getInstance().updateWeek();
+    }
+
+
+    public String getADaysTime(Date date){
+        String today = new SimpleDateFormat("EEEE").format(date);
+        String time = "";
+        switch (today){
+            case "Monday":
+            case "lundi":
+                time = monday;
+                break;
+            case "Tuesday":
+            case "mardi":
+                time = tuesday;
+                break;
+            case "Thursday":
+            case "jeudi":
+                time =  thursday;
+                break;
+            case "Wednesday":
+            case "mercredi":
+                time = wednesday;
+                break;
+            case "Friday":
+            case "vendredi":
+                time =  friday;
+                break;
+            case "Saturday":
+            case "samedi":
+                time = saturday;
+                break;
+            case "Sunday":
+            case "dimanche":
+                time = sunday;
+                break;
+            default:
+                time = "Error";
+        }
+        return time;
     }
 }
