@@ -83,6 +83,27 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("kikou","lol");
 
             }
+
+
+
+
+
+
+
+        });
+
+        Button start = (Button) findViewById(R.id.button2);
+
+        start.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent nIntent = new Intent(MainActivity.this, ScrollingActivity.class);
+                startActivity(nIntent);
+
+
+            }
         });
 
 
