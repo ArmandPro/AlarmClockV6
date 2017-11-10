@@ -4,22 +4,34 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-import com.example.etudes.alarmclockv6.Night;
-import com.example.etudes.alarmclockv6.Week;
+import com.example.etudes.alarmclockv6.services.modeles.Habits;
+import com.example.etudes.alarmclockv6.services.modeles.Night;
+import com.example.etudes.alarmclockv6.services.modeles.Week;
 
 
 /**
  * Created by Florian on 01/11/2017.
+ *
+ * TODO : Call the getInstance in the onCreate of the first activity, to initiate with the context
  */
 
 public class DatabaseManager {
     private DatabaseHelper dbHelper;
     private SQLiteDatabase database;
+    private static DatabaseManager instance = null;
 
-    public DatabaseManager(Context context){
+    private DatabaseManager(Context context){
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
+    }
+
+    public static DatabaseManager getInstance(Context context){
+        if(instance == null){
+            instance = new DatabaseManager(context);
+        }
+        return instance;
     }
 
     public long insertNight(Night night){
@@ -48,8 +60,30 @@ public class DatabaseManager {
         values.put(DatabaseConstants.GO_TO_BED_REAL, night.getGotToBedReal());
         values.put(DatabaseConstants.WAKE_UP_ESTIMATED, night.getWakeUpEstimated());
         values.put(DatabaseConstants.WAKE_UP_REAL, night.getWakeUpReal());
-        values.put(DatabaseConstants.SLEEP_WELL, night.isSleepWell());
+        values.put(DatabaseConstants.SLEEP_WELL, night.isSleepWell()?0 : 1);
         return database.updateWithOnConflict(DatabaseConstants.TABLE_NIGHT,values,DatabaseConstants.WAKE_UP_ESTIMATED+" LIKE ?",new String[]{date+"%"},database.CONFLICT_REPLACE);
+    }
+
+
+    public Night getNightById(Long id){
+        Cursor cursor = database.query(DatabaseConstants.TABLE_NIGHT,
+                new String[]{"*"},
+                DatabaseConstants.ID+" = ?",
+                new String[]{Long.toString(id)},
+                null,
+                null
+                ,null);
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            String gtbe = cursor.getString(cursor.getColumnIndex(DatabaseConstants.GO_TO_BED_ESTIMATED));
+            String gtbr = cursor.getString(cursor.getColumnIndex(DatabaseConstants.GO_TO_BED_REAL));
+            String wue = cursor.getString(cursor.getColumnIndex(DatabaseConstants.WAKE_UP_ESTIMATED));
+            String wur = cursor.getString(cursor.getColumnIndex(DatabaseConstants.WAKE_UP_REAL));
+            boolean sleep = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.SLEEP_WELL))!=0;
+            return new Night(id, gtbe,gtbr,wue,wur,sleep);
+        }else{
+            return null;
+        }
     }
 
     public Night getNightByDate(String date){
@@ -104,15 +138,17 @@ public class DatabaseManager {
         return database.delete(DatabaseConstants.TABLE_WEEK,DatabaseConstants.ID+"= ?",new String[]{Long.toString(id)})>0;
     }
 
-    public Week getWeek(long id){
+    public Week getWeek(){
         Cursor cursor = database.query(DatabaseConstants.TABLE_WEEK,
                 new String[]{"*"},
-                DatabaseConstants.ID+" = ?",
-                new String[]{Long.toString(id)},
+                null,
+                null,
                 null,
                 null
                 ,null);
-        if(cursor!=null){
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            long id = cursor.getLong(cursor.getColumnIndex(DatabaseConstants.ID));
             String monday = cursor.getString(cursor.getColumnIndex(DatabaseConstants.MONDAY));
             String tuesday = cursor.getString(cursor.getColumnIndex(DatabaseConstants.TUESDAY));
             String wednesday = cursor.getString(cursor.getColumnIndex(DatabaseConstants.WEDNESDAY));
@@ -125,6 +161,44 @@ public class DatabaseManager {
         return null;
     }
 
+
+    public long insertHabits(Habits habits){
+        Log.d("DATABASE MANAGER","INSERT HABITS");
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConstants.ID, habits.getId());
+        values.put(DatabaseConstants.DAYS_OF_USE,habits.getDaysOfUse());
+        values.put(DatabaseConstants.WHEN_TO_ASK_IF_WERE_LATE, habits.getWhenToAskIfWereLate());
+        values.put(DatabaseConstants.SLEEP_HOURS_PER_NIGHT, habits.getSleepHoursPerNight());
+        return database.insert(DatabaseConstants.TABLE_HABITS,null,values);
+    }
+
+    public long updateHabits(Habits habits){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConstants.DAYS_OF_USE, habits.getDaysOfUse());
+        values.put(DatabaseConstants.WHEN_TO_ASK_IF_WERE_LATE, habits.getWhenToAskIfWereLate());
+        values.put(DatabaseConstants.SLEEP_HOURS_PER_NIGHT, habits.getSleepHoursPerNight());
+        return database.update(DatabaseConstants.TABLE_HABITS,values,DatabaseConstants.ID+" = ?", new String[]{Long.toString(habits.getId())});
+    }
+
+    public Habits getHabits(){
+        Cursor cursor = database.query(DatabaseConstants.TABLE_HABITS,
+                new String[]{"*"},
+                null,
+                null,
+                null,
+                null
+                ,null);
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            Habits habits = new Habits();
+            Long id = cursor.getLong(cursor.getColumnIndex(DatabaseConstants.ID));
+            int daysOfUse = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.DAYS_OF_USE));
+            int sleepHoursPerNight = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.SLEEP_HOURS_PER_NIGHT));
+            int whenToAskIfWereLate = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.WHEN_TO_ASK_IF_WERE_LATE));
+            return new Habits(id, daysOfUse,whenToAskIfWereLate,sleepHoursPerNight);
+        }
+        return null;
+    }
 
     public DatabaseHelper getDbHelper() {
         return dbHelper;
