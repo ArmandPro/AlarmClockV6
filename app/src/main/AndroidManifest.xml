@@ -24,6 +24,7 @@
             android:value="@string/facebook_app_id" />
 
         <receiver android:name=".AlarmReceiver"></receiver>
+        <receiver android:name=".NightReceiver"></receiver>
 
         <service
             android:name=".RingtonePlayingService"

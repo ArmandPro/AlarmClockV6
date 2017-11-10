@@ -35,16 +35,17 @@ public class MainActivity extends AppCompatActivity {
     TextView txtStatus;
     LoginButton login_button;
     CallbackManager callbackManager;
-    AlarmManager alarm_manager;
+    AlarmManager alarm_manager, daily_alarm_manager;
     TimePicker alarm_timepicker;
     Context context;
-    PendingIntent pending_intent;
+    PendingIntent pending_intent, daily_pending_intent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseManager.getInstance(getApplicationContext());
+
 
 
         //LOGIN WITH FACEBOOK
@@ -55,13 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
         logWithFacebook();
 
-        final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
 
-        final Calendar calendar = Calendar.getInstance();
 
-        alarm_timepicker = (TimePicker) findViewById(R.id.timePicker);
 
-        Button test = (Button) findViewById(R.id.button);
         //DatabaseTester tester = new DatabaseTester(getApplicationContext());
         //tester.runTests();
 
@@ -74,10 +71,37 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        //AUTOMATIC DAILY SETTING NIGHT AND ALARM AT 18:00 PM
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(2017,10,06,18,00);
+
+        daily_alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        final Intent daily_intent = new Intent(this.context, NightReceiver.class);
+
+        daily_pending_intent = PendingIntent.getBroadcast(MainActivity.this,0, daily_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //each 24 hrs
+        daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
+
+
+
+
+
+
+
 
 
 
         //SET ALARM
+
+        final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
+
+
+        alarm_timepicker = (TimePicker) findViewById(R.id.timePicker);
+
+        Button test = (Button) findViewById(R.id.button);
+
         test.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -103,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //SETUP ALARM FOR WEEK
+        //SETUP A WEEK
         Button start = (Button) findViewById(R.id.button2);
 
         start.setOnClickListener(new View.OnClickListener() {
