@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -27,6 +28,11 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final NumberPicker numberPicker = findViewById(R.id.numberPicker);
+
+        numberPicker.setMaxValue(23);
+        numberPicker.setMinValue(1);
+        numberPicker.setValue(8);
 
 
         final TimePicker TP0 = (TimePicker) findViewById(R.id.timePicker0) ;
@@ -55,8 +61,7 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
+                int hourPerNight = numberPicker.getValue();
 
                 final Calendar calendar0 = Calendar.getInstance();
                 final Calendar calendar1 = Calendar.getInstance();
@@ -114,9 +119,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
 
-                WeekService weekService = new WeekService(getApplicationContext());
+                //WeekService weekService = new WeekService(getApplicationContext());
 
-                weekService.createWeek(day0,day1,day2,day3,day4,day5,day6);
+                //weekService.createWeek(day0,day1,day2,day3,day4,day5,day6);
 
 
 
