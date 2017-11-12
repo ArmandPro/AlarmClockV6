@@ -17,6 +17,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_matrix_game">MatrixGame</string>
+    <string name="title_activity_roulette_game">RouletteGame</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

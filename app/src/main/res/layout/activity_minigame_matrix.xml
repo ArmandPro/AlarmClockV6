@@ -20,7 +20,6 @@
             android:columnCount="3"
             android:rowCount="3">
 
-
             <Button
                 android:id="@+id/button11"
                 android:layout_width="wrap_content"
@@ -112,6 +111,7 @@
                 android:layout_rowWeight="1"
                 android:textSize="30sp"/>
         </GridLayout>
+
         <ProgressBar
             android:id="@+id/progress_bar"
             android:max="150"

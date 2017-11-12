@@ -92,7 +92,7 @@ public class MatrixGame extends AbstractGame {
             Log.d(GAME_NAME, "YOU WON !");
             Snackbar.make(findViewById(android.R.id.content), "Congratulations ! You are awaken !", Snackbar.LENGTH_LONG)
                     .show();
-            hasFailed();
+            gameEnded();
             //TODO : return to the menu OR close the app
         }
     }
