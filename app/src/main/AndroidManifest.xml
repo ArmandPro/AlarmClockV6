@@ -23,23 +23,17 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AlarmReceiver"></receiver>
+        <receiver android:name=".NightReceiver"></receiver>
 
         <service
             android:name=".RingtonePlayingService"
-            android:enabled="true" />
+            android:enabled="true"></service>
 
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MiniGames.MatrixGame"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_matrix_game"
-            android:theme="@style/FullscreenTheme" />
-        <activity android:name=".MiniGames.RouletteGame" />
-        <activity android:name=".MiniGames.AbstractGame"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
