@@ -18,6 +18,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     private TimePicker TP0, TP1, TP2, TP3, TP4, TP5, TP6;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +63,6 @@ public class ScrollingActivity extends AppCompatActivity {
                 if (s0.isChecked()) week.setSaturday(TP5.getHour() + ":" + TP5.getMinute());
                 if (s0.isChecked()) week.setSunday(TP6.getHour() + ":" + TP6.getMinute());
 
-                //WeekService weekService = new WeekService(getApplicationContext());
-
-                //weekService.createWeek(day0,day1,day2,day3,day4,day5,day6);
-
-
                 //Toast toast1=Toast.makeText(getApplicationContext(),day2,Toast.LENGTH_LONG);
                 //toast1.setMargin(50,50);
                 //toast1.show();
@@ -75,6 +71,7 @@ public class ScrollingActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void loadWeek() {
         Week week = WeekService.getInstance().getWeek();
         String none = "none";

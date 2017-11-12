@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AlarmClockV6.iml" filepath="$PROJECT_DIR$/AlarmClockV6.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/AlarmClockV6.iml" filepath="$PROJECT_DIR$/.idea/AlarmClockV6.iml" />
       <module fileurl="file://C:\Users\Florian\Docs\Cours\UQAC\Automne\Plateforme mobile\Projet\AlarmClockV6\AlarmClockV6.iml" filepath="C:\Users\Florian\Docs\Cours\UQAC\Automne\Plateforme mobile\Projet\AlarmClockV6\AlarmClockV6.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

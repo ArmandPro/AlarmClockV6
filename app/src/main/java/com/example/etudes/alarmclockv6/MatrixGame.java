@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6.MiniGames;
+package com.example.etudes.alarmclockv6;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-
-import com.example.etudes.alarmclockv6.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

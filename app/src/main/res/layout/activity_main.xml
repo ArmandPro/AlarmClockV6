@@ -6,60 +6,78 @@
     android:layout_height="match_parent"
     tools:context="com.example.etudes.alarmclockv6.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            tools:layout_editor_absoluteX="95dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Test"
-            tools:layout_editor_absoluteX="40dp"
-            tools:layout_editor_absoluteY="395dp" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Let's start" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Ask me" />
-
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="match_parent"
-            android:layout_height="334dp"
-            android:headerBackground="@color/com_facebook_likeboxcountview_text_color"
-            android:numbersSelectorColor="@color/com_facebook_blue"
-            tools:layout_editor_absoluteX="40dp"
-            tools:layout_editor_absoluteY="61dp" />
-
-        <TextView
-            android:id="@+id/txtStatus"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.085" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                tools:layout_editor_absoluteX="95dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Test alarm "
+                tools:layout_editor_absoluteX="40dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Test Night Receiver" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Let's start" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Ask me" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Game" />
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="334dp"
+                android:headerBackground="@color/com_facebook_likeboxcountview_text_color"
+                android:numbersSelectorColor="@color/com_facebook_blue"
+                tools:layout_editor_absoluteX="40dp"
+                tools:layout_editor_absoluteY="61dp" />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.085" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>
