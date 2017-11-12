@@ -19,6 +19,7 @@ public class NightReceiver extends BroadcastReceiver {
         Log.d("hey","here we are in the night receiver");
 
         //HERE CREATE A NEW NIGHT
+
     }
 }
 
