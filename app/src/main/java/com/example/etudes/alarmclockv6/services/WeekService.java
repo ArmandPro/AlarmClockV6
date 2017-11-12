@@ -3,10 +3,8 @@ package com.example.etudes.alarmclockv6.services;
 import android.content.Context;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.example.etudes.alarmclockv6.services.modeles.Week;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -24,7 +22,7 @@ public class WeekService {
     private WeekService(Context context){
         database = DatabaseManager.getInstance(context);
         if((week = getWeek())==null){
-                String defaultTime = "07:00";
+                String defaultTime = "none";
                 week = createWeek(defaultTime,defaultTime,defaultTime,defaultTime,defaultTime,defaultTime,defaultTime);
         }
     }
@@ -46,9 +44,12 @@ public class WeekService {
     public Week updateWeek(){
         database.updateWeek(week);
         NightService nightService = NightService.getInstance();
-        nightService.updateCurrentNight(week.getADaysTime(new Date()));
-        Calendar.getInstance().add(Calendar.DAY_OF_YEAR,1);
-        nightService.updateNextNight(week.getADaysTime(Calendar.getInstance().getTime()));
+        if(!week.getADaysTime(new Date()).equals("none"))nightService.updateCurrentNight(week.getADaysTime(new Date()));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR,1);
+        if(!week.getADaysTime(calendar.getTime()).equals("none")){
+            nightService.updateNextNight(week.getADaysTime(calendar.getTime()));
+        }
         return week;
     }
 

@@ -64,4 +64,8 @@ public class Night {
     public void setSleepWell(boolean sleepWell) {
         this.sleepWell = sleepWell;
     }
+
+    public String toString(){
+        return "ID : "+id+"; \n\t ESTIMATIONS(FA/WU) : "+GoToBedEstimated+"\t"+WakeUpEstimated+";\n\t REAL(FA/WU) : "+GotToBedReal+"\t"+WakeUpReal+";\n\t SLEPT WELL : "+sleepWell;
+    }
 }

@@ -94,7 +94,7 @@ public class DatabaseManager {
                 null,
                 null
                 ,null);
-        if(cursor!=null){
+        if(cursor.getCount()>0){
             cursor.moveToFirst();
             long id = cursor.getLong(cursor.getColumnIndex(DatabaseConstants.ID));
             String gtbe = cursor.getString(cursor.getColumnIndex(DatabaseConstants.GO_TO_BED_ESTIMATED));
@@ -105,6 +105,32 @@ public class DatabaseManager {
             return new Night(id, gtbe,gtbr,wue,wur,sleep);
         }else{
             return null;
+        }
+    }
+
+    public void displayNights(){
+        Cursor cursor = database.query(DatabaseConstants.TABLE_NIGHT,
+                new String[]{"*"},
+                null,
+                null,
+                null,
+                null
+                ,null);
+        if(cursor.getCount()>0){
+            Night night;
+            cursor.moveToFirst();
+            do {
+                long id = cursor.getLong(cursor.getColumnIndex(DatabaseConstants.ID));
+                String gtbe = cursor.getString(cursor.getColumnIndex(DatabaseConstants.GO_TO_BED_ESTIMATED));
+                String gtbr = cursor.getString(cursor.getColumnIndex(DatabaseConstants.GO_TO_BED_REAL));
+                String wue = cursor.getString(cursor.getColumnIndex(DatabaseConstants.WAKE_UP_ESTIMATED));
+                String wur = cursor.getString(cursor.getColumnIndex(DatabaseConstants.WAKE_UP_REAL));
+                boolean sleep = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.SLEEP_WELL)) != 0;
+                night = new Night(id, gtbe, gtbr, wue, wur, sleep);
+                Log.d("DATABASE MANAGER",night.toString());
+            }while(cursor.moveToNext());
+        }else {
+            Log.d("DATABASE MANAGER","No night to read");
         }
     }
 

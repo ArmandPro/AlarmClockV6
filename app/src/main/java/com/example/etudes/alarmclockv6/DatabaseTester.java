@@ -9,11 +9,7 @@ import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.WeekService;
 import com.example.etudes.alarmclockv6.services.modeles.Habits;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.example.etudes.alarmclockv6.services.modeles.Week;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Florian on 09/11/2017.
@@ -110,8 +106,13 @@ public class DatabaseTester {
 
 
         week.setThursday("11:30");
-        //if((weekService.getWeek().getThursday().equals("11:30")));
+        databaseManager.displayNights();
 
+        week.setMonday("07:00");
+
+        databaseManager.displayNights();
+        week.setSunday("05:00");
+        databaseManager.displayNights();
 
         Log.d(name, "AlL TESTS PASSED !");
         return true;
@@ -122,12 +123,16 @@ public class DatabaseTester {
         boolean passed = true;
         habitsService.getHabits().incrementDaysOfUse();
         String name = "NIGHTS";
-        Night night = nightService.createNight();
+        databaseManager.displayNights();
+
+        /*Night night = nightService.createNight();
         Log.d(name+" - CREATE",night.getWakeUpEstimated()+"||||"+night.getGoToBedEstimated()+"||||"+night.getGotToBedReal()+"||||"+night.getWakeUpReal());
         night = nightService.fellAsleep();
         Log.d(name+" - FELLAS",night.getWakeUpEstimated()+"||||"+night.getGoToBedEstimated()+"||||"+night.getGotToBedReal()+"||||"+night.getWakeUpReal());
         night = nightService.wokeUp();
         Log.d(name+" - WOKUP",night.getWakeUpEstimated()+"||||"+night.getGoToBedEstimated()+"||||"+night.getGotToBedReal()+"||||"+night.getWakeUpReal());
+        */
+        databaseManager.displayNights();
         return passed;
     }
 }

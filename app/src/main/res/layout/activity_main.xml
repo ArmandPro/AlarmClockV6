@@ -25,6 +25,7 @@
             android:layout_height="334dp"
             android:headerBackground="@color/com_facebook_likeboxcountview_text_color"
             android:numbersSelectorColor="@color/com_facebook_blue"
+            android:visibility="invisible"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="61dp" />
 
@@ -32,7 +33,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="Test"
+            android:text="Launch Game"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="395dp" />
 

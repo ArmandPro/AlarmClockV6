@@ -8,13 +8,13 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         alarm_timepicker = (TimePicker) findViewById(R.id.timePicker);
 
         Button test = (Button) findViewById(R.id.button);
-        //DatabaseTester tester = new DatabaseTester(getApplicationContext());
-        //tester.runTests();
+        DatabaseTester tester = new DatabaseTester(getApplicationContext());
+        tester.runTests();
 
 
 
@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                calendar.set(Calendar.HOUR_OF_DAY,alarm_timepicker.getHour());
+
+                Intent gameIntent = new Intent(MainActivity.this,MatrixGame.class);
+                startActivity(gameIntent);
+
+                /*calendar.set(Calendar.HOUR_OF_DAY,alarm_timepicker.getHour());
                 calendar.set(Calendar.MINUTE,alarm_timepicker.getMinute());
-
-
-
-
                 alarm_timepicker = findViewById(R.id.timePicker);
 
                 alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                 alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pending_intent);
 
-                Log.d("kikou","lol");
+                Log.d("kikou","lol");*/
 
             }
 
