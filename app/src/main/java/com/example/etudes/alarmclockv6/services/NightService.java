@@ -135,4 +135,6 @@ public class NightService {
         return database.getNightByDate(date);
     }
 
+    public void deleteNight(String date){database.deleteNight(date);}
+
 }

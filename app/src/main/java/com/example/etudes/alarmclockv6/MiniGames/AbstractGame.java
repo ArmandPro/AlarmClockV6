@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.example.etudes.alarmclockv6.R;
+import com.example.etudes.alarmclockv6.services.NightService;
 
 public class AbstractGame extends AppCompatActivity {
 
@@ -36,6 +37,12 @@ public class AbstractGame extends AppCompatActivity {
         initGame();
     }
 
+
+    protected void gameEnded(){
+        NightService.getInstance().wokeUp();
+        //System.exit(0);
+    }
+
     protected void displayExplanation(){
         Snackbar.make(findViewById(android.R.id.content), EXPLAINATION, Snackbar.LENGTH_LONG)
                 .show();
@@ -51,7 +58,7 @@ public class AbstractGame extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                Log.d("MATRIX GAME", "TIMED OUT");
+                Log.d(GAME_NAME, "TIMED OUT");
                 hasFailed();
             }
         };

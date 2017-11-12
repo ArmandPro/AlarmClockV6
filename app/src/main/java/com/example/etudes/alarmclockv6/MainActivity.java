@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
-import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
+import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent nIntent = new Intent(MainActivity.this, MatrixGame.class);
+                Intent nIntent = new Intent(MainActivity.this, RouletteGame.class);
                 startActivity(nIntent);
 
             }
