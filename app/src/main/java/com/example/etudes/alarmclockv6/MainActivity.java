@@ -10,14 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
@@ -35,11 +32,8 @@ import com.facebook.login.LoginManager;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
-
-import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
+import java.util.List;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
