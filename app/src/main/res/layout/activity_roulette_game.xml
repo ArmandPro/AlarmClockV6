@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.etudes.alarmclockv6.RouletteGame">
+    tools:context="com.example.etudes.alarmclockv6.MiniGames.RouletteGame">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -19,24 +19,30 @@
             <TextView
                 android:id="@+id/goal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="30sp" />
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="100sp"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/actualScore"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="30sp" />
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="100sp"
+                android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/roulette"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="30sp" />
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="100sp"
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/progress_bar_roulette"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

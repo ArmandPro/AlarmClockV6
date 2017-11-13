@@ -1,14 +1,13 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.MiniGames;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.R;
-import com.example.etudes.alarmclockv6.services.NightService;
 
 public class AbstractGame extends AppCompatActivity {
 
@@ -23,7 +22,6 @@ public class AbstractGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abstract_game);
-        initTimer();
     }
 
     protected void initGame(){
@@ -39,13 +37,13 @@ public class AbstractGame extends AppCompatActivity {
 
 
     protected void gameEnded(){
-        NightService.getInstance().wokeUp();
+        timer.cancel();
+        //NightService.getInstance().wokeUp();
         //System.exit(0);
     }
 
     protected void displayExplanation(){
-        Snackbar.make(findViewById(android.R.id.content), EXPLAINATION, Snackbar.LENGTH_LONG)
-                .show();
+        Toast.makeText(getApplicationContext(),EXPLAINATION,Toast.LENGTH_LONG).show();
     }
 
     protected void initTimer() {

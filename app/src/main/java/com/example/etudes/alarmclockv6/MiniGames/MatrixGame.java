@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.MiniGames;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+
+import com.example.etudes.alarmclockv6.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +29,7 @@ public class MatrixGame extends AbstractGame {
         setContentView(R.layout.activity_minigame_matrix);
         GAME_NAME = "Count to 9 !";
         EXPLAINATION = "Tap the numbers from 1 to 9";
+        displayExplanation();
         buttons = new ArrayList<>();
         buttons.add((Button) findViewById(R.id.button11));
         buttons.add((Button) findViewById(R.id.button12));
@@ -53,6 +56,7 @@ public class MatrixGame extends AbstractGame {
         order = new ArrayList<>();
         for (int i = 1; i < 10; i++) order.add(i);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        initTimer();
         initGame();
     }
 

@@ -1,10 +1,13 @@
 package com.example.etudes.alarmclockv6;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,9 +18,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
+import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
@@ -29,6 +33,7 @@ import com.facebook.login.widget.LoginButton;
 import com.facebook.login.LoginManager;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -52,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         DatabaseManager.getInstance(getApplicationContext());
 
 
@@ -91,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
         daily_pending_intent = PendingIntent.getBroadcast(MainActivity.this,0, daily_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //each 24 hrs
-        //daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
+        daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
+
 
         //TEST VERSION ! ! ! ! ! ! ! ! ! ! !
+
         Button testNightReceiver = (Button) findViewById(R.id.button5);
 
         testNightReceiver.setOnClickListener(new View.OnClickListener() {
@@ -106,11 +112,13 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat(Night.DATE_FORMAT);
 
                 NightService nightService = NightService.getInstance();
-                nightService.deleteNight(sdf.format(calendar.getTime()));
+                //nightService.deleteNight(sdf.format(calendar));
+
+
 
                 daily_alarm_manager.set(AlarmManager.RTC_WAKEUP,Calendar.getInstance().getTimeInMillis(),daily_pending_intent);
 
-                Toast.makeText(getApplicationContext(), "night receiver tested", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -122,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //SET SIMPLE ALARM
+        //SET ALARM
 
         final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
 
@@ -171,34 +179,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        //SHOW ALARM BOX AND ASK
-
-        final Calendar calendar1 = Calendar.getInstance();
-        calendar1.set(2017,10,06,11,00);
-
-        final AlarmManager daily_alarm_manager_morning = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        final Intent daily_intent_morning = new Intent(this.context, HabitsReceiver.class);
-
-        final PendingIntent daily_pending_intent_morning = PendingIntent.getBroadcast(MainActivity.this, 0, daily_intent_morning, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        //each 24 hrs
-        //daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
-
-
-        //TEST VERSION ! ! ! ! ! ! ! ! ! ! ! ! !
+        //SHOW ALARM BOX
         Button alarmBox = findViewById(R.id.button3);
 
         alarmBox.setOnClickListener(new View.OnClickListener() {
@@ -254,9 +235,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                List<Intent> gameList = new ArrayList<>();
+                gameList.add(new Intent(MainActivity.this,MatrixGame.class));
+                gameList.add(new Intent(MainActivity.this,RouletteGame.class));
 
-                Intent nIntent2 = new Intent(MainActivity.this, RouletteGame.class);
-                startActivity(nIntent2);
+                startActivity(gameList.get(new Random().nextBoolean()?0:1));
 
 
             }
