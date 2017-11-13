@@ -25,6 +25,7 @@
 
         <receiver android:name=".AlarmReceiver"></receiver>
         <receiver android:name=".NightReceiver"></receiver>
+        <receiver android:name=".HabitsReceiver"></receiver>
 
         <service
             android:name=".RingtonePlayingService"
@@ -35,11 +36,11 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".MiniGames.MatrixGame"
+            android:name=".MatrixGame"
             android:label="@string/title_activity_matrix_game"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".MiniGames.RouletteGame"
+            android:name=".RouletteGame"
             android:label="@string/title_activity_roulette_game"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

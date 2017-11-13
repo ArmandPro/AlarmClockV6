@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6.MiniGames;
+package com.example.etudes.alarmclockv6;
 
 import android.graphics.Color;
 import android.os.Bundle;

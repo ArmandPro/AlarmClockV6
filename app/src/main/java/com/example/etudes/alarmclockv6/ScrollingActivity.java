@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.services.WeekService;
 import com.example.etudes.alarmclockv6.services.modeles.Week;
@@ -26,6 +28,11 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(23);
+        numberPicker.setValue(8);
 
 
         TP0 = (TimePicker) findViewById(R.id.timePicker0);
@@ -95,6 +102,8 @@ public class ScrollingActivity extends AppCompatActivity {
                 //Toast toast1=Toast.makeText(getApplicationContext(),day2,Toast.LENGTH_LONG);
                 //toast1.setMargin(50,50);
                 //toast1.show();
+
+                Toast.makeText(getApplicationContext(), "Week succesfully setup", Toast.LENGTH_SHORT).show();
 
             }
         });

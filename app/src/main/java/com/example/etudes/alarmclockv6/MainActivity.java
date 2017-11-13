@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.NightService;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         DatabaseManager.getInstance(getApplicationContext());
 
 
@@ -89,11 +91,9 @@ public class MainActivity extends AppCompatActivity {
         daily_pending_intent = PendingIntent.getBroadcast(MainActivity.this,0, daily_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //each 24 hrs
-        daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
-
+        //daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
 
         //TEST VERSION ! ! ! ! ! ! ! ! ! ! !
-
         Button testNightReceiver = (Button) findViewById(R.id.button5);
 
         testNightReceiver.setOnClickListener(new View.OnClickListener() {
@@ -106,13 +106,11 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat(Night.DATE_FORMAT);
 
                 NightService nightService = NightService.getInstance();
-                //nightService.deleteNight(sdf.format(calendar));
-
-
+                nightService.deleteNight(sdf.format(calendar.getTime()));
 
                 daily_alarm_manager.set(AlarmManager.RTC_WAKEUP,Calendar.getInstance().getTimeInMillis(),daily_pending_intent);
 
-
+                Toast.makeText(getApplicationContext(), "night receiver tested", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -124,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //SET ALARM
+        //SET SIMPLE ALARM
 
         final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
 
@@ -137,8 +135,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                calendar.set(Calendar.HOUR_OF_DAY,alarm_timepicker.getHour());
-                calendar.set(Calendar.MINUTE,alarm_timepicker.getMinute());
+                Calendar calendar2 = Calendar.getInstance();
+                calendar2.set(Calendar.HOUR_OF_DAY,alarm_timepicker.getHour());
+                calendar2.set(Calendar.MINUTE,alarm_timepicker.getMinute());
 
                 alarm_timepicker = findViewById(R.id.timePicker);
 
@@ -146,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
                 pending_intent = PendingIntent.getBroadcast(MainActivity.this,0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pending_intent);
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(),pending_intent);
 
-                Log.d("kikou","lol");
+                Toast.makeText(getApplicationContext(), "Alarm set up at:"+calendar2.getTime().toString(), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -172,12 +171,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //SHOW ALARM BOX
+
+
+
+
+
+
+
+
+
+
+
+
+        //SHOW ALARM BOX AND ASK
+
+        final Calendar calendar1 = Calendar.getInstance();
+        calendar1.set(2017,10,06,11,00);
+
+        final AlarmManager daily_alarm_manager_morning = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        final Intent daily_intent_morning = new Intent(this.context, HabitsReceiver.class);
+
+        final PendingIntent daily_pending_intent_morning = PendingIntent.getBroadcast(MainActivity.this, 0, daily_intent_morning, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //each 24 hrs
+        //daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
+
+
+        //TEST VERSION ! ! ! ! ! ! ! ! ! ! ! ! !
         Button alarmBox = findViewById(R.id.button3);
 
         alarmBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                //daily_alarm_manager_morning.set(AlarmManager.RTC_WAKEUP,new Date().getTime(),daily_pending_intent_morning);
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                 // set title
@@ -189,12 +219,19 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, SET LATE HERE
 
+                                Toast.makeText(getApplicationContext(), "You're late, we are too...", Toast.LENGTH_SHORT).show();
+
+
+
                             }
                         })
                         .setNegativeButton("No it's OK",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, SET NOT IN LATE HERE and close
                                 // the dialog box and do nothing
+
+                                Toast.makeText(getApplicationContext(), "Ok we'll manage that next time", Toast.LENGTH_SHORT).show();
+
                                 dialog.cancel();
                             }
                         });
@@ -218,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Intent nIntent2 = new Intent(MainActivity.this, MatrixGame.class);
+                Intent nIntent2 = new Intent(MainActivity.this, RouletteGame.class);
                 startActivity(nIntent2);
 
 

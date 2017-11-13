@@ -27,15 +27,10 @@ public class RingtonePlayingService extends Service {
 
     public int onStartCommand(Intent intent, int flag, int startId){
 
-        Log.d("in the on start command", "yey" + startId + " : "+ intent);
+        Log.d("yey", "We are on the ringstone command" + startId + " : "+ intent);
 
-
-
-        media_song = MediaPlayer.create(this, R.raw.oldsncf);
+        media_song = MediaPlayer.create(this, R.raw.sncf);
         media_song.start();
-
-
-
 
         return START_NOT_STICKY;
     }

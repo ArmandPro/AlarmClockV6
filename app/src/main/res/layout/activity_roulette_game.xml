@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.etudes.alarmclockv6.MiniGames.RouletteGame">
+    tools:context="com.example.etudes.alarmclockv6.RouletteGame">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -20,21 +20,18 @@
                 android:id="@+id/goal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/actualScore"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
                 android:textSize="30sp" />
 
             <Button
                 android:id="@+id/roulette"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
                 android:textSize="30sp" />
         </LinearLayout>
 
