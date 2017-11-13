@@ -23,39 +23,62 @@ public class RouletteGame extends AbstractGame {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roulette_game);
 
+        progressBar = findViewById(R.id.progress_bar_roulette);
         goalTV = findViewById(R.id.goal);
         actualTV = findViewById(R.id.actualScore);
         roulette = findViewById(R.id.roulette);
+        playersValue="";
         roulette.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playersValue+= roulette.getText();
+                addValue(roulette.getText().toString());
             }
         });
+        displayExplanation();
+        initGame();
     }
 
-
-    private void addValue(String value){
-        playersValue+=value;
-        actualTV.setText(playersValue);
-        if(goal.startsWith(playersValue)){
-            actualTV.setTextColor(Color.GREEN);
-        }else{
-            actualTV.setBackgroundColor(Color.RED);
-        }
-    }
 
     @Override
     public void initGame(){
         goal = ""+(new Random().nextInt(900)+100);
         goalTV.setText(goal);
         initTimer();
+        timer.start();
         launchCounter();
+        rouletteTimer.start();
+    }
+
+    private void addValue(String value){
+        playersValue+=value;
+        actualTV.setText(playersValue);
+        if(goal.startsWith(playersValue)){
+            actualTV.setTextColor(Color.GREEN);
+            if(goalTV.getText().toString().equals(playersValue)){
+                rouletteTimer.cancel();
+
+                gameEnded();
+            }
+        }else{
+            actualTV.setTextColor(Color.RED);
+            if(playersValue.length()>=3){
+                hasFailed();
+            }
+        }
+
+    }
+
+    protected void hasFailed(){
+        super.hasFailed();
+        rouletteTimer.cancel();
+        playersValue="";
+        actualTV.setText("");
     }
 
     private void launchCounter(){
         currentNumber= -1;
-        rouletteTimer = new CountDownTimer(5000,500) {
+        int speed = 5;
+        rouletteTimer = new CountDownTimer(speed*1100,speed*100) {
             @Override
             public void onTick(long l) {
                 currentNumber++;
@@ -64,6 +87,8 @@ public class RouletteGame extends AbstractGame {
 
             @Override
             public void onFinish() {
+                currentNumber=-1;
+                rouletteTimer.cancel();
                 rouletteTimer.start();
             }
         };

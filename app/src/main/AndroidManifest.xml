@@ -23,25 +23,26 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <receiver android:name=".AlarmReceiver"></receiver>
-        <receiver android:name=".NightReceiver"></receiver>
+        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".NightReceiver" />
 
         <service
             android:name=".RingtonePlayingService"
-            android:enabled="true"></service>
+            android:enabled="true" />
 
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MiniGames.MatrixGame"
             android:label="@string/title_activity_matrix_game"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MiniGames.RouletteGame"
             android:label="@string/title_activity_roulette_game"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MiniGames.TapTaupeGame"></activity>
     </application>
 
 </manifest>
