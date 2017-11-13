@@ -1,39 +1,39 @@
 package com.example.etudes.alarmclockv6;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
+import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.login.LoginManager;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
-
-import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
+import java.util.List;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -217,9 +217,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                List<Intent> gameList = new ArrayList<>();
+                gameList.add(new Intent(MainActivity.this,MatrixGame.class));
+                gameList.add(new Intent(MainActivity.this,RouletteGame.class));
 
-                Intent nIntent2 = new Intent(MainActivity.this, MatrixGame.class);
-                startActivity(nIntent2);
+                startActivity(gameList.get(new Random().nextBoolean()?0:1));
 
 
             }

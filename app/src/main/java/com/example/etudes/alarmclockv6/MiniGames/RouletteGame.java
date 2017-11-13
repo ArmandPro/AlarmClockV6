@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.etudes.alarmclockv6.AbstractGame;
 import com.example.etudes.alarmclockv6.R;
 
 import java.util.Random;
@@ -23,7 +22,7 @@ public class RouletteGame extends AbstractGame {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roulette_game);
-
+        EXPLAINATION="Use the button to print the same number";
         progressBar = findViewById(R.id.progress_bar_roulette);
         goalTV = findViewById(R.id.goal);
         actualTV = findViewById(R.id.actualScore);

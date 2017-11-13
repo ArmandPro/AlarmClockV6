@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.MiniGames;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
