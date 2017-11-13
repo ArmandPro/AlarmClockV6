@@ -2,6 +2,7 @@ package com.example.etudes.alarmclockv6.services;
 
 import android.content.Context;
 
+import com.example.etudes.alarmclockv6.Database.DatabaseConstants;
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
@@ -39,6 +40,8 @@ public class NightService {
         return night;
     }
 
+
+
     public Night createNight(String date) {
         Date day = null;
         try {
@@ -56,6 +59,11 @@ public class NightService {
         return night;
 
     }
+
+    public void deleteNight(String date){
+        database.deleteNight(date);
+    }
+
 
     private Night updateNight(Night night) {
         database.updateNight(night);

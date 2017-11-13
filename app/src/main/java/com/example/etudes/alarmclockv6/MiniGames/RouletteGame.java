@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.etudes.alarmclockv6.AbstractGame;
 import com.example.etudes.alarmclockv6.R;
 
 import java.util.Random;

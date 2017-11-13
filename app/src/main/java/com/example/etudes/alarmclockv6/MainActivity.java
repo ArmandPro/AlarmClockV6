@@ -1,32 +1,40 @@
 package com.example.etudes.alarmclockv6;
 
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
-import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
+import com.example.etudes.alarmclockv6.services.NightService;
+import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.LoginManager;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+
+import com.example.etudes.alarmclockv6.services.NightService;
+import com.example.etudes.alarmclockv6.services.modeles.Night;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,6 +92,30 @@ public class MainActivity extends AppCompatActivity {
         daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
 
 
+        //TEST VERSION ! ! ! ! ! ! ! ! ! ! !
+
+        Button testNightReceiver = (Button) findViewById(R.id.button5);
+
+        testNightReceiver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_YEAR,1);
+
+                SimpleDateFormat sdf = new SimpleDateFormat(Night.DATE_FORMAT);
+
+                NightService nightService = NightService.getInstance();
+                //nightService.deleteNight(sdf.format(calendar));
+
+
+
+                daily_alarm_manager.set(AlarmManager.RTC_WAKEUP,Calendar.getInstance().getTimeInMillis(),daily_pending_intent);
+
+
+            }
+        });
+
 
 
 
@@ -95,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         //SET ALARM
 
         final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
-
 
         alarm_timepicker = (TimePicker) findViewById(R.id.timePicker);
 
@@ -134,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent nIntent = new Intent(MainActivity.this, RouletteGame.class);
+                Intent nIntent = new Intent(MainActivity.this, ScrollingActivity.class);
                 startActivity(nIntent);
 
             }
@@ -175,6 +206,26 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+
+
+
+
+        //GAME
+
+        Button testGame = (Button) findViewById(R.id.button4);
+        testGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent nIntent2 = new Intent(MainActivity.this, MatrixGame.class);
+                startActivity(nIntent2);
+
+
+            }
+        });
+
+
     }
 
 
