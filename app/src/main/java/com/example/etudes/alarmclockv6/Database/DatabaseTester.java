@@ -1,10 +1,8 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.Database;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.example.etudes.alarmclockv6.Database.DatabaseConstants;
-import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.WeekService;
@@ -37,6 +35,10 @@ public class DatabaseTester {
         //if(!weekTests())return false;
         //if(!nightTests())return false;
         return true;
+    }
+
+    private void testNightId(){
+        Log.d("DBM - NIGHT ID",""+databaseManager.getLastNightId());
     }
 
     private boolean databaseInit(){

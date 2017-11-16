@@ -64,6 +64,19 @@ public class DatabaseManager {
         return database.updateWithOnConflict(DatabaseConstants.TABLE_NIGHT,values,DatabaseConstants.WAKE_UP_ESTIMATED+" LIKE ?",new String[]{date+"%"},database.CONFLICT_REPLACE);
     }
 
+    public long getLastNightId(){
+        Cursor cursor = database.query(DatabaseConstants.CREATE_TABLE_NIGHT,
+                new String[]{"ID"},
+                null,
+                null,
+                null,
+                null,
+                "column DESC LIMIT 1");
+        if(cursor.getCount()>0){
+            return cursor.getLong(cursor.getColumnIndex(DatabaseConstants.ID));
+        }
+        return -1;
+    }
 
     public Night getNightById(Long id){
         Cursor cursor = database.query(DatabaseConstants.TABLE_NIGHT,

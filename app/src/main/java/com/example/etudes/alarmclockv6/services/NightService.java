@@ -51,7 +51,7 @@ public class NightService {
 
         String wue = date+ "-" + WeekService.getInstance().getWeek().getADaysTime(day);
         Date today = Calendar.getInstance().getTime();
-        long difference = (long)(day.getTime()-today.getTime())/(24*60*60*1000);
+        long difference = 1+(long)Math.ceil((float)(day.getTime()-today.getTime())/(24*60*60*1000));
         Night night = new Night(HabitsService.getInstance().getHabits().getDaysOfUse() + difference, "", "", wue, "", false);
         night = estimateNight(night);
         database.insertNight(night);
