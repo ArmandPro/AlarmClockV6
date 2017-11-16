@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         DatabaseTester tester = new DatabaseTester(getApplicationContext());
-        //tester.runTests();
+        tester.runTests();
 
 
 

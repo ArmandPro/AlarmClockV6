@@ -24,6 +24,12 @@ public class AbstractGame extends AppCompatActivity {
         setContentView(R.layout.activity_abstract_game);
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        timer.cancel();
+    }
+
     protected void initGame(){
 
     }
