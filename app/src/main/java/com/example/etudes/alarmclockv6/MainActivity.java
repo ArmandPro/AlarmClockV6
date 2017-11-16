@@ -10,11 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
@@ -25,9 +25,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.LoginManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -137,8 +137,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                calendar.set(Calendar.HOUR_OF_DAY,alarm_timepicker.getHour());
-                calendar.set(Calendar.MINUTE,alarm_timepicker.getMinute());
+                Calendar calendar2 = Calendar.getInstance();
+                calendar2.set(Calendar.HOUR_OF_DAY,alarm_timepicker.getHour());
+                calendar2.set(Calendar.MINUTE,alarm_timepicker.getMinute());
 
                 alarm_timepicker = findViewById(R.id.timePicker);
 
@@ -146,9 +147,9 @@ public class MainActivity extends AppCompatActivity {
 
                 pending_intent = PendingIntent.getBroadcast(MainActivity.this,0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pending_intent);
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(),pending_intent);
 
-                Log.d("kikou","lol");
+                Toast.makeText(getApplicationContext(), "Alarm set up at:"+calendar2.getTime().toString(), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -178,6 +179,10 @@ public class MainActivity extends AppCompatActivity {
         alarmBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                //daily_alarm_manager_morning.set(AlarmManager.RTC_WAKEUP,new Date().getTime(),daily_pending_intent_morning);
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                 // set title
@@ -189,12 +194,19 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, SET LATE HERE
 
+                                Toast.makeText(getApplicationContext(), "You're late, we are too...", Toast.LENGTH_SHORT).show();
+
+
+
                             }
                         })
                         .setNegativeButton("No it's OK",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, SET NOT IN LATE HERE and close
                                 // the dialog box and do nothing
+
+                                Toast.makeText(getApplicationContext(), "Ok we'll manage that next time", Toast.LENGTH_SHORT).show();
+
                                 dialog.cancel();
                             }
                         });

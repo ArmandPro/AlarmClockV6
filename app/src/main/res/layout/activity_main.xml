@@ -18,7 +18,7 @@
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 tools:layout_editor_absoluteX="95dp"
                 tools:layout_editor_absoluteY="16dp" />
@@ -27,7 +27,7 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="Test alarm "
+                android:text="Test simple alarm "
                 tools:layout_editor_absoluteX="40dp"
                 tools:layout_editor_absoluteY="395dp" />
 
@@ -41,13 +41,13 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="Let's start" />
+                android:text="Setup a week" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="Ask me" />
+                android:text="Ask me if I'm late" />
 
             <Button
                 android:id="@+id/button4"
