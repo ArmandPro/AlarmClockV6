@@ -34,10 +34,12 @@ public class DatabaseTester {
         //if(!habitsTests())return false;
         //if(!weekTests())return false;
         //if(!nightTests())return false;
+        testNightId();
         return true;
     }
 
     private void testNightId(){
+        databaseManager.displayNights();
         Log.d("DBM - NIGHT ID",""+databaseManager.getLastNightId());
     }
 

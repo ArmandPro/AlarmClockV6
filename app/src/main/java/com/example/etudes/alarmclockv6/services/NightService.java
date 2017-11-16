@@ -1,8 +1,8 @@
 package com.example.etudes.alarmclockv6.services;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.example.etudes.alarmclockv6.Database.DatabaseConstants;
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
@@ -19,9 +19,13 @@ public class NightService {
 
     private DatabaseManager database;
     private static NightService instance = null;
+    private static long lastId = -1;
 
     private NightService(Context context) {
         database = DatabaseManager.getInstance(context);
+        lastId = database.getLastNightId();
+        if( lastId<0)lastId=0;
+        Log.d("NIGHT SERV -LASTID",""+lastId);
     }
 
     public static NightService getInstance() {
@@ -34,7 +38,7 @@ public class NightService {
     public Night createNight() {
         Calendar.getInstance().add(Calendar.DAY_OF_YEAR, 1);
         String wue = new SimpleDateFormat(Night.DATE_FORMAT).format(Calendar.getInstance().getTime()) + "-" + WeekService.getInstance().getWeek().getADaysTime(Calendar.getInstance().getTime());
-        Night night = new Night(HabitsService.getInstance().getHabits().getDaysOfUse() + 1, "", "", wue, "", false);
+        Night night = new Night(lastId+=1, "", "", wue, "", false);
         night = estimateNight(night);
         database.insertNight(night);
         return night;
@@ -49,11 +53,9 @@ public class NightService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         String wue = date+ "-" + WeekService.getInstance().getWeek().getADaysTime(day);
         Date today = Calendar.getInstance().getTime();
-        long difference = 1+(long)Math.ceil((float)(day.getTime()-today.getTime())/(24*60*60*1000));
-        Night night = new Night(HabitsService.getInstance().getHabits().getDaysOfUse() + difference, "", "", wue, "", false);
+        Night night = new Night(lastId+=1, "", "", wue, "", false);
         night = estimateNight(night);
         database.insertNight(night);
         return night;

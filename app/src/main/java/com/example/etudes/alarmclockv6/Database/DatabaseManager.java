@@ -65,14 +65,16 @@ public class DatabaseManager {
     }
 
     public long getLastNightId(){
-        Cursor cursor = database.query(DatabaseConstants.CREATE_TABLE_NIGHT,
+        Cursor cursor = database.query(DatabaseConstants.TABLE_NIGHT,
                 new String[]{"ID"},
                 null,
                 null,
                 null,
                 null,
-                "column DESC LIMIT 1");
+                DatabaseConstants.ID+" DESC",
+                "1");
         if(cursor.getCount()>0){
+            cursor.moveToFirst();
             return cursor.getLong(cursor.getColumnIndex(DatabaseConstants.ID));
         }
         return -1;
