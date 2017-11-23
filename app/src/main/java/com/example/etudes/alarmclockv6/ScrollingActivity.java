@@ -83,7 +83,9 @@ public class ScrollingActivity extends AppCompatActivity {
                     }
                 }
                 Toast.makeText(getApplicationContext(), "Week succesfully setup", Toast.LENGTH_SHORT).show();
-
+                GlobalAlarmManager globalAlarmManager = new GlobalAlarmManager();
+                globalAlarmManager.updateAlarm(getApplicationContext());
+                globalAlarmManager.updateTimeToGoBed(getApplicationContext());
             }
         });
     }

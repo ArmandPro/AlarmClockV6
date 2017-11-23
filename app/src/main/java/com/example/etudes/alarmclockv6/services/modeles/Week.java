@@ -4,6 +4,7 @@ import com.example.etudes.alarmclockv6.services.WeekService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Florian on 02/11/2017.
@@ -141,40 +142,34 @@ public class Week {
         }
     }
 
+    //TODO : Change to compare
     public String getADaysTime(Date date){
-        String today = new SimpleDateFormat("EEEE").format(date);
+        String today = new SimpleDateFormat("EEEEE", Locale.ENGLISH).format(date);
         String time = "";
         switch (today){
             case "Monday":
-            case "lundi":
                 time = monday;
                 break;
             case "Tuesday":
-            case "mardi":
                 time = tuesday;
                 break;
             case "Thursday":
-            case "jeudi":
                 time =  thursday;
                 break;
             case "Wednesday":
-            case "mercredi":
                 time = wednesday;
                 break;
             case "Friday":
-            case "vendredi":
                 time =  friday;
                 break;
             case "Saturday":
-            case "samedi":
                 time = saturday;
                 break;
             case "Sunday":
-            case "dimanche":
                 time = sunday;
                 break;
             default:
-                time = "Error";
+                time = "none";
         }
         return time;
     }

@@ -310,13 +310,12 @@ public class DatabaseManager {
 
     public long updateSucces(Success success){
         ContentValues values = new ContentValues();
-        values.put(DatabaseConstants.ID, success.getId());
         values.put(DatabaseConstants.NAME, success.getName());
         values.put(DatabaseConstants.DESCRIPTION, success.getDescription());
         values.put(DatabaseConstants.REWARD, success.getReward());
         values.put(DatabaseConstants.ADVANCEMENT, success.getAdvancement());
         values.put(DatabaseConstants.FINISHED, success.isFinished()?1:0);
-        return database.update(DatabaseConstants.TABLE_SUCCESS,values, null, null);
+        return database.update(DatabaseConstants.TABLE_SUCCESS,values, DatabaseConstants.ID+" = ? ", new String[]{success.getId()});
     }
 
 

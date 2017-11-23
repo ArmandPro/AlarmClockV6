@@ -55,6 +55,12 @@
                 android:layout_height="35dp"
                 android:text="Game" />
 
+            <Button
+                android:id="@+id/successButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Successes"/>
+
             <TimePicker
                 android:id="@+id/timePicker"
                 android:layout_width="match_parent"

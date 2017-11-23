@@ -36,6 +36,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+//TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
 
 public class MainActivity extends AppCompatActivity {
 
@@ -227,6 +228,17 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(gameList.get(new Random().nextBoolean()?0:1));
 
+            }
+        });
+
+
+        //-------------------------------------------------------------------SUCCESS
+        Button successButton = findViewById(R.id.successButton);
+        successButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent successIntent = new Intent(MainActivity.this, SuccessActivity.class);
+                startActivity(successIntent);
             }
         });
 

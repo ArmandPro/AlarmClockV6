@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.R;
+import com.example.etudes.alarmclockv6.managers.SuccessManager;
 
 public class AbstractGame extends AppCompatActivity {
 
@@ -45,6 +46,11 @@ public class AbstractGame extends AppCompatActivity {
     protected void gameEnded(){
         timer.cancel();
         //NightService.getInstance().wokeUp();
+        if(counter<=5){
+            SuccessManager.fasterThanLight();
+            Log.d(GAME_NAME,"Faster than light !");
+        }
+        SuccessManager.gameBeaten();
         //System.exit(0);
     }
 
@@ -54,7 +60,7 @@ public class AbstractGame extends AppCompatActivity {
 
     protected void initTimer() {
         counter = 0;
-        timer = new CountDownTimer(15000, 100) {
+        timer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
                 counter++;
