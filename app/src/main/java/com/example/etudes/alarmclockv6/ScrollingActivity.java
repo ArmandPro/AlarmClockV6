@@ -12,14 +12,21 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.WeekService;
+import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.example.etudes.alarmclockv6.services.modeles.Week;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 
 public class ScrollingActivity extends AppCompatActivity {
 
-    private TimePicker TP0, TP1, TP2, TP3, TP4, TP5, TP6;
-    private Switch s0,s1,s2,s3,s4,s5,s6;
+    private List<TimePicker> timePickers;
+    private List<Switch> switches;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -29,30 +36,31 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        timePickers = new ArrayList<>();
+        switches = new ArrayList<>();
+
+        NumberPicker numberPicker = findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(23);
-        numberPicker.setValue(8);
+        numberPicker.setValue(HabitsService.getInstance().getHabits().getSleepHoursPerNight());
 
 
-        TP0 = (TimePicker) findViewById(R.id.timePicker0);
-        TP1 = (TimePicker) findViewById(R.id.timePicker1);
-        TP2 = (TimePicker) findViewById(R.id.timePicker2);
-        TP3 = (TimePicker) findViewById(R.id.timePicker3);
-        TP4 = (TimePicker) findViewById(R.id.timePicker4);
-        TP5 = (TimePicker) findViewById(R.id.timePicker5);
-        TP6 = (TimePicker) findViewById(R.id.timePicker6);
+        timePickers.add((TimePicker)findViewById(R.id.timePicker0));
+        timePickers.add((TimePicker)findViewById(R.id.timePicker1));
+        timePickers.add((TimePicker)findViewById(R.id.timePicker2));
+        timePickers.add((TimePicker)findViewById(R.id.timePicker3));
+        timePickers.add((TimePicker)findViewById(R.id.timePicker4));
+        timePickers.add((TimePicker)findViewById(R.id.timePicker5));
+        timePickers.add((TimePicker)findViewById(R.id.timePicker6));
 
+        switches.add((Switch) findViewById(R.id.switch0));
+        switches.add((Switch) findViewById(R.id.switch1));
+        switches.add((Switch) findViewById(R.id.switch2));
+        switches.add((Switch) findViewById(R.id.switch3));
+        switches.add((Switch) findViewById(R.id.switch4));
+        switches.add((Switch) findViewById(R.id.switch5));
+        switches.add((Switch) findViewById(R.id.switch6));
         loadWeek();
-
-        s0 = (Switch) findViewById(R.id.switch0);
-        s1 = (Switch) findViewById(R.id.switch1);
-        s2 = (Switch) findViewById(R.id.switch2);
-        s3 = (Switch) findViewById(R.id.switch3);
-        s4 = (Switch) findViewById(R.id.switch4);
-        s5 = (Switch) findViewById(R.id.switch5);
-        s6 = (Switch) findViewById(R.id.switch6);
-
 
         Button buttonSetWeek = (Button) findViewById(R.id.buttonSetWeek);
 
@@ -60,49 +68,20 @@ public class ScrollingActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-
+                SimpleDateFormat sdf = new SimpleDateFormat(Night.HOUR_FORMAT);
+                Calendar calendar = Calendar.getInstance();
                 WeekService weekService = WeekService.getInstance();
                 Week week = weekService.getWeek();
                 String none = "none";
-                if (s0.isChecked()){
-                    week.setMonday(TP0.getHour() + ":" + TP0.getMinute());
-                }else{
-                    week.setMonday(none);
+                for( int i = 0; i<timePickers.size();i++){
+                    if(switches.get(i).isChecked()){
+                        calendar.set(Calendar.HOUR_OF_DAY,timePickers.get(i).getHour());
+                        calendar.set(Calendar.MINUTE,timePickers.get(i).getMinute());
+                        week.setXdayTime(i, sdf.format(calendar.getTime()));
+                    }else {
+                        week.setXdayTime(i,none);
+                    }
                 }
-                if (s0.isChecked()){
-                    week.setTuesday(TP1.getHour() + ":" + TP1.getMinute());
-                }else{
-                    week.setTuesday(none);
-                }
-                if (s0.isChecked()) {
-                    week.setWednesday(TP2.getHour() + ":" + TP2.getMinute());
-                }else{
-                    week.setWednesday(none);
-                }
-                if (s0.isChecked()){
-                    week.setThursday(TP3.getHour() + ":" + TP3.getMinute());
-                }else {
-                    week.setThursday(none);
-                }
-                if (s0.isChecked()) {
-                    week.setFriday(TP4.getHour() + ":" + TP4.getMinute());
-                }else{
-                    week.setFriday(none);
-                }
-                if (s0.isChecked()) {
-                    week.setSaturday(TP5.getHour() + ":" + TP5.getMinute());
-                }else{
-                    week.setSaturday(none);
-                }
-                if (s0.isChecked()) {
-                    week.setSunday(TP6.getHour() + ":" + TP6.getMinute());
-                }else{
-                    week.setSunday(none);
-                }
-                //Toast toast1=Toast.makeText(getApplicationContext(),day2,Toast.LENGTH_LONG);
-                //toast1.setMargin(50,50);
-                //toast1.show();
-
                 Toast.makeText(getApplicationContext(), "Week succesfully setup", Toast.LENGTH_SHORT).show();
 
             }
@@ -113,48 +92,16 @@ public class ScrollingActivity extends AppCompatActivity {
     private void loadWeek() {
         Week week = WeekService.getInstance().getWeek();
         String none = "none";
-        if (!week.getMonday().equals(none)) {
-            TP0.setHour(Integer.parseInt(week.getMonday().split(":")[0]));
-            TP0.setMinute(Integer.parseInt(week.getMonday().split(":")[1]));
-        }else {
-            s0.setChecked(false);
-        }
-        if (!week.getTuesday().equals(none)) {
-            TP1.setHour(Integer.parseInt(week.getTuesday().split(":")[0]));
-            TP1.setMinute(Integer.parseInt(week.getTuesday().split(":")[1]));
-        }else{
-            s1.setChecked(false);
-        }
-        if (!week.getWednesday().equals(none)) {
-            TP2.setHour(Integer.parseInt(week.getWednesday().split(":")[0]));
-            TP2.setMinute(Integer.parseInt(week.getWednesday().split(":")[1]));
-        }else{
-            s2.setChecked(false);
+        for( int i = 0; i< timePickers.size();i++){
+            String time = week.getXdayTime(i);
+            if(!time.equals(none)){
+                timePickers.get(i).setHour(Integer.parseInt(time.split(":")[0]));
+                timePickers.get(i).setMinute(Integer.parseInt(time.split(":")[1]));
+            }else {
+                switches.get(i).setChecked(false);
+            }
         }
 
-        if (!week.getThursday().equals(none)) {
-            TP3.setHour(Integer.parseInt(week.getThursday().split(":")[0]));
-            TP3.setMinute(Integer.parseInt(week.getThursday().split(":")[1]));
-        }else {
-            s3.setChecked(false);
-        }
-        if (!week.getFriday().equals(none)) {
-            TP4.setHour(Integer.parseInt(week.getFriday().split(":")[0]));
-            TP4.setMinute(Integer.parseInt(week.getFriday().split(":")[1]));
-        }else {
-            s4.setChecked(false);
-        }
-        if (!week.getSaturday().equals(none)) {
-            TP5.setHour(Integer.parseInt(week.getSaturday().split(":")[0]));
-            TP5.setMinute(Integer.parseInt(week.getSaturday().split(":")[1]));
-        }else{
-            s5.setChecked(false);
-        }
-        if (!week.getSunday().equals(none)) {
-            TP6.setHour(Integer.parseInt(week.getSunday().split(":")[0]));
-            TP6.setMinute(Integer.parseInt(week.getSaturday().split(":")[1]));
-        }else{
-            s6.setChecked(false);
-        }
+
     }
 }

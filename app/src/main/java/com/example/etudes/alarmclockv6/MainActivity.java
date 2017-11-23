@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.Database.DatabaseTester;
+import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.services.HabitsService;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseManager.getInstance(getApplicationContext());
+        SuccessPopulator pop = new SuccessPopulator();
 
         //HabitsService.getInstance().getHabits().setDaysOfUse(3);
 

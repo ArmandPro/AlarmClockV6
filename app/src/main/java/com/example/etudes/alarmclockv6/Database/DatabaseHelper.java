@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import javax.crypto.spec.DHGenParameterSpec;
-
 /**
  * Created by Florian on 01/11/2017.
  */
@@ -15,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final String DATABASE_NAME = "AlarmClock";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
 
 
@@ -28,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DatabaseConstants.CREATE_TABLE_NIGHT);
         sqLiteDatabase.execSQL(DatabaseConstants.CREATE_TABLE_WEEK);
         sqLiteDatabase.execSQL(DatabaseConstants.CREATE_TABLE_HABITS);
+        sqLiteDatabase.execSQL(DatabaseConstants.CREATE_TABLE_SUCCESS);
         Log.d("DBHelper","Tables created !");
     }
 
@@ -37,6 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DatabaseConstants.DROP_TABLE_NIGHT);
         sqLiteDatabase.execSQL(DatabaseConstants.DROP_TABLE_WEEK);
         sqLiteDatabase.execSQL(DatabaseConstants.DROP_TABLE_HABITS);
+        //sqLiteDatabase.execSQL(DatabaseConstants.DROP_TABLE_SUCCESS);
         onCreate(sqLiteDatabase);
     }
 }

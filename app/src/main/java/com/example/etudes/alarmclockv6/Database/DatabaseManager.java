@@ -8,7 +8,11 @@ import android.util.Log;
 
 import com.example.etudes.alarmclockv6.services.modeles.Habits;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
+import com.example.etudes.alarmclockv6.services.modeles.Success;
 import com.example.etudes.alarmclockv6.services.modeles.Week;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -240,6 +244,82 @@ public class DatabaseManager {
         }
         return null;
     }
+
+    public List<Success> getSuccesses(){
+        List<Success> results = new ArrayList<>();
+        Cursor cursor = database.query(DatabaseConstants.TABLE_SUCCESS,
+                new String[]{"*"},
+                null,
+                null,
+                null,
+                null
+                ,null);
+        if(cursor.getCount()>0) {
+            cursor.moveToFirst();
+            do {
+                Habits habits = new Habits();
+                String id = cursor.getString(cursor.getColumnIndex(DatabaseConstants.ID));
+                String name = cursor.getString(cursor.getColumnIndex(DatabaseConstants.NAME));
+                String desc = cursor.getString(cursor.getColumnIndex(DatabaseConstants.DESCRIPTION));
+                int reward = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.REWARD));
+                int advancement = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.ADVANCEMENT));
+                boolean finished = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.FINISHED)) == 1;
+                results.add(new Success(id, name, desc, reward, advancement, finished));
+            } while (cursor.moveToNext());
+            return results;
+        }
+        return null;
+    }
+
+    public List<Success> getSuccessesByKey(String key){
+        List<Success> results = new ArrayList<>();
+        Cursor cursor = database.query(DatabaseConstants.TABLE_SUCCESS,
+                new String[]{"*"},
+                DatabaseConstants.ID+" like ? and "+ DatabaseConstants.FINISHED+" = 0",
+                new String[]{key},
+                null,
+                null
+                ,null);
+        if(cursor.getCount()>0) {
+            cursor.moveToFirst();
+            do {
+                Habits habits = new Habits();
+                String id = cursor.getString(cursor.getColumnIndex(DatabaseConstants.ID));
+                String name = cursor.getString(cursor.getColumnIndex(DatabaseConstants.NAME));
+                String desc = cursor.getString(cursor.getColumnIndex(DatabaseConstants.DESCRIPTION));
+                int reward = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.REWARD));
+                int advancement= cursor.getInt(cursor.getColumnIndex(DatabaseConstants.ADVANCEMENT));
+                boolean finished = cursor.getInt(cursor.getColumnIndex(DatabaseConstants.FINISHED)) == 1;
+                results.add(new Success(id, name, desc, reward, advancement, finished));
+            } while (cursor.moveToNext());
+            return results;
+        }
+        return null;
+    }
+
+    public long insertSuccess(Success success){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConstants.ID, success.getId());
+        values.put(DatabaseConstants.NAME, success.getName());
+        values.put(DatabaseConstants.DESCRIPTION, success.getDescription());
+        values.put(DatabaseConstants.REWARD, success.getReward());
+        values.put(DatabaseConstants.ADVANCEMENT, success.getAdvancement());
+        values.put(DatabaseConstants.FINISHED, success.isFinished()?1:0);
+        return database.insert(DatabaseConstants.TABLE_SUCCESS,null,values);
+    }
+
+    public long updateSucces(Success success){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConstants.ID, success.getId());
+        values.put(DatabaseConstants.NAME, success.getName());
+        values.put(DatabaseConstants.DESCRIPTION, success.getDescription());
+        values.put(DatabaseConstants.REWARD, success.getReward());
+        values.put(DatabaseConstants.ADVANCEMENT, success.getAdvancement());
+        values.put(DatabaseConstants.FINISHED, success.isFinished()?1:0);
+        return database.update(DatabaseConstants.TABLE_SUCCESS,values, null, null);
+    }
+
+
 
     public DatabaseHelper getDbHelper() {
         return dbHelper;
