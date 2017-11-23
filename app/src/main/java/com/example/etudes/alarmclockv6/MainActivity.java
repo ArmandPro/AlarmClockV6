@@ -1,17 +1,12 @@
 package com.example.etudes.alarmclockv6;
 
 import android.app.AlarmManager;
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,9 +17,9 @@ import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.Database.DatabaseTester;
+import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
-import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
@@ -63,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseManager.getInstance(getApplicationContext());
+        SuccessPopulator pop = new SuccessPopulator();
 
         //HabitsService.getInstance().getHabits().setDaysOfUse(3);
 
