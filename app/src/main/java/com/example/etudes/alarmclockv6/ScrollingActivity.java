@@ -1,6 +1,5 @@
 package com.example.etudes.alarmclockv6;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -44,6 +43,8 @@ public class ScrollingActivity extends AppCompatActivity {
         TP5 = (TimePicker) findViewById(R.id.timePicker5);
         TP6 = (TimePicker) findViewById(R.id.timePicker6);
 
+        loadWeek();
+
         s0 = (Switch) findViewById(R.id.switch0);
         s1 = (Switch) findViewById(R.id.switch1);
         s2 = (Switch) findViewById(R.id.switch2);
@@ -52,10 +53,6 @@ public class ScrollingActivity extends AppCompatActivity {
         s5 = (Switch) findViewById(R.id.switch5);
         s6 = (Switch) findViewById(R.id.switch6);
 
-        loadWeek();
-
-
-
 
         Button buttonSetWeek = (Button) findViewById(R.id.buttonSetWeek);
 
@@ -63,8 +60,6 @@ public class ScrollingActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-
-                Context context = getApplicationContext();
 
                 WeekService weekService = WeekService.getInstance();
                 Week week = weekService.getWeek();
@@ -107,14 +102,6 @@ public class ScrollingActivity extends AppCompatActivity {
                 //Toast toast1=Toast.makeText(getApplicationContext(),day2,Toast.LENGTH_LONG);
                 //toast1.setMargin(50,50);
                 //toast1.show();
-
-
-                //Set or cancel all alarm
-                GlobalAlarmManager globalAlarmManager = new GlobalAlarmManager();
-                globalAlarmManager.updateAlarm(getApplicationContext());
-
-                //Set or cancel all "Go to bed" notification
-                globalAlarmManager.updateTimeToGoBed(getApplicationContext());
 
                 Toast.makeText(getApplicationContext(), "Week succesfully setup", Toast.LENGTH_SHORT).show();
 

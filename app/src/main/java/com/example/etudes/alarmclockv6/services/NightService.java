@@ -3,7 +3,6 @@ package com.example.etudes.alarmclockv6.services;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.etudes.alarmclockv6.Database.DatabaseConstants;
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
@@ -11,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by Florian on 02/11/2017.
@@ -21,9 +19,13 @@ public class NightService {
 
     private DatabaseManager database;
     private static NightService instance = null;
+    private static long lastId = -1;
 
     private NightService(Context context) {
         database = DatabaseManager.getInstance(context);
+        lastId = database.getLastNightId();
+        if( lastId<0)lastId=0;
+        Log.d("NIGHT SERV -LASTID",""+lastId);
     }
 
     public static NightService getInstance() {
@@ -35,9 +37,8 @@ public class NightService {
 
     public Night createNight() {
         Calendar.getInstance().add(Calendar.DAY_OF_YEAR, 1);
-        int id = new Random().nextInt();
         String wue = new SimpleDateFormat(Night.DATE_FORMAT).format(Calendar.getInstance().getTime()) + "-" + WeekService.getInstance().getWeek().getADaysTime(Calendar.getInstance().getTime());
-        Night night = new Night(id, "", "", wue, "", false);
+        Night night = new Night(lastId+=1, "", "", wue, "", false);
         night = estimateNight(night);
         database.insertNight(night);
         return night;
@@ -47,19 +48,14 @@ public class NightService {
 
     public Night createNight(String date) {
         Date day = null;
-        //Log.d("date:", date);
-        int id = new Random().nextInt();
         try {
             day = new SimpleDateFormat(Night.DATE_FORMAT).parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         String wue = date+ "-" + WeekService.getInstance().getWeek().getADaysTime(day);
         Date today = Calendar.getInstance().getTime();
-        long difference = 1+(long)Math.ceil((day.getTime()-today.getTime())/(24*60*60*1000));
-        //Log.d("difference", ""+difference);
-        Night night = new Night(id+ difference, "", "", wue, "", false);
+        Night night = new Night(lastId+=1, "", "", wue, "", false);
         night = estimateNight(night);
         database.insertNight(night);
         return night;
@@ -113,7 +109,6 @@ public class NightService {
      * Returns the night once modified, but only works if the night has not been passed
      */
     public Night updateCurrentNight(String time) {
-        //database.displayNights();
         long id = (long) HabitsService.getInstance().getHabits().getDaysOfUse();
         Night night = database.getNightByDate(new SimpleDateFormat(Night.DATE_FORMAT).format(new Date()));
         if (night != null) {

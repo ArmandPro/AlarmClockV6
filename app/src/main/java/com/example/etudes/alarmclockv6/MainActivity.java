@@ -21,6 +21,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.Database.DatabaseTester;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.services.HabitsService;
@@ -30,9 +31,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.login.LoginManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //DatabaseTester tester = new DatabaseTester(getApplicationContext());
-        //tester.runTests();
+        DatabaseTester tester = new DatabaseTester(getApplicationContext());
+        tester.runTests();
 
 
 

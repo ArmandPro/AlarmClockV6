@@ -1,8 +1,5 @@
 package com.example.etudes.alarmclockv6.services.modeles;
 
-import android.util.Log;
-import android.util.TimeFormatException;
-
 import com.example.etudes.alarmclockv6.services.WeekService;
 
 import java.text.SimpleDateFormat;
@@ -95,6 +92,54 @@ public class Week {
         WeekService.getInstance().updateWeek();
     }
 
+    public void setXdayTime(int index, String time){
+        switch (index){
+            case 0:
+                setMonday(time);
+                break;
+            case 1:
+                setTuesday(time);
+                break;
+            case 2:
+                setWednesday(time);
+                break;
+            case 3:
+                setThursday(time);
+                break;
+            case 4:
+                setFriday(time);
+                break;
+            case 5:
+                setSaturday(time);
+                break;
+            case 6:
+                setSunday(time);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public String getXdayTime(int index){
+        switch (index){
+            case 0:
+                return getMonday();
+            case 1:
+                return getTuesday();
+            case 2:
+                return getWednesday();
+            case 3:
+                return getThursday();
+            case 4:
+                return getFriday();
+            case 5:
+                return getSaturday();
+            case 6:
+                return getSunday();
+            default:
+                return "none";
+        }
+    }
 
     public String getADaysTime(Date date){
         String today = new SimpleDateFormat("EEEE").format(date);
