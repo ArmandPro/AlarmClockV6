@@ -8,13 +8,11 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.etudes.alarmclockv6.R;
-
 /**
- * Created by Etudes on 05/11/2017.
+ * Created by Etudes on 16/11/2017.
  */
 
-public class RingtonePlayingService extends Service {
+public class RingtonePlayingServiceMon extends Service {
 
 
     MediaPlayer media_song;
@@ -27,9 +25,9 @@ public class RingtonePlayingService extends Service {
 
     public int onStartCommand(Intent intent, int flag, int startId){
 
-        Log.d("yey", "We are on the ringstone command" + startId + " : "+ intent);
+        Log.d("yey", "We are on the ringstone monday" + startId + " : "+ intent);
 
-        media_song = MediaPlayer.create(this, R.raw.nokia);
+        media_song = MediaPlayer.create(this, R.raw.iphone);
         media_song.start();
 
         return START_NOT_STICKY;

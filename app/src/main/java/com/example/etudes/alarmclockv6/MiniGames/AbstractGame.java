@@ -43,7 +43,7 @@ public class AbstractGame extends AppCompatActivity {
     }
 
     protected void displayExplanation(){
-        Toast.makeText(getApplicationContext(),EXPLAINATION,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),EXPLAINATION,Toast.LENGTH_SHORT).show();
     }
 
     protected void initTimer() {

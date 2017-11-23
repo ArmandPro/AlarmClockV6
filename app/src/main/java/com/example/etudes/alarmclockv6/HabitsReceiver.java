@@ -1,10 +1,14 @@
 package com.example.etudes.alarmclockv6;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,14 +21,33 @@ import com.example.etudes.alarmclockv6.services.modeles.Night;
  * Created by Etudes on 12/11/2017.
  */
 
-class HabitsReceiver extends BroadcastReceiver{
+public class HabitsReceiver extends BroadcastReceiver{
 
     @Override
     public void onReceive(final Context context, Intent intent) {
 
-        final Intent my_intent = new Intent(context, AlarmReceiver.class);
+        final Intent my_intent = new Intent(context, HabitsBroadcastService.class);
+
+        PendingIntent piOpen = PendingIntent.getService(context, 0, my_intent, 0);
 
         Log.d("hey", "We are in the Habits Receiver");
+
+        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.com_facebook_button_icon)
+                .setContentTitle("Night system")
+                .setContentText("Are you arrived late this morning?")
+                .addAction(R.drawable.com_facebook_send_button_icon, "Yes, I was late this morning",
+                        piOpen)
+                ;
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notificationBuilder.build());
+
+
+
+
+
 
         /*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -58,11 +81,11 @@ class HabitsReceiver extends BroadcastReceiver{
         AlertDialog alertDialog = alertDialogBuilder.create();
 
         // show it
-        alertDialog.show();
+        alertDialog.show();*/
 
 
-        HabitsService habitsService = HabitsService.getInstance();
-       // Habits habits = habitsService.create*/
+        //HabitsService habitsService = HabitsService.getInstance();
+       // Habits habits = habitsService.create
 
 
     }

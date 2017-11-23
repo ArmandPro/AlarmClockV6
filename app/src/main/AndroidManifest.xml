@@ -3,6 +3,7 @@
     package="com.example.etudes.alarmclockv6">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -24,11 +25,30 @@
             android:value="@string/facebook_app_id" />
 
         <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AlarmReceiverMonday" />
         <receiver android:name=".NightReceiver" />
+        <receiver android:name=".HabitsReceiver" />
+
+
+        <service
+            android:name=".NightBroadcastService"
+            android:enabled="true" />
 
         <service
             android:name=".RingtonePlayingService"
             android:enabled="true" />
+
+        <service
+            android:name=".RingtonePlayingServiceMon"
+            android:enabled="true" />
+
+        <service
+            android:name=".HabitsBroadcastService"
+            android:enabled="true" />
+
+
+
+
 
         <activity
             android:name=".ScrollingActivity"
