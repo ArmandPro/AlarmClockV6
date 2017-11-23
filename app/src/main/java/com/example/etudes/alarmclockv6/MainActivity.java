@@ -44,6 +44,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    //commit
+    //pull
+    //push
+
 
     //Attributes
     TextView txtStatus;
