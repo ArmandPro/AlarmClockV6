@@ -59,9 +59,9 @@ public class DatabaseTester {
         boolean passed = true;
         Habits habits = habitsService.getHabits();
         if(habits.getDaysOfUse()==0){
-            Log.d(name+" - "+ DatabaseConstants.DAYS_OF_USE,ok);
+            Log.d(name+" - DAYSOFUSE",ok);
         }else{
-            Log.d(name+" - "+ DatabaseConstants.DAYS_OF_USE,err + habits.getDaysOfUse());
+            Log.d(name+" - DAYSOFUSE",err + habits.getDaysOfUse());
             passed = false;
         }
         if(habits.getSleepHoursPerNight()==7){
@@ -71,10 +71,10 @@ public class DatabaseTester {
             passed = false;
         }
 
-        if(habits.getWhenToAskIfWereLate()==2){
+        if(habits.getDaysOfLateness()==0){
             Log.d(name+" - LATE",ok);
         }else{
-            Log.d(name+" - LATE",err+habits.getWhenToAskIfWereLate());
+            Log.d(name+" - LATE",err+habits.getDaysOfLateness());
             passed = false;
         }
         habits.incrementDaysOfUse();

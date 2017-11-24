@@ -11,14 +11,16 @@ import java.util.Random;
 public class Habits {
     private long id;
     private int daysOfUse;
-    private int whenToAskIfWereLate;
     private int sleepHoursPerNight;
+    private int daysOfLateness;
+    private int rewardTime;
 
-    public Habits(long id, int daysOfUse, int whenToAskIfWereLate, int sleepHoursPerNight) {
+    public Habits(long id, int daysOfUse, int sleepHoursPerNight, int daysOfLateness, int rewardTime) {
         this.id = id;
         this.daysOfUse = daysOfUse;
-        this.whenToAskIfWereLate = whenToAskIfWereLate;
         this.sleepHoursPerNight = sleepHoursPerNight;
+        this.daysOfLateness = daysOfLateness;
+        this.rewardTime = rewardTime;
     }
 
     public Habits(){
@@ -38,14 +40,6 @@ public class Habits {
         HabitsService.getInstance().updateHabits();
     }
 
-    public int getWhenToAskIfWereLate() {
-        return whenToAskIfWereLate;
-    }
-
-    public void setWhenToAskIfWereLate(int whenToAskIfWereLate) {
-        this.whenToAskIfWereLate = whenToAskIfWereLate;
-        HabitsService.getInstance().updateHabits();
-    }
 
     public int getSleepHoursPerNight() {
         return sleepHoursPerNight;
@@ -62,10 +56,37 @@ public class Habits {
         return daysOfUse;
     }
 
+    public int getDaysOfLateness() {
+        return daysOfLateness;
+    }
+
+    public void setDaysOfLateness(int daysOfLateness) {
+        this.daysOfLateness = daysOfLateness;
+        HabitsService.getInstance().updateHabits();
+    }
+
+    public int getRewardedTime() {
+        return rewardTime;
+    }
+
+    public void setRewardedTime(int rewardTime) {
+        this.rewardTime = rewardTime;
+        HabitsService.getInstance().updateHabits();
+    }
+
+    public int addRewardTime(int time){
+        rewardTime = rewardTime + time;
+        HabitsService.getInstance().updateHabits();
+        return rewardTime;
+    }
+
     public void init(){
         id = new Random().nextLong();
         daysOfUse = 0;
-        whenToAskIfWereLate = 2;
         sleepHoursPerNight = 7;
+        rewardTime=0;
+        daysOfLateness=0;
     }
+
+
 }
