@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/gradient_background_night"
+    android:id="@+id/scrollingSetupWeek"
     tools:context="com.example.etudes.alarmclockv6.ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout
