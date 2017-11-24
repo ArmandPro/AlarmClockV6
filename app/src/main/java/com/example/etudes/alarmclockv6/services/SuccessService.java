@@ -22,9 +22,6 @@ public class SuccessService {
         return instance;
     }
 
-    public List<Success> getSucces(){
-        return database.getSuccesses();
-    }
 
     public Success createSuccess(Success success){
         database.insertSuccess(success);
@@ -35,6 +32,8 @@ public class SuccessService {
         database.updateSucces(success);
         return success;
     }
+
+    public List<Success> getSuccesses(){return database.getSuccesses();};
 
     public List<Success> getSuccessByKey(String key){
         return database.getSuccessesByKey(key);

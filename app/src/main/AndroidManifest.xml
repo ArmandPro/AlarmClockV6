@@ -3,7 +3,7 @@
     package="com.example.etudes.alarmclockv6">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -31,19 +31,15 @@
         <receiver android:name=".GoBedReceiver" />
         <receiver android:name=".SummaryReceiver" />
 
-
         <service
             android:name=".NightBroadcastService"
             android:enabled="true" />
-
         <service
             android:name=".RingtonePlayingService"
             android:enabled="true" />
-
         <service
             android:name=".RingtonePlayingServiceMon"
             android:enabled="true" />
-
         <service
             android:name=".HabitsBroadcastService"
             android:enabled="true" />
@@ -66,7 +62,8 @@
             android:name=".MiniGames.RouletteGame"
             android:label="@string/title_activity_roulette_game"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MiniGames.TapTaupeGame"></activity>
+        <activity android:name=".MiniGames.TapTaupeGame" />
+        <activity android:name=".SuccessActivity"></activity>
     </application>
 
 </manifest>

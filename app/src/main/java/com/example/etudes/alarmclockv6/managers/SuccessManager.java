@@ -57,14 +57,14 @@ public class SuccessManager {
     private static void sleptWellOneNight(){
         init();
         List<Success> successes = service.getSuccessByKey("NIGHT 1");
-        if(successes.size()>0)successes.get(0).setFinished(true);
+        if(successes!=null)successes.get(0).setFinished(true);
     }
 
 
     private static void sleptWellAWeek(){
         init();
         List<Success> successes = service.getSuccessByKey("NIGHT 7");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setAdvancement(successes.get(0).getAdvancement()+1);
             if(successes.get(0).getAdvancement()>=7) successes.get(0).setFinished(true);
         }
@@ -74,7 +74,7 @@ public class SuccessManager {
     private static void sleptWellAMonth(){
         init();
         List<Success> successes = service.getSuccessByKey("NIGHT 31");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setAdvancement(successes.get(0).getAdvancement()+1);
             if(successes.get(0).getAdvancement()>31) successes.get(0).setFinished(true);
         }
@@ -92,7 +92,7 @@ public class SuccessManager {
     public static void fasterThanLight(){
         init();
         List<Success> successes = service.getSuccessByKey("GAME 5");
-        if(successes.size()>0)successes.get(0).setFinished(true);
+        if(successes!=null)successes.get(0).setFinished(true);
     }
 
     public static void rageQuit(){
@@ -103,14 +103,14 @@ public class SuccessManager {
     private static void firstGameRageQuit(){
         init();
         List<Success> successes = service.getSuccessByKey("GAME -1");
-        if(successes.size()>0)successes.get(0).setFinished(true);
+        if(successes!=null)successes.get(0).setFinished(true);
     }
 
 
     private static void gameRageQuitFiveTimes(){
         init();
         List<Success> successes = service.getSuccessByKey("GAME -5");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setAdvancement(successes.get(0).getAdvancement()+1);
             if(successes.get(0).getAdvancement()>=5) successes.get(0).setFinished(true);
         }
@@ -127,13 +127,13 @@ public class SuccessManager {
     private static void gameBeatenForFirstTime(){
         init();
         List<Success> successes = service.getSuccessByKey("GAME 1");
-        if(successes.size()>0) successes.get(0).setFinished(true);
+        if(successes!=null) successes.get(0).setFinished(true);
     }
 
     private static void gameBeatenSevenTimes(){
         init();
         List<Success> successes = service.getSuccessByKey("GAME 7");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setAdvancement(successes.get(0).getAdvancement()+1);
             if(successes.get(0).getAdvancement()>=7) successes.get(0).setFinished(true);
         }
@@ -143,7 +143,7 @@ public class SuccessManager {
     private static void gameBeaten31Times(){
         init();
         List<Success> successes = service.getSuccessByKey("GAME 31");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setAdvancement(successes.get(0).getAdvancement()+1);
             if(successes.get(0).getAdvancement()>=31) successes.get(0).setFinished(true);
         }
@@ -153,7 +153,7 @@ public class SuccessManager {
     public static void firstTimeToParameter(){
         init();
         List<Success> successes = service.getSuccessByKey("PARAMS 1");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setFinished(true);
         }
     }
@@ -161,7 +161,7 @@ public class SuccessManager {
     public static void fourHoursOnly(){
         init();
         List<Success> successes = service.getSuccessByKey("PARAMS 4");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setFinished(true);
         }
     }
@@ -169,7 +169,7 @@ public class SuccessManager {
     public static void tenHoursSleep(){
         init();
         List<Success> successes = service.getSuccessByKey("PARAMS 10");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setFinished(true);
         }
     }
@@ -178,7 +178,7 @@ public class SuccessManager {
     public static void parametersFifteenTimes(){
         init();
         List<Success> successes = service.getSuccessByKey("PARAMS 15");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setAdvancement(successes.get(0).getAdvancement()+1);
             if(successes.get(0).getAdvancement()>=15) successes.get(0).setFinished(true);
         }
@@ -186,14 +186,14 @@ public class SuccessManager {
 
     public static void lateOneNight(){
         List<Success> successes = service.getSuccessByKey("LATE 1");
-        if(successes.size()>0){
+        if(successes!=null){
             successes.get(0).setFinished(true);
         }
     }
 
     public static void lateFiveNights(){
         List<Success> successes = service.getSuccessByKey("LATE 5");
-        if(successes.size()>0) {
+        if(successes!=null) {
             successes.get(0).setFinished(true);
             successes.get(0).setAdvancement(successes.get(0).getAdvancement() + 1);
             if (successes.get(0).getAdvancement() >= 5) successes.get(0).setFinished(true);

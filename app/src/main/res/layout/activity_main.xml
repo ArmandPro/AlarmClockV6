@@ -61,6 +61,12 @@
                 android:layout_height="35dp"
                 android:text="Test go to bed receiver" />
 
+            <Button
+                android:id="@+id/successButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Successes"/>
+
             <TimePicker
                 android:id="@+id/timePicker"
                 android:layout_width="match_parent"

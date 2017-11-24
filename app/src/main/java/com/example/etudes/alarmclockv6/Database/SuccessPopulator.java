@@ -13,7 +13,7 @@ public class SuccessPopulator {
 
     public SuccessPopulator(){
         service = SuccessService.getInstance();
-        if(service.getSucces()==null)
+        if(service.getSuccesses()==null)
             insertSuccesses();
     }
 
