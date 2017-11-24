@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Habits;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
 import java.text.SimpleDateFormat;
@@ -19,7 +17,7 @@ import java.util.Date;
  * Created by Etudes on 22/11/2017.
  */
 
-class SummaryReceiver extends BroadcastReceiver{
+public class SummaryReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -28,17 +26,23 @@ class SummaryReceiver extends BroadcastReceiver{
         Date lastDate = cal.getTime();
         String lastNight = new SimpleDateFormat("yyyy/MM/dd").format(lastDate);
 
+        Boolean sleepWell;
+
         NightService nightService = NightService.getInstance();
         Night night = nightService.getNight(lastNight);
 
-        Boolean sleepWell = night.isSleepWell();
+        if(night == null){
+            sleepWell = true;
+        }else{
+            sleepWell = night.isSleepWell();
+        }
 
 
 
 
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.com_facebook_button_icon)
+                .setSmallIcon(R.drawable.moon)
                 .setContentTitle("Night system");
 
         if(sleepWell){

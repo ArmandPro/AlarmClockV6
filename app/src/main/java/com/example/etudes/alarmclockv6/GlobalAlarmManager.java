@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Etudes on 15/11/2017.
@@ -23,7 +24,47 @@ import java.util.Date;
 
 public class GlobalAlarmManager {
 
+
+    //return 1 if we are an Monday, 2 if Tuesday...
+    public int getDayOfWeek(){
+
+        String day = new SimpleDateFormat("EE", Locale.ENGLISH).format(new Date());
+        int dayOfWek = 1;
+        switch (day) {
+            case "Mon":
+                dayOfWek = 1;
+                break;
+            case "Tue":
+                dayOfWek = 2;
+                break;
+            case "Wed":
+                dayOfWek = 3;
+                break;
+            case "Thu":
+                dayOfWek = 4;
+                break;
+            case "Fri":
+                dayOfWek = 5;
+                break;
+            case "Sat":
+                dayOfWek = 6;
+                break;
+            case "Sun":
+                dayOfWek = 7;
+                break;
+        }
+
+        Log.d("DayOfWeek", "number"+dayOfWek);
+        return dayOfWek;
+    }
+
+
+
     public void updateAlarm(Context context){
+
+
+        //1 if monday, 2 if tuesday
+        int dayOfWeek = getDayOfWeek();
 
         final Intent my_intent_mon = new Intent(context, AlarmReceiverMonday.class);
         final Intent my_intent = new Intent(context, AlarmReceiver.class);
@@ -62,8 +103,10 @@ public class GlobalAlarmManager {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm-dd-MM-yyyy");
         //SimpleDateFormat format = new SimpleDateFormat(Night.HOUR_FORMAT);
 
-        //String DMY = new SimpleDateFormat("-dd-MM-yyyy").format(new Date());
-        String DMY = "-09-11-2017";
+        String DMY = new SimpleDateFormat("-dd-MM-yyyy").format(new Date());
+        //String DMY = "-23-11-2017";
+
+
 
 
 
@@ -86,7 +129,14 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date for monday");
             }
-            alarm_manager_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime(),oneWeek,pendingIntentMonday);
+
+                if(dayOfWeek>1){
+                    //if we are after monday
+                    alarm_manager_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime()+oneWeek,oneWeek,pendingIntentMonday);
+
+                }else{
+                    alarm_manager_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime(),oneWeek,pendingIntentMonday);
+                }
 
         }else{
             alarm_manager_mon.cancel(pendingIntentMonday);
@@ -106,7 +156,12 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date at tuesday");
             }
-            alarm_manager_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay,oneWeek,pendingIntentTuesday);
+
+            if(dayOfWeek>2){
+                alarm_manager_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay+oneWeek,oneWeek,pendingIntentTuesday);
+            }else{
+                alarm_manager_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay,oneWeek,pendingIntentTuesday);
+            }
 
         }else{
             alarm_manager_tue.cancel(pendingIntentTuesday);
@@ -125,7 +180,11 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date in wednesday");
             }
-            alarm_manager_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay,oneWeek,pendingIntentWednesday);
+            if(dayOfWeek>3){
+                alarm_manager_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay+oneWeek,oneWeek,pendingIntentWednesday);
+            }else{
+                alarm_manager_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay,oneWeek,pendingIntentWednesday);
+            }
 
         }else{
             alarm_manager_wed.cancel(pendingIntentWednesday);
@@ -148,8 +207,15 @@ public class GlobalAlarmManager {
                 Log.d("hey","error when you convert string to date thursday");
             }
 
-            alarm_manager_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay),oneWeek,pendingIntentThursday);
-        }else{
+                if(dayOfWeek>4){
+                    alarm_manager_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay+oneWeek),oneWeek,pendingIntentThursday);
+
+                }else{
+                    alarm_manager_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay),oneWeek,pendingIntentThursday);
+
+                }
+
+            }else{
             alarm_manager_thu.cancel(pendingIntentThursday);
         }
 
@@ -167,8 +233,15 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date at friday");
             }
-            alarm_manager_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay ,oneWeek,pendingIntentFriday);
-        }else{
+                if(dayOfWeek>5){
+                    alarm_manager_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay+oneWeek ,oneWeek,pendingIntentFriday);
+
+                }else{
+                    alarm_manager_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay ,oneWeek,pendingIntentFriday);
+
+                }
+
+            }else{
             alarm_manager_fri.cancel(pendingIntentFriday);
         }
 
@@ -184,7 +257,14 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date in  Saturday");
             }
-            alarm_manager_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay,oneWeek,pendingIntentSaturday);
+
+            if(dayOfWeek>6){
+                alarm_manager_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay+oneWeek,oneWeek,pendingIntentSaturday);
+
+            }else{
+                alarm_manager_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay,oneWeek,pendingIntentSaturday);
+
+            }
 
         }else{
             alarm_manager_sat.cancel(pendingIntentSaturday);
@@ -200,14 +280,33 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date in  Saturday");
             }
-            alarm_manager_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay,oneWeek,pendingIntentSunday);
-        }else{
+                if(dayOfWeek>7){
+                    //useless case
+                    alarm_manager_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay+oneWeek,oneWeek,pendingIntentSunday);
+
+                }else{
+                    alarm_manager_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay,oneWeek,pendingIntentSunday);
+                }
+
+            }else{
             alarm_manager_sun.cancel(pendingIntentSunday);
         }
 
     }
 
+
+
+
+
+
+
+
+
+
     public void updateTimeToGoBed(Context context){
+
+        //1 if monday, 2 if tuesday
+        int dayOfWeek = getDayOfWeek();
 
         final Intent my_intent_bed = new Intent(context, GoBedReceiver.class);
 
@@ -275,7 +374,16 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date for monday");
             }
-            alarm_manager_GTB_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime()-millisOfSleep,oneWeek,pendingIntentMonday_GTB);
+
+                if(dayOfWeek>1){
+
+                    alarm_manager_GTB_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime()-millisOfSleep+oneWeek,oneWeek,pendingIntentMonday_GTB);
+
+                }else{
+
+                    alarm_manager_GTB_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime()-millisOfSleep,oneWeek,pendingIntentMonday_GTB);
+
+                }
 
         }else{
             alarm_manager_GTB_mon.cancel(pendingIntentMonday_GTB);
@@ -295,8 +403,14 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date at tuesday");
             }
-            alarm_manager_GTB_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay-millisOfSleep,oneWeek,pendingIntentTuesday_GTB);
+                if(dayOfWeek>2){
 
+                    alarm_manager_GTB_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentTuesday_GTB);
+
+                }else{
+                    alarm_manager_GTB_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay-millisOfSleep,oneWeek,pendingIntentTuesday_GTB);
+
+                }
         }else{
             alarm_manager_GTB_tue.cancel(pendingIntentTuesday_GTB);
         }
@@ -314,8 +428,13 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date in wednesday");
             }
-            alarm_manager_GTB_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay-millisOfSleep,oneWeek,pendingIntentWednesday_GTB);
+                if(dayOfWeek>3){
+                    alarm_manager_GTB_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentWednesday_GTB);
 
+                }else{
+                    alarm_manager_GTB_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay-millisOfSleep,oneWeek,pendingIntentWednesday_GTB);
+
+                }
         }else{
             alarm_manager_GTB_wed.cancel(pendingIntentWednesday_GTB);
         }
@@ -336,8 +455,13 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date thursday");
             }
+                if(dayOfWeek>4){
+                    alarm_manager_GTB_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay-millisOfSleep+oneWeek),oneWeek,pendingIntentThursday_GTB);
 
-            alarm_manager_GTB_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay-millisOfSleep),oneWeek,pendingIntentThursday_GTB);
+                }else{
+                    alarm_manager_GTB_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay-millisOfSleep),oneWeek,pendingIntentThursday_GTB);
+                }
+
         }else{
             alarm_manager_GTB_thu.cancel(pendingIntentThursday_GTB);
         }
@@ -356,7 +480,13 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date at friday");
             }
-            alarm_manager_GTB_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay-millisOfSleep ,oneWeek,pendingIntentFriday_GTB);
+                if(dayOfWeek>5){
+                    alarm_manager_GTB_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay-millisOfSleep+oneWeek ,oneWeek,pendingIntentFriday_GTB);
+
+                }else{
+                    alarm_manager_GTB_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay-millisOfSleep ,oneWeek,pendingIntentFriday_GTB);
+
+                }
         }else{
             alarm_manager_GTB_fri.cancel(pendingIntentFriday_GTB);
         }
@@ -373,8 +503,13 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date in  Saturday");
             }
-            alarm_manager_GTB_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay-millisOfSleep,oneWeek,pendingIntentSaturday_GTB);
+                if(dayOfWeek>6){
+                    alarm_manager_GTB_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentSaturday_GTB);
 
+                }else{
+                    alarm_manager_GTB_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay-millisOfSleep,oneWeek,pendingIntentSaturday_GTB);
+
+                }
         }else{
             alarm_manager_GTB_sat.cancel(pendingIntentSaturday_GTB);
         }
@@ -389,8 +524,14 @@ public class GlobalAlarmManager {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date in  Saturday");
             }
-            alarm_manager_GTB_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay-millisOfSleep,oneWeek,pendingIntentSunday_GTB);
-        }else{
+                if(dayOfWeek>7){
+                    alarm_manager_GTB_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentSunday_GTB);
+
+                }else{
+                    alarm_manager_GTB_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay-millisOfSleep,oneWeek,pendingIntentSunday_GTB);
+                }
+
+           }else{
             alarm_manager_GTB_sun.cancel(pendingIntentSunday_GTB);
         }
 

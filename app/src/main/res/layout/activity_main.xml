@@ -56,10 +56,16 @@
                 android:text="Game" />
 
             <Button
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Test go to bed receiver" />
+
+            <Button
                 android:id="@+id/successButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Successes"/>
+                android:layout_height="35dp"
+                android:text="Successes" />
 
             <TimePicker
                 android:id="@+id/timePicker"

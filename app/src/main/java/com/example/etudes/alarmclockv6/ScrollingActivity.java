@@ -83,9 +83,13 @@ public class ScrollingActivity extends AppCompatActivity {
                     }
                 }
                 Toast.makeText(getApplicationContext(), "Week succesfully setup", Toast.LENGTH_SHORT).show();
+
+
+                //set or cancel alarm and notification
                 GlobalAlarmManager globalAlarmManager = new GlobalAlarmManager();
                 globalAlarmManager.updateAlarm(getApplicationContext());
                 globalAlarmManager.updateTimeToGoBed(getApplicationContext());
+
             }
         });
     }

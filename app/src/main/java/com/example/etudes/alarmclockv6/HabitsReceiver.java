@@ -1,21 +1,12 @@
 package com.example.etudes.alarmclockv6;
 
-import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.example.etudes.alarmclockv6.services.HabitsService;
-import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Habits;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
 
 /**
  * Created by Etudes on 12/11/2017.
@@ -34,7 +25,7 @@ public class HabitsReceiver extends BroadcastReceiver{
 
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.com_facebook_button_icon)
+                .setSmallIcon(R.drawable.moon)
                 .setContentTitle("Night system")
                 .setContentText("Are you arrived late this morning?")
                 .addAction(R.drawable.com_facebook_send_button_icon, "Yes, I was late this morning",

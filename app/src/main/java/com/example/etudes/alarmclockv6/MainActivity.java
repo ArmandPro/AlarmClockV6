@@ -30,15 +30,21 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 //TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
 
 public class MainActivity extends AppCompatActivity {
+
+    //commit
+    //pull
+    //push
 
 
     //Attributes
@@ -183,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         final PendingIntent daily_pending_intent_morning = PendingIntent.getBroadcast(MainActivity.this, 0, daily_intent_morning, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //each 24 hrs
-        daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
+        //daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
 
         //TEST ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
         Button alarmBox = findViewById(R.id.button3);
@@ -208,9 +214,28 @@ public class MainActivity extends AppCompatActivity {
         final PendingIntent daily_pending_intent_summary = PendingIntent.getBroadcast(MainActivity.this, 0, daily_intent_summary, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //each 24 hrs
-        daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
+        daily_alarm_manager_summary.setRepeating(AlarmManager.RTC_WAKEUP, calendar4.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_summary);
 
 
+
+
+        //..................................................................TEST GO TO BED
+        Button button6 = findViewById(R.id.button6);
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("test","main activity button 6 clicked");
+                final Intent my_intent_bed = new Intent(context, GoBedReceiver.class);
+                final AlarmManager alarm_manager_GTB_mon = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                final PendingIntent pendingIntentMonday_GTB;
+                pendingIntentMonday_GTB = PendingIntent.getBroadcast(context, 0, my_intent_bed, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                alarm_manager_GTB_mon.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(),pendingIntentMonday_GTB);
+
+            }
+        });
 
 
 
