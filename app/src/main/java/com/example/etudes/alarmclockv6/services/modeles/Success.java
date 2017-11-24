@@ -1,5 +1,6 @@
 package com.example.etudes.alarmclockv6.services.modeles;
 
+import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.SuccessService;
 
 /**
@@ -68,5 +69,6 @@ public class Success {
     public void setFinished(boolean finished) {
         this.finished = finished;
         SuccessService.getInstance().updateSuccess(this);
+        if(finished) HabitsService.getInstance().getHabits().addRewardTime(reward);
     }
 }
