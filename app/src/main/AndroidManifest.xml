@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -28,6 +28,8 @@
         <receiver android:name=".AlarmReceiverMonday" />
         <receiver android:name=".NightReceiver" />
         <receiver android:name=".HabitsReceiver" />
+        <receiver android:name=".GoBedReceiver" />
+        <receiver android:name=".SummaryReceiver" />
 
 
         <service
@@ -45,6 +47,8 @@
         <service
             android:name=".HabitsBroadcastService"
             android:enabled="true" />
+
+
 
 
 
