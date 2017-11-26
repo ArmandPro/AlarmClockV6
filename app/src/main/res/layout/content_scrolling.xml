@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.etudes.alarmclockv6.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
@@ -20,36 +21,41 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
+            android:textColor="@color/cardview_light_background"
             android:text="How long time do you want sleep?" />
 
         <NumberPicker
             android:id="@+id/numberPicker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_shadow_end_color"
+            android:textColor="@color/cardview_light_background" />
 
         <Switch
             android:id="@+id/switch0"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
-            android:text="@string/monday"
-            android:textSize="36sp"
+
             android:checked="true"
-            />
+            android:text="@string/monday"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="36sp" />
 
         <TimePicker
             android:id="@+id/timePicker0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
-            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:headerBackground="@color/black_overlay"
+            android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
 
         <Switch
             android:id="@+id/switch1"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"
             android:text="@string/tuesday"
             android:textSize="36sp"
             android:checked="true"
@@ -59,7 +65,7 @@
             android:id="@+id/timePicker1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:headerBackground="@color/black_overlay"
             android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled"
             android:focusableInTouchMode="true"/>
 
@@ -67,8 +73,8 @@
             android:id="@+id/switch2"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
-            android:text="@string/wednesday"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"            android:text="@string/wednesday"
             android:textSize="36sp"
             android:checked="true"/>
 
@@ -76,14 +82,15 @@
             android:id="@+id/timePicker2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:headerBackground="@color/black_overlay"
             android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
 
         <Switch
             android:id="@+id/switch3"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"
             android:text="@string/thursday"
             android:textSize="36sp"
             android:checked="true"/>
@@ -92,7 +99,7 @@
             android:id="@+id/timePicker3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:headerBackground="@color/black_overlay"
             android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled"
             />
 
@@ -100,8 +107,8 @@
             android:id="@+id/switch4"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
-            android:text="@string/friday"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"            android:text="@string/friday"
             android:textSize="36sp"
             android:checked="true"/>
 
@@ -109,14 +116,15 @@
             android:id="@+id/timePicker4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:headerBackground="@color/black_overlay"
             android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
 
         <Switch
             android:id="@+id/switch5"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"
             android:text="@string/saturday"
             android:textSize="36sp"
             android:checked="true"/>
@@ -125,14 +133,15 @@
             android:id="@+id/timePicker5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:headerBackground="@color/black_overlay"
             android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
 
         <Switch
             android:id="@+id/switch6"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/com_facebook_button_send_background"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"
             android:text="@string/sunday"
             android:textSize="36sp"
             android:checked="true"/>
@@ -141,14 +150,15 @@
             android:id="@+id/timePicker6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:headerBackground="@drawable/com_facebook_button_send_background"
+            android:headerBackground="@color/black_overlay"
             android:numbersSelectorColor="@color/com_facebook_button_background_color_focused_disabled" />
 
         <Button
             android:id="@+id/buttonSetWeek"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@color/black_overlay"
+            android:textColor="@color/cardview_light_background"
             android:text="@string/buttonSetWeek"
             android:textAlignment="center" />
     </LinearLayout>

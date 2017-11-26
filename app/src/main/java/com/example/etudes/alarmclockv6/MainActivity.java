@@ -4,13 +4,16 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -30,11 +33,9 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -56,10 +57,23 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     PendingIntent pending_intent, daily_pending_intent;
 
+    //Animation layout
+    ConstraintLayout constraintLayout;
+    AnimationDrawable animationDrawable;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        constraintLayout = (ConstraintLayout) findViewById(R.id.my_layout);
+        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(4500);
+        animationDrawable.setExitFadeDuration(4500);
+        animationDrawable.start();
+
+
         DatabaseManager.getInstance(getApplicationContext());
         SuccessPopulator pop = new SuccessPopulator();
 
@@ -69,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         //LOGIN WITH FACEBOOK
         this.context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
-        setContentView(R.layout.activity_main);
+
         initializeControls();
 
         logWithFacebook();
@@ -277,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeControls(){
 
         callbackManager = CallbackManager.Factory.create();
-        txtStatus = (TextView)findViewById(R.id.txtStatus);
+
         login_button = (LoginButton)findViewById(R.id.login_button);
 
     }
@@ -287,19 +301,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                txtStatus.setText("Connection avec Facebook reussie"+loginResult.getAccessToken());
+                Log.d("facebook","Connection avec Facebook reussie"+loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                txtStatus.setText("Connection annulée");
+                Log.d("facebook","Connection annulée");
 
             }
 
             @Override
             public void onError(FacebookException error) {
 
-                txtStatus.setText("Connection avec Facebook reussie"+error.getMessage());
+                Log.d("Connect Fb echec",error.getMessage());
 
             }
         });
