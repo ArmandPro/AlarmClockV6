@@ -1,10 +1,8 @@
 package com.example.etudes.alarmclockv6;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -48,6 +46,7 @@ public class ScrollingActivity extends AppCompatActivity {
         NumberPicker numberPicker = findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(23);
+        //TODO : nullpoexc
         numberPicker.setValue(HabitsService.getInstance().getHabits().getSleepHoursPerNight());
 
 

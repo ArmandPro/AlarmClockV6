@@ -248,7 +248,9 @@ public class DatabaseManager {
             int daysOfLateness = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.DAYS_OF_LATENESS)));
             return new Habits(id, daysOfUse,sleepHoursPerNight, daysOfLateness,rewardTime);
         }
-        return null;
+        Habits habits = new Habits();
+        habits.init();
+        return habits;
     }
 
     public List<Success> getSuccesses(){
