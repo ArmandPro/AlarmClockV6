@@ -184,14 +184,19 @@ public class SuccessManager {
         }
     }
 
-    public static void lateOneNight(){
+    public static void wasLate(){
+        lateOneNight();
+        lateFiveNights();
+    }
+
+    private static void lateOneNight(){
         List<Success> successes = service.getSuccessByKey("LATE 1");
         if(successes!=null){
             successes.get(0).setFinished(true);
         }
     }
 
-    public static void lateFiveNights(){
+    private static void lateFiveNights(){
         List<Success> successes = service.getSuccessByKey("LATE 5");
         if(successes!=null) {
             successes.get(0).setFinished(true);

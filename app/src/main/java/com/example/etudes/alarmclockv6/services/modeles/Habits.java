@@ -45,9 +45,10 @@ public class Habits {
         return sleepHoursPerNight;
     }
 
-    public void setSleepHoursPerNight(int sleepHoursPerNight) {
-        this.sleepHoursPerNight = sleepHoursPerNight;
+    public int incrementDaysOfLateness(){
+        daysOfLateness++;
         HabitsService.getInstance().updateHabits();
+        return daysOfLateness;
     }
 
     public int incrementDaysOfUse(){

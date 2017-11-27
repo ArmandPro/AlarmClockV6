@@ -46,7 +46,6 @@ public class ScrollingActivity extends AppCompatActivity {
         NumberPicker numberPicker = findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(23);
-        //TODO : nullpoexc
         numberPicker.setValue(HabitsService.getInstance().getHabits().getSleepHoursPerNight());
 
 

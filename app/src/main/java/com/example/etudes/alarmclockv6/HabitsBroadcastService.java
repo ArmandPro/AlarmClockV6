@@ -7,6 +7,11 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.managers.SleepTimeOptimizer;
+import com.example.etudes.alarmclockv6.managers.SuccessManager;
+import com.example.etudes.alarmclockv6.services.HabitsService;
+
 /**
  * Created by Etudes on 13/11/2017.
  */
@@ -22,6 +27,10 @@ public class HabitsBroadcastService extends Service {
         media_song.start();
 
         //INSERT HERE IN THE SQLLITE: THE USER WAS LATE
+        DatabaseManager.getInstance(getApplicationContext());
+        HabitsService.getInstance().getHabits().incrementDaysOfLateness();
+        SuccessManager.wasLate();
+        SleepTimeOptimizer optimizer = new SleepTimeOptimizer(5,getApplicationContext());
 
         return START_NOT_STICKY;
     }
