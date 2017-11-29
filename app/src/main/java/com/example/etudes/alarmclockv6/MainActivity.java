@@ -281,6 +281,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //-------------------------------------------------------------------SUCCESS
+        Button stateButton = findViewById(R.id.button7);
+        stateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent stateIntent = new Intent(MainActivity.this, StateActivity.class);
+                startActivity(stateIntent);
+            }
+        });
+
     }
 
 
