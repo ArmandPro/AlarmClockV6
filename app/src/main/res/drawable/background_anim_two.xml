@@ -3,15 +3,7 @@
 
 
 
-    <item
-        android:drawable="@drawable/gradient_background_sunset"
-        android:duration="4500"
-        />
 
-    <item
-        android:drawable="@drawable/gradient_background_night"
-        android:duration="4500"
-        />
     <item
         android:drawable="@drawable/gradient_background_light"
         android:duration="4500"
