@@ -1,10 +1,8 @@
 package com.example.etudes.alarmclockv6;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -24,7 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-//TODO : BE CARREFUL THE getSleepHoursPerNight doesn't work
+
+
 public class ScrollingActivity extends AppCompatActivity {
 
     private List<TimePicker> timePickers;
@@ -52,7 +51,9 @@ public class ScrollingActivity extends AppCompatActivity {
         NumberPicker numberPicker = findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(23);
+
         numberPicker.setValue(hoursPerNightHabits);
+
 
 
         timePickers.add((TimePicker)findViewById(R.id.timePicker0));
