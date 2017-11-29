@@ -23,7 +23,6 @@ import java.util.Calendar;
 import java.util.List;
 
 
-
 public class ScrollingActivity extends AppCompatActivity {
 
     private List<TimePicker> timePickers;
@@ -44,16 +43,10 @@ public class ScrollingActivity extends AppCompatActivity {
         timePickers = new ArrayList<>();
         switches = new ArrayList<>();
 
-        int hoursPerNightHabits = 8;
-//        if(HabitsService.getInstance().getHabits().getSleepHoursPerNight()>1 ||HabitsService.getInstance().getHabits().getSleepHoursPerNight()<23)
- //           hoursPerNightHabits = HabitsService.getInstance().getHabits().getSleepHoursPerNight();
-
         NumberPicker numberPicker = findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(23);
-
-        numberPicker.setValue(hoursPerNightHabits);
-
+        numberPicker.setValue(HabitsService.getInstance().getHabits().getSleepHoursPerNight());
 
 
         timePickers.add((TimePicker)findViewById(R.id.timePicker0));
