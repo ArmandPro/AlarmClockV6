@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Florian on 21/11/2017.
  */
 
-//TODO : Test it
+
 
 public class SuccessManager {
 

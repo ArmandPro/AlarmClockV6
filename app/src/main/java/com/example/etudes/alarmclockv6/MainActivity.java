@@ -13,16 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
-import com.example.etudes.alarmclockv6.Database.DatabaseTester;
 import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
+import com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
@@ -36,8 +35,8 @@ import com.facebook.login.widget.LoginButton;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 //TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
 
@@ -263,9 +262,10 @@ public class MainActivity extends AppCompatActivity {
 
                 List<Intent> gameList = new ArrayList<>();
                 gameList.add(new Intent(MainActivity.this,MatrixGame.class));
+                gameList.add(new Intent(MainActivity.this,TapTaupeGame.class));
                 gameList.add(new Intent(MainActivity.this,RouletteGame.class));
-
-                startActivity(gameList.get(new Random().nextBoolean()?0:1));
+                Collections.shuffle(gameList);
+                startActivity(gameList.get(0));//new Random().nextBoolean()?0:1));
 
 
 

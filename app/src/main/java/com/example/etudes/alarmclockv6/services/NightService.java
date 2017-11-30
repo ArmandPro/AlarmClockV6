@@ -38,7 +38,7 @@ public class NightService {
     public Night createNight() {
         Calendar.getInstance().add(Calendar.DAY_OF_YEAR, 1);
         String wue = new SimpleDateFormat(Night.DATE_FORMAT).format(Calendar.getInstance().getTime()) + "-" + WeekService.getInstance().getWeek().getADaysTime(Calendar.getInstance().getTime());
-        Night night = new Night(lastId+=1, "", "", wue, "", false);
+        Night night = new Night(lastId+=1, "", "", wue, "", false, false);
         night = estimateNight(night);
         database.insertNight(night);
         return night;
@@ -55,15 +55,18 @@ public class NightService {
         }
         String wue = date+ "-" + WeekService.getInstance().getWeek().getADaysTime(day);
         Date today = Calendar.getInstance().getTime();
-        Night night = new Night(lastId+=1, "", "", wue, "", false);
+        Night night = new Night(lastId+=1, "", "", wue, "", false, false);
         night = estimateNight(night);
         database.insertNight(night);
         return night;
 
     }
 
-    public void deleteNight(String date){
-        database.deleteNight(date);
+    public Night wasLate(){
+        String day = new SimpleDateFormat(Night.DATE_FORMAT).format(new Date());
+        Night night = getNight(day);
+        night.setWasLate(true);
+        return updateNight(night);
     }
 
 
@@ -76,9 +79,12 @@ public class NightService {
         String wakeUpReal = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).format(new Date());
         String date = wakeUpReal.split("-")[0];
         Night night = getNight(date);
-        night.setWakeUpReal(wakeUpReal);
-        HabitsService.getInstance().getHabits().incrementDaysOfUse();
-        return updateNight(night);
+        if(night !=null) {
+            night.setWakeUpReal(wakeUpReal);
+            HabitsService.getInstance().getHabits().incrementDaysOfUse();
+            return updateNight(night);
+        }
+        return null;
     }
 
     public Night fellAsleep() {
@@ -109,8 +115,7 @@ public class NightService {
      * Returns the night once modified, but only works if the night has not been passed
      */
     public Night updateCurrentNight(String time) {
-        long id = (long) HabitsService.getInstance().getHabits().getDaysOfUse();
-        Night night = database.getNightByDate(new SimpleDateFormat(Night.DATE_FORMAT).format(new Date()));
+       Night night = database.getNightByDate(new SimpleDateFormat(Night.DATE_FORMAT).format(new Date()));
         if (night != null) {
             if (!night.getWakeUpReal().equals("none")) {
                 return night;
@@ -139,6 +144,28 @@ public class NightService {
         } else {
             return createNight(date);
         }
+    }
+
+    /*
+     * returns the lateness of a sleep, if negative, it means it was early
+     */
+    public int calculateNightLateness(Night night){
+        try {
+            Date estimated = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).parse(night.getWakeUpEstimated());
+            Date real = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).parse(night.getWakeUpReal());
+            return (int)(real.getTime()-estimated.getTime())/(1000*60);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
+    public Night getLastWeekNight(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_YEAR,-7);
+        return NightService.getInstance().getNight(new SimpleDateFormat(Night.DATE_FORMAT).format(calendar.getTime()));
     }
 
     public Night getNight(String date) {

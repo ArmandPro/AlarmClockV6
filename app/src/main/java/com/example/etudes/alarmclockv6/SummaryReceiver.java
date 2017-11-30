@@ -21,7 +21,7 @@ import java.util.Date;
 public class SummaryReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        DatabaseManager.getInstance(context);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, -1);
         Date lastDate = cal.getTime();

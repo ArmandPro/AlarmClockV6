@@ -11,6 +11,7 @@ import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.managers.SleepTimeOptimizer;
 import com.example.etudes.alarmclockv6.managers.SuccessManager;
 import com.example.etudes.alarmclockv6.services.HabitsService;
+import com.example.etudes.alarmclockv6.services.NightService;
 
 /**
  * Created by Etudes on 13/11/2017.
@@ -28,6 +29,7 @@ public class HabitsBroadcastService extends Service {
 
         //INSERT HERE IN THE SQLLITE: THE USER WAS LATE
         DatabaseManager.getInstance(getApplicationContext());
+        NightService.getInstance().wasLate();
         HabitsService.getInstance().getHabits().incrementDaysOfLateness();
         SuccessManager.wasLate();
         SleepTimeOptimizer optimizer = new SleepTimeOptimizer(5,getApplicationContext());
