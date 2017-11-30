@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,6 +25,10 @@ public class AbstractGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abstract_game);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
     @Override
@@ -46,14 +51,16 @@ public class AbstractGame extends AppCompatActivity {
 
     protected void gameEnded(){
         timer.cancel();
-        //NightService.getInstance().wokeUp();
+        NightService.getInstance().wokeUp();
         if(counter<=5){
             SuccessManager.fasterThanLight();
             Log.d(GAME_NAME,"Faster than light !");
         }
         SuccessManager.gameBeaten();
-        NightService.getInstance().wokeUp();
+        //finish();
         //System.exit(0);
+        int pid = android.os.Process.myPid();
+        android.os.Process.killProcess(pid);
     }
 
     protected void displayExplanation(){
@@ -62,7 +69,7 @@ public class AbstractGame extends AppCompatActivity {
 
     protected void initTimer() {
         counter = 0;
-        timer = new CountDownTimer(10000, 1000) {
+        timer = new CountDownTimer(15000, 15) {
             @Override
             public void onTick(long l) {
                 counter++;

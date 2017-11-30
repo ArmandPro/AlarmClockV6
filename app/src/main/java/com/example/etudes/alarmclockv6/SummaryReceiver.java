@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
@@ -20,7 +21,7 @@ import java.util.Date;
 public class SummaryReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        DatabaseManager.getInstance(context);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, -1);
         Date lastDate = cal.getTime();

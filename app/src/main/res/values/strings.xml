@@ -21,6 +21,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
+
     <string name="CREATE_TABLE_NIGHT">"create table NIGHT (ID integer primary key,GOTOBEDESTIMATED text not null, GOTOBEDREAL text,WAKEUPESTIMATED text not null, WAKEUPREAL text, SLEEPWELL int, WASLATE int);"</string>
     <string name="CREATE_TABLE_WEEK">"create table WEEK (ID integer primary key, MONDAY text, TUESDAY text, WEDNESDAY text, THURDAY text, FRIDAY text, SATURDAY text, SUNDAY text);"</string>
     <string name="CREATE_TABLE_HABITS">"create table HABITS (ID integer primary key,DAYSOFUSE integer not null, REWARDTIME integer not null,DAYSOFLATENESS integer not null, SLEEPHOURSPERNIGHT integer not null);"</string>
@@ -56,4 +57,5 @@
     <string name="REWARD">"REWARD"</string>
     <string name="ADVANCEMENT">"ADVANCEMENT"</string>
     <string name="FINISHED">"FINISHED"</string>
+
 </resources>

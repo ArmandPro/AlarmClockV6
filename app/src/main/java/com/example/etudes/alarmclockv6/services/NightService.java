@@ -79,9 +79,12 @@ public class NightService {
         String wakeUpReal = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).format(new Date());
         String date = wakeUpReal.split("-")[0];
         Night night = getNight(date);
-        night.setWakeUpReal(wakeUpReal);
-        HabitsService.getInstance().getHabits().incrementDaysOfUse();
-        return updateNight(night);
+        if(night !=null) {
+            night.setWakeUpReal(wakeUpReal);
+            HabitsService.getInstance().getHabits().incrementDaysOfUse();
+            return updateNight(night);
+        }
+        return null;
     }
 
     public Night fellAsleep() {
