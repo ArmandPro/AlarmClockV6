@@ -7,18 +7,19 @@ package com.example.etudes.alarmclockv6.services.modeles;
 public class Night {
     private long id;
     private String GoToBedEstimated, GotToBedReal, WakeUpEstimated, WakeUpReal;
-    private boolean sleepWell;
+    private boolean sleepWell, wasLate;
     public static final String DATE_FORMAT = "yyyy/MM/dd";
     public static final String HOUR_FORMAT = "HH:mm";
     public static final String DATE_HOUR_FORMAT = DATE_FORMAT+"-"+HOUR_FORMAT;
 
-    public Night(long id, String gtbe, String gtbr, String wue, String wur, boolean sleptWell) {
+    public Night(long id, String goToBedEstimated, String gotToBedReal, String wakeUpEstimated, String wakeUpReal, boolean sleepWell, boolean wasLate) {
         this.id = id;
-        this.GoToBedEstimated = gtbe;
-        this.GotToBedReal= gtbr;
-        this.WakeUpEstimated = wue;
-        this.WakeUpReal= wur;
-        this.sleepWell = sleptWell;
+        GoToBedEstimated = goToBedEstimated;
+        GotToBedReal = gotToBedReal;
+        WakeUpEstimated = wakeUpEstimated;
+        WakeUpReal = wakeUpReal;
+        this.sleepWell = sleepWell;
+        this.wasLate = wasLate;
     }
 
     public long getId() {
@@ -63,6 +64,14 @@ public class Night {
 
     public void setSleepWell(boolean sleepWell) {
         this.sleepWell = sleepWell;
+    }
+
+    public boolean isWasLate() {
+        return wasLate;
+    }
+
+    public void setWasLate(boolean wasLate) {
+        this.wasLate = wasLate;
     }
 
     public String toString(){

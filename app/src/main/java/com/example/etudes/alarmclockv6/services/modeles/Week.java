@@ -142,7 +142,6 @@ public class Week {
         }
     }
 
-    //TODO : Change to compare
     public String getADaysTime(Date date){
         String today = new SimpleDateFormat("EEEEE", Locale.ENGLISH).format(date);
         String time = "";

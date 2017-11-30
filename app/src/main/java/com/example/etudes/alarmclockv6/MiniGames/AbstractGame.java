@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.R;
 import com.example.etudes.alarmclockv6.managers.SuccessManager;
+import com.example.etudes.alarmclockv6.services.NightService;
 
 public class AbstractGame extends AppCompatActivity {
 
@@ -51,6 +52,7 @@ public class AbstractGame extends AppCompatActivity {
             Log.d(GAME_NAME,"Faster than light !");
         }
         SuccessManager.gameBeaten();
+        NightService.getInstance().wokeUp();
         //System.exit(0);
     }
 

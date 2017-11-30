@@ -102,7 +102,8 @@ public class DatabaseManager {
             String wue = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_ESTIMATED)));
             String wur = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_REAL)));
             boolean sleep = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.SLEEP_WELL)))!=0;
-            return new Night(id, gtbe,gtbr,wue,wur,sleep);
+            boolean late = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.WAS_LATE)))!=0;
+            return new Night(id, gtbe,gtbr,wue,wur,sleep, late);
         }else{
             return null;
         }
@@ -124,7 +125,8 @@ public class DatabaseManager {
             String wue = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_ESTIMATED)));
             String wur = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_REAL)));
             boolean sleep = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.SLEEP_WELL)))!=0;
-            return new Night(id, gtbe,gtbr,wue,wur,sleep);
+            boolean late = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.WAS_LATE)))!=0;
+            return new Night(id, gtbe,gtbr,wue,wur,sleep, late);
         }else{
             return null;
         }
@@ -148,7 +150,8 @@ public class DatabaseManager {
                 String wue = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_ESTIMATED)));
                 String wur = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_REAL)));
                 boolean sleep = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.SLEEP_WELL))) != 0;
-                night = new Night(id, gtbe, gtbr, wue, wur, sleep);
+                boolean late = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.WAS_LATE)))!=0;
+                night = new Night(id, gtbe, gtbr, wue, wur, sleep,late);
                 Log.d("DATABASE MANAGER",night.toString());
             }while(cursor.moveToNext());
         }else {

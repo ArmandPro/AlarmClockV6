@@ -21,7 +21,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-    <string name="CREATE_TABLE_NIGHT">"create table NIGHT (ID integer primary key,GOTOBEDESTIMATED text not null, GOTOBEDREAL text,WAKEUPESTIMATED text not null, WAKEUPREAL text, SLEEPWELL int);"</string>
+    <string name="CREATE_TABLE_NIGHT">"create table NIGHT (ID integer primary key,GOTOBEDESTIMATED text not null, GOTOBEDREAL text,WAKEUPESTIMATED text not null, WAKEUPREAL text, SLEEPWELL int, WASLATE int);"</string>
     <string name="CREATE_TABLE_WEEK">"create table WEEK (ID integer primary key, MONDAY text, TUESDAY text, WEDNESDAY text, THURDAY text, FRIDAY text, SATURDAY text, SUNDAY text);"</string>
     <string name="CREATE_TABLE_HABITS">"create table HABITS (ID integer primary key,DAYSOFUSE integer not null, REWARDTIME integer not null,DAYSOFLATENESS integer not null, SLEEPHOURSPERNIGHT integer not null);"</string>
     <string name="CREATE_TABLE_SUCCESS">"create table SUCCESS (ID text primary key, NAME text, DESCRIPTION text, REWARD integer not null, ADVANCEMENT integer not null,  FINISHED integer);"</string>
@@ -38,6 +38,7 @@
     <string name="WAKE_UP_ESTIMATED">"WAKEUPESTIMATED"</string>
     <string name="WAKE_UP_REAL">"WAKEUPREAL"</string>
     <string name="SLEEP_WELL">"SLEEPWELL"</string>
+    <string name="WAS_LATE">WASLATE</string>
     <string name="MONDAY">"MONDAY"</string>
     <string name="TUESDAY">"TUESDAY"</string>
     <string name="WEDNESDAY">"WEDNESDAY"</string>
