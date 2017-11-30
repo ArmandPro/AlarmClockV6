@@ -26,9 +26,10 @@ public class HabitsReceiver extends BroadcastReceiver{
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setSmallIcon(R.drawable.moon)
+                
                 .setContentTitle("Night system")
                 .setContentText("Are you arrived late this morning?")
-                .addAction(R.drawable.com_facebook_send_button_icon, "Yes, I was late this morning",
+                .addAction(R.drawable.moon, "Yes, I was late this morning",
                         piOpen)
                 ;
 

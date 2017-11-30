@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        DatabaseTester tester = new DatabaseTester(getApplicationContext());
-        tester.runTests();
+        //DatabaseTester tester = new DatabaseTester(getApplicationContext());
+        //tester.runTests();
 
 
 
@@ -278,6 +278,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent successIntent = new Intent(MainActivity.this, SuccessActivity.class);
                 startActivity(successIntent);
+            }
+        });
+
+        //-------------------------------------------------------------------SUCCESS
+        Button stateButton = findViewById(R.id.button7);
+        stateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent stateIntent = new Intent(MainActivity.this, StateActivity.class);
+                startActivity(stateIntent);
             }
         });
 

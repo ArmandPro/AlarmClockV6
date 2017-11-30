@@ -44,10 +44,6 @@
             android:name=".HabitsBroadcastService"
             android:enabled="true" />
 
-
-
-
-
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
@@ -61,7 +57,8 @@
             android:label="@string/title_activity_roulette_game"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MiniGames.TapTaupeGame" />
-        <activity android:name=".SuccessActivity"></activity>
+        <activity android:name=".SuccessActivity" />
+        <activity android:name=".StateActivity"></activity>
     </application>
 
 </manifest>
