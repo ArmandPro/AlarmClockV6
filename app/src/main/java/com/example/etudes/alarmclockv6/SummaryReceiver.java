@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
@@ -28,6 +29,7 @@ public class SummaryReceiver extends BroadcastReceiver{
 
         Boolean sleepWell;
 
+        DatabaseManager.getInstance(context);
         NightService nightService = NightService.getInstance();
         Night night = nightService.getNight(lastNight);
 

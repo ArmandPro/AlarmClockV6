@@ -267,6 +267,8 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(gameList.get(new Random().nextBoolean()?0:1));
 
+
+
             }
         });
 
