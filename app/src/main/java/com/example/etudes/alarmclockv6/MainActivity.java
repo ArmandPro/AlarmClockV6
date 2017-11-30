@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 //TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
 
@@ -265,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 gameList.add(new Intent(MainActivity.this,TapTaupeGame.class));
                 gameList.add(new Intent(MainActivity.this,RouletteGame.class));
                 Collections.shuffle(gameList);
-                startActivity(gameList.get(0));//new Random().nextBoolean()?0:1));
+                startActivity(gameList.get(new Random().nextInt(gameList.size())));
 
             }
         });

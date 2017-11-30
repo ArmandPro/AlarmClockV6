@@ -35,7 +35,6 @@ public class RouletteGame extends AbstractGame {
             }
         });
         displayExplanation();
-        initGame();
     }
 
 

@@ -26,6 +26,7 @@ public class TapTaupeGame extends AbstractGame {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EXPLAINATION = "Pop at least 15 clouds !";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tap_taupe_game);
         moles = new ArrayList<>();
@@ -40,7 +41,7 @@ public class TapTaupeGame extends AbstractGame {
         winHeight= displayMetrics.heightPixels;
         progressBar = findViewById(R.id.progress_bar);
         initMoles();
-        initGame();
+        displayExplanation();
     }
 
     @Override

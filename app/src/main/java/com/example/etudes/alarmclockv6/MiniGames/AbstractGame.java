@@ -1,12 +1,13 @@
 package com.example.etudes.alarmclockv6.MiniGames;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.R;
 import com.example.etudes.alarmclockv6.managers.SuccessManager;
@@ -57,14 +58,29 @@ public class AbstractGame extends AppCompatActivity {
             Log.d(GAME_NAME,"Faster than light !");
         }
         SuccessManager.gameBeaten();
-        //finish();
-        //System.exit(0);
-        int pid = android.os.Process.myPid();
-        android.os.Process.killProcess(pid);
+        AlertDialog.Builder alerBuilder = new AlertDialog.Builder(this);
+        alerBuilder.setTitle("Good morning ! \n I'm happy to see you awake.");
+        alerBuilder.setNeutralButton("Thanks !", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int pid = android.os.Process.myPid();
+                android.os.Process.killProcess(pid);
+            }
+        });
+        alerBuilder.create().show();
+
     }
 
     protected void displayExplanation(){
-        Toast.makeText(getApplicationContext(),EXPLAINATION,Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alerBuilder = new AlertDialog.Builder(this);
+        alerBuilder.setTitle(EXPLAINATION);
+        alerBuilder.setNeutralButton("Ok !", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                initGame();
+            }
+        });
+        alerBuilder.create().show();
     }
 
     protected void initTimer() {
