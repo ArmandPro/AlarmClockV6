@@ -69,7 +69,7 @@ public class AbstractGame extends AppCompatActivity {
 
     protected void initTimer() {
         counter = 0;
-        timer = new CountDownTimer(15000, 15) {
+        timer = new CountDownTimer(15000, 150) {
             @Override
             public void onTick(long l) {
                 counter++;
