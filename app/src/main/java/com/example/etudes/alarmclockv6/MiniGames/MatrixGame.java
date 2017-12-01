@@ -46,7 +46,7 @@ public class MatrixGame extends AbstractGame {
                 public void onClick(View view) {
                     if (isOk(Integer.parseInt(current.getText().toString()))) {
                         current.setClickable(false);
-                        current.setBackgroundColor(Color.GREEN);
+                        current.setBackgroundColor(Color.parseColor("#44A08D"));
                         isGameFinised();
                     }
                 }
@@ -65,7 +65,8 @@ public class MatrixGame extends AbstractGame {
         Log.d(GAME_NAME, "SHUFFLING NUMBERS...");
         currentValueToMatch = 1;
         for (Button button : buttons) {
-            button.setBackgroundColor(Color.WHITE);
+            button.setBackgroundColor(Color.parseColor("#093637"));
+            button.setTextColor(Color.WHITE);
             button.setClickable(true);
         }
         Collections.shuffle(order);

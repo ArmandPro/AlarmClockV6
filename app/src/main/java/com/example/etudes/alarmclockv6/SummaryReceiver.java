@@ -29,6 +29,7 @@ public class SummaryReceiver extends BroadcastReceiver{
 
         Boolean sleepWell;
 
+
         NightService nightService = NightService.getInstance();
         Night night = nightService.getNight(lastNight);
 
@@ -44,7 +45,7 @@ public class SummaryReceiver extends BroadcastReceiver{
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setSmallIcon(R.drawable.moon)
-                .setContentTitle("Night system");
+                .setContentTitle("Slumber");
 
         if(sleepWell){
             notificationBuilder.setContentText("Congratulation your last night was a good night");

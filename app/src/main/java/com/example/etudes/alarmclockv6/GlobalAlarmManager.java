@@ -66,7 +66,7 @@ public class GlobalAlarmManager {
         //1 if monday, 2 if tuesday
         int dayOfWeek = getDayOfWeek();
 
-        final Intent my_intent_mon = new Intent(context, AlarmReceiverMonday.class);
+
         final Intent my_intent = new Intent(context, AlarmReceiver.class);
 
         final AlarmManager alarm_manager_mon = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -78,17 +78,13 @@ public class GlobalAlarmManager {
         final AlarmManager alarm_manager_sun = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
         final PendingIntent pendingIntentMonday, pendingIntentTuesday, pendingIntentWednesday, pendingIntentThursday,pendingIntentFriday, pendingIntentSaturday,pendingIntentSunday;
-        pendingIntentMonday = PendingIntent.getBroadcast(context, 0, my_intent_mon, PendingIntent.FLAG_UPDATE_CURRENT);
+        pendingIntentMonday = PendingIntent.getBroadcast(context, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentTuesday = PendingIntent.getBroadcast(context, 1, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentWednesday = PendingIntent.getBroadcast(context, 2, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentThursday = PendingIntent.getBroadcast(context, 3, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentFriday = PendingIntent.getBroadcast(context, 4, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentSaturday = PendingIntent.getBroadcast(context, 5, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentSunday = PendingIntent.getBroadcast(context, 6, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-
-
 
 
 
