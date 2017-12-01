@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.Database.NightPopulator;
 import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -64,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager.getInstance(getApplicationContext());
         SuccessPopulator pop = new SuccessPopulator();
+        try{
+            NightPopulator.getInstance(getApplicationContext()).populate();
+        }catch (Exception e){
 
+        }
         //HabitsService.getInstance().getHabits().setDaysOfUse(3);
 
 
