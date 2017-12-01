@@ -58,7 +58,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MiniGames.TapTaupeGame" />
         <activity android:name=".SuccessActivity" />
-        <activity android:name=".StateActivity"></activity>
+        <activity android:name=".StateActivity" />
+        <activity android:name=".services.GraphTest"></activity>
     </application>
 
 </manifest>

@@ -52,13 +52,6 @@ public class DatabaseManager {
         return database.insert(context.getString(R.string.TABLE_NIGHT), null, values);
     }
 
-    public boolean deleteNight(String date){
-        return database.delete(context.getString(R.string.TABLE_NIGHT),context.getString(R.string.WAKE_UP_ESTIMATED)+" LIKE ?",new String[]{date+"%"})>0;
-    }
-
-    public boolean deleteNight(long id){
-        return database.delete(context.getString(R.string.TABLE_NIGHT),context.getString(R.string.ID)+" LIKE ?",new String[]{Long.toString(id)})>0;
-    }
 
     public long updateNight(Night night){
         String date = night.getWakeUpEstimated().split("-")[0];
@@ -87,28 +80,6 @@ public class DatabaseManager {
         return -1;
     }
 
-    public Night getNightById(Long id){
-        Cursor cursor = database.query(context.getString(R.string.TABLE_NIGHT),
-                new String[]{"*"},
-                context.getString(R.string.ID)+" = ?",
-                new String[]{Long.toString(id)},
-                null,
-                null
-                ,null);
-        if(cursor.getCount()>0){
-            cursor.moveToFirst();
-            String gtbe = cursor.getString(cursor.getColumnIndex(context.getString(R.string.GO_TO_BED_ESTIMATED)));
-            String gtbr = cursor.getString(cursor.getColumnIndex(context.getString(R.string.GO_TO_BED_REAL)));
-            String wue = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_ESTIMATED)));
-            String wur = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_REAL)));
-            boolean sleep = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.SLEEP_WELL)))!=0;
-            boolean late = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.WAS_LATE)))!=0;
-            return new Night(id, gtbe,gtbr,wue,wur,sleep, late);
-        }else{
-            return null;
-        }
-    }
-
     public Night getNightByDate(String date){
         Cursor cursor = database.query(context.getString(R.string.TABLE_NIGHT),
                 new String[]{"*"},
@@ -130,6 +101,36 @@ public class DatabaseManager {
         }else{
             return null;
         }
+    }
+
+    public List<Night> getLastNights(){
+        List<Night> nights = new ArrayList<>();
+        Cursor cursor = database.query(context.getString(R.string.TABLE_NIGHT),
+                new String[]{"*"},
+                null,
+                null,
+                null,
+                null,
+                context.getString(R.string.ID)+" DESC",
+                "7");
+        if(cursor.getCount()>0){
+
+            Night night;
+            cursor.moveToFirst();
+            do {
+                long id = cursor.getLong(cursor.getColumnIndex(context.getString(R.string.ID)));
+                String gtbe = cursor.getString(cursor.getColumnIndex(context.getString(R.string.GO_TO_BED_ESTIMATED)));
+                String gtbr = cursor.getString(cursor.getColumnIndex(context.getString(R.string.GO_TO_BED_REAL)));
+                String wue = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_ESTIMATED)));
+                String wur = cursor.getString(cursor.getColumnIndex(context.getString(R.string.WAKE_UP_REAL)));
+                boolean sleep = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.SLEEP_WELL))) != 0;
+                boolean late = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.WAS_LATE)))!=0;
+                night = new Night(id, gtbe, gtbr, wue, wur, sleep,late);
+                nights.add(night);
+                //Log.d("DATABASE MANAGER",night.toString());
+            }while(cursor.moveToNext());
+        }
+        return nights;
     }
 
     public void displayNights(){

@@ -22,6 +22,7 @@ import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame;
+import com.example.etudes.alarmclockv6.services.GraphTest;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
@@ -35,9 +36,7 @@ import com.facebook.login.widget.LoginButton;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 //TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
 
@@ -89,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
         logWithFacebook();
 
 
-
+        //#############################################################################graph
+        //LastWeekView graph = findViewById(R.id.graphic);
 
         //DatabaseTester tester = new DatabaseTester(getApplicationContext());
         //tester.runTests();
@@ -265,8 +265,9 @@ public class MainActivity extends AppCompatActivity {
                 gameList.add(new Intent(MainActivity.this,MatrixGame.class));
                 gameList.add(new Intent(MainActivity.this,TapTaupeGame.class));
                 gameList.add(new Intent(MainActivity.this,RouletteGame.class));
-                Collections.shuffle(gameList);
-                startActivity(gameList.get(new Random().nextInt(gameList.size())));
+                Intent graphTest = new Intent(MainActivity.this, GraphTest.class);
+                startActivity(graphTest);
+                //startActivity(gameList.get(new Random().nextInt(gameList.size())));
 
             }
         });
