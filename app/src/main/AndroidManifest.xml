@@ -29,6 +29,7 @@
             android:value="@string/facebook_app_id" />
 
         <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AlarmReceiverMonday" />
         <receiver android:name=".NightReceiver" />
         <receiver android:name=".HabitsReceiver" />
         <receiver android:name=".GoBedReceiver" />
@@ -63,6 +64,8 @@
         <activity android:name=".SuccessActivity" />
         <activity android:name=".StateActivity" />
         <activity android:name=".DevelopperActivity"></activity>
+        <activity android:name=".StateActivity" />
+        <activity android:name=".services.GraphTest"></activity>
     </application>
 
 </manifest>

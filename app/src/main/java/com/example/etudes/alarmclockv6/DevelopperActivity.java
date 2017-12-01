@@ -1,15 +1,15 @@
 package com.example.etudes.alarmclockv6;
 
-import android.app.*;
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +26,11 @@ import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.facebook.CallbackManager;
 
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class DevelopperActivity extends AppCompatActivity {
 
@@ -245,8 +244,7 @@ public class DevelopperActivity extends AppCompatActivity {
                 gameList.add(new Intent(DevelopperActivity.this,MatrixGame.class));
                 gameList.add(new Intent(DevelopperActivity.this,TapTaupeGame.class));
                 gameList.add(new Intent(DevelopperActivity.this,RouletteGame.class));
-                Collections.shuffle(gameList);
-                startActivity(gameList.get(0));//new Random().nextBoolean()?0:1));
+                startActivity(gameList.get(new Random().nextInt(gameList.size())));
 
 
 

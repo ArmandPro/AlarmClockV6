@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Florian on 02/11/2017.
@@ -160,6 +161,10 @@ public class NightService {
         return 0;
     }
 
+
+    public List<Night>getLastNights(){
+        return database.getLastNights();
+    }
 
     public Night getLastWeekNight(){
         Calendar calendar = Calendar.getInstance();

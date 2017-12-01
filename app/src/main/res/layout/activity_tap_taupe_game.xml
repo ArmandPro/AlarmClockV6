@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_anim"
     tools:context="com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame">
     <RelativeLayout
         android:id="@+id/hitmoleLayout"
@@ -16,25 +17,25 @@
         android:id="@+id/mole1"
         android:layout_width="@dimen/mole_size"
         android:layout_height="@dimen/mole_size"
-        android:background="@drawable/logo"
+        android:background="@drawable/cloud"
         android:visibility="invisible"/>
     <ImageButton
         android:id="@+id/mole2"
         android:layout_width="@dimen/mole_size"
         android:layout_height="@dimen/mole_size"
-        android:background="@drawable/logo"
+        android:background="@drawable/cloud"
         android:visibility="invisible"/>
     <ImageButton
         android:id="@+id/mole3"
         android:layout_width="@dimen/mole_size"
         android:layout_height="@dimen/mole_size"
-        android:background="@drawable/logo"
+        android:background="@drawable/cloud"
         android:visibility="invisible"/>
     <ImageButton
         android:id="@+id/mole4"
         android:layout_width="@dimen/mole_size"
         android:layout_height="@dimen/mole_size"
-        android:background="@drawable/logo"
+        android:background="@drawable/cloud"
         android:visibility="invisible"/>
     </RelativeLayout>
         <ProgressBar

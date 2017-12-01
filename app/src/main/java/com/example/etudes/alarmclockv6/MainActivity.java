@@ -5,9 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,15 +14,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.Database.NightPopulator;
 import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
-import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
-import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
-import com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame;
-import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
+import com.example.etudes.alarmclockv6.services.GraphTest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,11 +27,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
 
 //TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
 
@@ -76,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager.getInstance(getApplicationContext());
         SuccessPopulator pop = new SuccessPopulator();
+        //if(NightService.getInstance().getLastNights().size()>0)
 
-        //HabitsService.getInstance().getHabits().setDaysOfUse(3);
+        NightPopulator.getInstance(getApplicationContext()).populate();
+
 
 
         //LOGIN WITH FACEBOOK
@@ -202,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         stateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent stateIntent = new Intent(MainActivity.this, StateActivity.class);
+                Intent stateIntent = new Intent(MainActivity.this, GraphTest.class);
                 startActivity(stateIntent);
             }
         });
