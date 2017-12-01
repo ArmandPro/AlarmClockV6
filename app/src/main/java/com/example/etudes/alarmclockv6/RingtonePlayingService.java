@@ -14,9 +14,11 @@ import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
+import com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame;
 import com.example.etudes.alarmclockv6.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -41,10 +43,16 @@ public class RingtonePlayingService extends Service {
 
         Log.d("yey", "We are on the ringstone command" + startId + " : "+ intent);
 
+        List<Intent> gameList = new ArrayList<>();
+        gameList.add(new Intent(this,MatrixGame.class));
+        gameList.add(new Intent(this,TapTaupeGame.class));
+        gameList.add(new Intent(this,RouletteGame.class));
+        Collections.shuffle(gameList);
+        ////startActivity(gameList.get(0));//new Random().nextBoolean()?0:1));
 
-        Intent myintent = new Intent(this, MatrixGame.class);
+        //Intent myintent = new Intent(this, MatrixGame.class);
 
-        PendingIntent pendingIntentOpenApp = PendingIntent.getActivity(this, 0, myintent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntentOpenApp = PendingIntent.getActivity(this, 0, gameList.get(new Random().nextInt(gameList.size())), PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setContentIntent(pendingIntentOpenApp)

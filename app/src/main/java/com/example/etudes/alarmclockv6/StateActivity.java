@@ -55,10 +55,10 @@ public class StateActivity extends AppCompatActivity {
 
 
 
-        ImageView imageView = findViewById(R.id.imageView);
-        TextView textViewHi = findViewById(R.id.textViewHi);
-        TextView textViewClock = findViewById(R.id.textViewClock);
-        TextView textViewComment = findViewById(R.id.textViewComment);
+        ImageView imageView = findViewById(R.id.imageView_dev);
+        TextView textViewHi = findViewById(R.id.textViewHi_dev);
+        TextView textViewClock = findViewById(R.id.textViewClock_dev);
+        TextView textViewComment = findViewById(R.id.textViewComment_dev);
 
         imageView.setImageResource(R.drawable.bluehappymoon);
 
@@ -93,4 +93,7 @@ public class StateActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }

@@ -27,48 +27,58 @@
                 tools:layout_editor_absoluteY="16dp" />
 
             <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/cardview_shadow_start_color"
-                android:text="Test simple alarm "
-                tools:layout_editor_absoluteX="40dp"
-                tools:layout_editor_absoluteY="395dp" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/cardview_shadow_start_color"
-                android:text="Test Night Receiver" />
-
-            <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="60dp"
                 android:background="@color/cardview_shadow_start_color"
                 android:text="Setup a week" />
 
-            <Button
-                android:id="@+id/button3"
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/cardview_shadow_start_color"
-                android:text="Ask me if I'm late" />
+                android:layout_height="50dp" />
 
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/cardview_shadow_start_color"
-                android:text="Game" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/happymoon" />
 
-            <Button
-                android:id="@+id/button6"
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/cardview_shadow_start_color"
-                android:text="Test go to bed receiver" />
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textViewHi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
+                android:text="Hi you! nice to meet you this evening"
+                android:textAlignment="center"
+                android:textColor="@color/com_facebook_button_background_color_disabled"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textViewClock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
+                android:text="No alarm programmed"
+                android:textAlignment="center"
+                android:textColor="@color/com_facebook_button_background_color_disabled"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textViewComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
+                android:text="You last night was good!"
+                android:textAlignment="center"
+                android:textColor="@color/com_facebook_button_background_color_disabled"
+                android:textSize="36sp" />
 
             <Button
                 android:id="@+id/successButton"
@@ -82,16 +92,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cardview_shadow_start_color"
-                android:text="Show State" />
+                android:text="Show State"
+                 />
 
-            <TimePicker
-                android:id="@+id/timePicker"
+            <Button
+                android:id="@+id/button8"
                 android:layout_width="match_parent"
-                android:layout_height="334dp"
-                android:headerBackground="@color/cardview_shadow_start_color"
-                android:numbersSelectorColor="@color/com_facebook_blue"
-                tools:layout_editor_absoluteX="40dp"
-                tools:layout_editor_absoluteY="61dp" />
+                android:layout_height="30dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:text="Developper interface"
+                android:textAlignment="textEnd"
+                android:textSize="10sp" />
 
         </LinearLayout>
 

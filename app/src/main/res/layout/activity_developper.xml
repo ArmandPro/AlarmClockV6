@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_anim"
+    android:id="@+id/my_layout_dev"
+    tools:context="com.example.etudes.alarmclockv6.DevelopperActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/button00"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Test simple alarm "
+                tools:layout_editor_absoluteX="40dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <Button
+                android:id="@+id/button05"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Test Night Receiver" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Test Notif Daily summary" />
+
+            <Button
+                android:id="@+id/button02"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Acces Setup a week" />
+
+            <Button
+                android:id="@+id/button03"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Test Ask me if I'm late" />
+
+            <Button
+                android:id="@+id/button04"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Acces Game" />
+
+            <Button
+                android:id="@+id/button06"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Test go to bed receiver" />
+
+            <Button
+                android:id="@+id/successButton0"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Acces Successes" />
+
+            <Button
+                android:id="@+id/button07"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_start_color"
+                android:text="Acces Show State" />
+
+            <TimePicker
+                android:id="@+id/timePicker0"
+                android:layout_width="match_parent"
+                android:layout_height="334dp"
+                android:headerBackground="@color/cardview_shadow_start_color"
+                android:numbersSelectorColor="@color/com_facebook_blue"
+                tools:layout_editor_absoluteX="40dp"
+                tools:layout_editor_absoluteY="61dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

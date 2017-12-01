@@ -38,20 +38,32 @@ public class SuccessActivity extends AppCompatActivity {
         box.setOrientation(LinearLayout.VERTICAL);
         box.setGravity(Gravity.LEFT);
         box.setPadding(20,2,2,2);
-        if(success.isFinished()){
-            box.setBackgroundColor(getResources().getColor(R.color.successGold));
-        }else {
-            box.setBackgroundColor(getResources().getColor(R.color.successGrey));
-        }
 
         TextView title = new TextView(getApplicationContext());
         title.setText(success.getName());
         title.setTextColor(Color.BLACK);
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+
         TextView desc = new TextView(getApplicationContext());
         desc.setText(success.getDescription());
         desc.setTextColor(Color.argb(255,16,16,16));
         desc.setTextSize(TypedValue.COMPLEX_UNIT_SP,15);
+
+
+        if(success.isFinished()){
+            box.setBackgroundColor(getResources().getColor(R.color.cardview_shadow_start_color));
+            title.setTextColor(Color.WHITE);
+            title.setTextSize(35);
+            desc.setTextColor(Color.WHITE);
+            desc.setTextSize(25);
+
+        }else {
+            box.setBackgroundColor(getResources().getColor(R.color.black_overlay));
+
+
+        }
+
+
         box.addView(title);
         box.addView(desc);
         layout.addView(box,params);

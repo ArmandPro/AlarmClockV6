@@ -29,7 +29,7 @@ public class SummaryReceiver extends BroadcastReceiver{
 
         Boolean sleepWell;
 
-        DatabaseManager.getInstance(context);
+
         NightService nightService = NightService.getInstance();
         Night night = nightService.getNight(lastNight);
 
