@@ -63,7 +63,7 @@ public class GoBedReceiver extends BroadcastReceiver {
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setSmallIcon(R.drawable.moon)
-                .setContentTitle("Night system")
+                .setContentTitle("Slumber")
                 .setContentText("You should go to bed :)");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

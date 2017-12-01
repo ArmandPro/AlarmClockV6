@@ -51,12 +51,12 @@ public class AbstractGame extends AppCompatActivity {
 
     protected void gameEnded(){
         timer.cancel();
-        NightService.getInstance().wokeUp();
+        //NightService.getInstance().wokeUp();
         if(counter<=5){
             SuccessManager.fasterThanLight();
             Log.d(GAME_NAME,"Faster than light !");
         }
-        SuccessManager.gameBeaten();
+        //SuccessManager.gameBeaten();
         //finish();
         //System.exit(0);
         int pid = android.os.Process.myPid();

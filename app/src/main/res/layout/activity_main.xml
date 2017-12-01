@@ -31,12 +31,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@color/cardview_shadow_start_color"
-                android:text="Setup a week" />
+                android:text="Setup my alarms"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="70dp" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -48,7 +50,7 @@
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="70dp" />
 
             <TextView
                 android:id="@+id/textViewHi"
@@ -80,6 +82,11 @@
                 android:textColor="@color/com_facebook_button_background_color_disabled"
                 android:textSize="36sp" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="55dp" />
+
             <Button
                 android:id="@+id/successButton"
                 android:layout_width="match_parent"
@@ -90,10 +97,9 @@
             <Button
                 android:id="@+id/button7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:background="@color/cardview_shadow_start_color"
-                android:text="Show State"
-                 />
+                android:text="Show State" />
 
             <Button
                 android:id="@+id/button8"

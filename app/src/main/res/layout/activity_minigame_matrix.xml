@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+
+    android:background="@drawable/gradient_background_sunset"
     tools:context="com.example.etudes.alarmclockv6.MiniGames.MatrixGame">
 
 
@@ -24,12 +25,13 @@
                 android:id="@+id/button11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:background="@color/black_overlay"
-                android:layout_gravity="fill"
                 android:layout_columnWeight="1"
+                android:layout_gravity="fill"
                 android:layout_rowWeight="1"
-                android:textSize="30sp"/>
+                android:background="@color/cardview_shadow_start_color"
+                android:text=""
+                android:textColor="@color/com_facebook_button_background_color_disabled"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/button12"
