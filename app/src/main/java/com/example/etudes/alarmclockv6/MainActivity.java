@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.Database.NightPopulator;
 import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
+import com.example.etudes.alarmclockv6.services.GraphTest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -65,12 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager.getInstance(getApplicationContext());
         SuccessPopulator pop = new SuccessPopulator();
-        try{
-            NightPopulator.getInstance(getApplicationContext()).populate();
-        }catch (Exception e){
+        //if(NightService.getInstance().getLastNights().size()>0)
 
-        }
-        //HabitsService.getInstance().getHabits().setDaysOfUse(3);
+        NightPopulator.getInstance(getApplicationContext()).populate();
+
 
 
         //LOGIN WITH FACEBOOK
@@ -195,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         stateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent stateIntent = new Intent(MainActivity.this, StateActivity.class);
+                Intent stateIntent = new Intent(MainActivity.this, GraphTest.class);
                 startActivity(stateIntent);
             }
         });
