@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.util.Log;
 
 /**
- * Created by Etudes on 05/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: AlarmReceiver
+ * Fonction: Broadcast receiver for the alarm
+ *
  */
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -18,14 +22,8 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         Log.d("hey","we are in the alarm receiver");
-
         Intent service_intent = new Intent(context, RingtonePlayingService.class);
-
         context.startService(service_intent);
-
-        //final Intent my_intent = new Intent(context, AlarmReceiver.class);
-
-
 
     }
 }

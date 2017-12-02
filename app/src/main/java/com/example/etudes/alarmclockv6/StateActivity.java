@@ -13,26 +13,31 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: StateActivity
+ * Fonction: show the state fo night
+ *
+ */
+
 public class StateActivity extends AppCompatActivity {
 
-    //Animation layout
+    //Animation layout background
     ConstraintLayout constraintLayout;
     AnimationDrawable animationDrawable;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_state);
 
-        //annimation
+        //annimation background
         constraintLayout = (ConstraintLayout) findViewById(R.id.my_layout_state);
         animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(4500);
         animationDrawable.setExitFadeDuration(4500);
         animationDrawable.start();
-
-
 
         Date now = new Date();
 
@@ -48,13 +53,6 @@ public class StateActivity extends AppCompatActivity {
         evening.setHours(18);
         evening.setMinutes(00);
 
-
-
-
-
-
-
-
         ImageView imageView = findViewById(R.id.imageView_dev);
         TextView textViewHi = findViewById(R.id.textViewHi_dev);
         TextView textViewClock = findViewById(R.id.textViewClock_dev);
@@ -62,38 +60,22 @@ public class StateActivity extends AppCompatActivity {
 
         imageView.setImageResource(R.drawable.bluehappymoon);
 
-
         if(now.compareTo(evening)>0){
             //after evening
             textViewHi.setText("Good evening, I hope you had a good day.");
-
-
 
         }else if(now.compareTo(evening)<0&&now.compareTo(morning)>0){
             //betwin morning and evening
             textViewHi.setText("Enjoy your day.");
 
-
-
         }else if(now.compareTo(morning)<0){
             //before morning
             textViewHi.setText("Good morning, a good night annonce a good day.");
-
 
         }else{
             //other case
             textViewHi.setText("Hi you!"+now+morning+evening);
 
-
-
         }
-
-
-
-
-
     }
-
-
-
 }

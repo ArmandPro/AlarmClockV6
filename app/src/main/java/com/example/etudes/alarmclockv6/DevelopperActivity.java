@@ -32,6 +32,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+/**
+ *
+ * Created by: Armand and Florian on 05/11/2017.
+ * This is: DevelopperActivity
+ * Fonction: view for developper
+ *
+ */
+
 public class DevelopperActivity extends AppCompatActivity {
 
 
@@ -54,21 +62,14 @@ public class DevelopperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developper);
 
-
         constraintLayout = (ConstraintLayout) findViewById(R.id.my_layout_dev);
         animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(4500);
         animationDrawable.setExitFadeDuration(4500);
         animationDrawable.start();
 
-
         DatabaseManager.getInstance(getApplicationContext());
         SuccessPopulator pop = new SuccessPopulator();
-
-        //HabitsService.getInstance().getHabits().setDaysOfUse(3);
-
-
-
 
 
 
@@ -83,12 +84,8 @@ public class DevelopperActivity extends AppCompatActivity {
 
         daily_pending_intent = PendingIntent.getBroadcast(DevelopperActivity.this,0, daily_intent_dev, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        //each 24 hrs
-        //daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
-        //NOW
-        // daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
 
-        //TEST VERSION ! ! ! ! ! ! ! ! ! ! !
+        //TEST VERSION
         Button testNightReceiver = (Button) findViewById(R.id.button05);
 
         testNightReceiver.setOnClickListener(new View.OnClickListener() {
@@ -101,17 +98,11 @@ public class DevelopperActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat(Night.DATE_FORMAT);
 
                 NightService nightService = NightService.getInstance();
-                //nightService.deleteNight(sdf.format(calendar));
 
                 daily_alarm_manager_dev.set(android.app.AlarmManager.RTC_WAKEUP,Calendar.getInstance().getTimeInMillis(),daily_pending_intent);
 
-
             }
         });
-
-
-
-
 
 
 
@@ -163,15 +154,11 @@ public class DevelopperActivity extends AppCompatActivity {
         //...............................................................SEND NOTIFICATION "LATE" AT 13:00 PM
         //EACH DAY MORNING
         //AUTOMATIC DAILY SETTING NIGHT AND ALARM AT 13:00 AM
-       final Calendar calendar3 = Calendar.getInstance();
+        final Calendar calendar3 = Calendar.getInstance();
         calendar3.set(2017,10,06,13,00);
-
         final android.app.AlarmManager daily_alarm_manager_morning = (android.app.AlarmManager) getSystemService(ALARM_SERVICE);
         final Intent daily_intent_morning = new Intent(getApplicationContext(), HabitsReceiver.class);
         final PendingIntent daily_pending_intent_morning = PendingIntent.getBroadcast(DevelopperActivity.this, 0, daily_intent_morning, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        //each 24 hrs
-        //daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
 
         //TEST ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
         Button alarmBox = findViewById(R.id.button03);
@@ -195,10 +182,6 @@ public class DevelopperActivity extends AppCompatActivity {
         final Intent daily_intent_summary = new Intent(getApplicationContext(), SummaryReceiver.class);
         final PendingIntent daily_pending_intent_summary = PendingIntent.getBroadcast(DevelopperActivity.this, 0, daily_intent_summary, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        //each 24 hrs
-        // daily_alarm_manager_summary.setRepeating(android.app.AlarmManager.RTC_WAKEUP, calendar4.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_summary);
-
-
         //TEST Button
         Button buttonDSummary = findViewById(R.id.button9);
         buttonDSummary.setOnClickListener(new View.OnClickListener() {
@@ -212,19 +195,18 @@ public class DevelopperActivity extends AppCompatActivity {
 
 
 
+
+
         //..................................................................TEST GO TO BED
         Button button6 = findViewById(R.id.button06);
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Log.d("test","main activity button 6 clicked");
                 final Intent my_intent_bed = new Intent(getApplicationContext(), GoBedReceiver.class);
                 final android.app.AlarmManager alarm_manager_GTB_mon = (android.app.AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
                 final PendingIntent pendingIntentMonday_GTB;
                 pendingIntentMonday_GTB = PendingIntent.getBroadcast(DevelopperActivity.this, 0, my_intent_bed, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
                 alarm_manager_GTB_mon.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(),pendingIntentMonday_GTB);
 
             }
@@ -246,13 +228,11 @@ public class DevelopperActivity extends AppCompatActivity {
                 gameList.add(new Intent(DevelopperActivity.this,RouletteGame.class));
                 startActivity(gameList.get(new Random().nextInt(gameList.size())));
 
-
-
             }
         });
 
 
-        //-------------------------------------------------------------------SUCCESS
+        //................................................................................SUCCESS
         Button successButton = findViewById(R.id.successButton0);
         successButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,7 +242,7 @@ public class DevelopperActivity extends AppCompatActivity {
             }
         });
 
-        //-------------------------------------------------------------------STATE
+        //................................................................................STATE
         Button stateButton = findViewById(R.id.button07);
         stateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,13 +253,4 @@ public class DevelopperActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-
-
-
 }

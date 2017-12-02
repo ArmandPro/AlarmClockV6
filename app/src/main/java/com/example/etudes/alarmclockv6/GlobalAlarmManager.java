@@ -19,7 +19,11 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Etudes on 15/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: GlobalAlarmManager
+ * Fonction: manage all the alarm on a week
+ *
  */
 
 public class GlobalAlarmManager {
@@ -63,9 +67,7 @@ public class GlobalAlarmManager {
     public void updateAlarm(Context context){
 
 
-        //1 if monday, 2 if tuesday
-        int dayOfWeek = getDayOfWeek();
-
+        int dayOfWeek = getDayOfWeek(); //1 if monday, 2 if tuesday
 
         final Intent my_intent = new Intent(context, AlarmReceiver.class);
 
@@ -86,8 +88,6 @@ public class GlobalAlarmManager {
         pendingIntentSaturday = PendingIntent.getBroadcast(context, 5, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         pendingIntentSunday = PendingIntent.getBroadcast(context, 6, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-
-
         WeekService weekService = WeekService.getInstance();
         Week week = weekService.getWeek();
 
@@ -95,32 +95,16 @@ public class GlobalAlarmManager {
         long oneWeek = 7*oneDay;
         String none = "none";
 
-
         SimpleDateFormat format = new SimpleDateFormat("HH:mm-dd-MM-yyyy");
-        //SimpleDateFormat format = new SimpleDateFormat(Night.HOUR_FORMAT);
-
         String DMY = new SimpleDateFormat("-dd-MM-yyyy").format(new Date());
-        //String DMY = "-23-11-2017";
-
-
-
-
-
-
 
 
         //monday
         String wakeUpEstimatedMonday = week.getMonday();
-
-        Log.d("getMonday",wakeUpEstimatedMonday);
-        Log.d("hey","wakeUpestimated:"+wakeUpEstimatedMonday.toString());
-
         if(!wakeUpEstimatedMonday.equalsIgnoreCase(none)){
             Date dateWakeUpEstimatedMonday = new Date();
             try {
                 dateWakeUpEstimatedMonday = format.parse(wakeUpEstimatedMonday+DMY);
-
-                Log.d("hey","dateWakeUpEstimated"+dateWakeUpEstimatedMonday.toString());
             } catch (ParseException e) {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date for monday");
@@ -133,13 +117,9 @@ public class GlobalAlarmManager {
                 }else{
                     alarm_manager_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime(),oneWeek,pendingIntentMonday);
                 }
-
         }else{
             alarm_manager_mon.cancel(pendingIntentMonday);
         }
-
-
-
 
 
        //tuesday
@@ -193,11 +173,9 @@ public class GlobalAlarmManager {
         String wakeUpEstimatedThursday = week.getThursday();
         if(!wakeUpEstimatedThursday.equalsIgnoreCase(none)){
             Date dateWakeUpEstimatedThursday = new Date();
-            Log.d("wakeUpEstimatedThursday",wakeUpEstimatedThursday);
 
             try {
                 dateWakeUpEstimatedThursday = format.parse(wakeUpEstimatedThursday+DMY);
-                Log.d("dateWakeUpEstimatedThur",dateWakeUpEstimatedThursday.toString());
             } catch (ParseException e) {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date thursday");
@@ -208,14 +186,11 @@ public class GlobalAlarmManager {
 
                 }else{
                     alarm_manager_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay),oneWeek,pendingIntentThursday);
-
                 }
 
             }else{
             alarm_manager_thu.cancel(pendingIntentThursday);
         }
-
-
 
 
 
@@ -234,7 +209,6 @@ public class GlobalAlarmManager {
 
                 }else{
                     alarm_manager_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay ,oneWeek,pendingIntentFriday);
-
                 }
 
             }else{
@@ -266,6 +240,8 @@ public class GlobalAlarmManager {
             alarm_manager_sat.cancel(pendingIntentSaturday);
         }
 
+
+
         //Sunday
         String wakeUpEstimatedSunday = week.getSunday();
         if(!wakeUpEstimatedSunday.equalsIgnoreCase(none)){
@@ -294,11 +270,7 @@ public class GlobalAlarmManager {
 
 
 
-
-
-
-
-
+    //This method update the go to bed time for the notification
     public void updateTimeToGoBed(Context context){
 
         //1 if monday, 2 if tuesday
@@ -335,15 +307,8 @@ public class GlobalAlarmManager {
         long oneWeek = 7*oneDay;
         String none = "none";
 
-
         SimpleDateFormat format = new SimpleDateFormat("HH:mm-dd-MM-yyyy");
-        //SimpleDateFormat format = new SimpleDateFormat(Night.HOUR_FORMAT);
-
-        //String DMY = new SimpleDateFormat("-dd-MM-yyyy").format(new Date());
-        String DMY = "-09-11-2017";
-
-
-
+        String DMY = new SimpleDateFormat("-dd-MM-yyyy").format(new Date());
 
         int hoursOfSleep = 8;
         long millisOfSleep = 8*60*60*1000;
@@ -357,35 +322,26 @@ public class GlobalAlarmManager {
         //monday
         String wakeUpEstimatedMonday = week.getMonday();
 
-        Log.d("getMonday",wakeUpEstimatedMonday);
-        Log.d("hey","wakeUpestimated:"+wakeUpEstimatedMonday.toString());
-
         if(!wakeUpEstimatedMonday.equalsIgnoreCase(none)){
             Date dateWakeUpEstimatedMonday = new Date();
             try {
                 dateWakeUpEstimatedMonday = format.parse(wakeUpEstimatedMonday+DMY);
 
-                Log.d("hey","dateWakeUpEstimated"+dateWakeUpEstimatedMonday.toString());
             } catch (ParseException e) {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date for monday");
             }
 
                 if(dayOfWeek>1){
-
                     alarm_manager_GTB_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime()-millisOfSleep+oneWeek,oneWeek,pendingIntentMonday_GTB);
 
                 }else{
-
                     alarm_manager_GTB_mon.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedMonday.getTime()-millisOfSleep,oneWeek,pendingIntentMonday_GTB);
-
                 }
 
         }else{
             alarm_manager_GTB_mon.cancel(pendingIntentMonday_GTB);
         }
-
-
 
 
 
@@ -400,12 +356,10 @@ public class GlobalAlarmManager {
                 Log.d("hey","error when you convert string to date at tuesday");
             }
                 if(dayOfWeek>2){
-
                     alarm_manager_GTB_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentTuesday_GTB);
 
                 }else{
                     alarm_manager_GTB_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay-millisOfSleep,oneWeek,pendingIntentTuesday_GTB);
-
                 }
         }else{
             alarm_manager_GTB_tue.cancel(pendingIntentTuesday_GTB);
@@ -442,11 +396,9 @@ public class GlobalAlarmManager {
         String wakeUpEstimatedThursday = week.getThursday();
         if(!wakeUpEstimatedThursday.equalsIgnoreCase(none)){
             Date dateWakeUpEstimatedThursday = new Date();
-            Log.d("wakeUpEstimatedThursday",wakeUpEstimatedThursday);
 
             try {
                 dateWakeUpEstimatedThursday = format.parse(wakeUpEstimatedThursday+DMY);
-                Log.d("dateWakeUpEstimatedThur",dateWakeUpEstimatedThursday.toString());
             } catch (ParseException e) {
                 e.printStackTrace();
                 Log.d("hey","error when you convert string to date thursday");
@@ -461,8 +413,6 @@ public class GlobalAlarmManager {
         }else{
             alarm_manager_GTB_thu.cancel(pendingIntentThursday_GTB);
         }
-
-
 
 
 

@@ -15,7 +15,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Etudes on 22/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: SummaryReceiver
+ * Fonction: the receiver for the summary notification of the night
+ *
  */
 
 public class SummaryReceiver extends BroadcastReceiver{
@@ -29,7 +33,6 @@ public class SummaryReceiver extends BroadcastReceiver{
 
         Boolean sleepWell;
 
-
         NightService nightService = NightService.getInstance();
         Night night = nightService.getNight(lastNight);
 
@@ -38,9 +41,6 @@ public class SummaryReceiver extends BroadcastReceiver{
         }else{
             sleepWell = night.isSleepWell();
         }
-
-
-
 
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -56,11 +56,6 @@ public class SummaryReceiver extends BroadcastReceiver{
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
-
-
-
-
-
 
     }
 }

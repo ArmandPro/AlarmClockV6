@@ -29,23 +29,25 @@ import com.facebook.login.widget.LoginButton;
 
 import java.util.Calendar;
 
-//TODO : REMOVE ALL THE LOG.D WHEN THE PROJECT IS FINISHED
+
+/**
+ *
+ * Created by: Florian and Armand on 05/11/2017.
+ * This is: MainActivity
+ * Fonction: the main page for the user
+ *
+ */
 
 public class MainActivity extends AppCompatActivity {
-
-    //commit
-    //pull
-    //push
 
 
     //Attributes
     TextView txtStatus;
     LoginButton login_button;
     CallbackManager callbackManager;
-    AlarmManager alarm_manager, daily_alarm_manager;
-    TimePicker alarm_timepicker;
+    AlarmManager daily_alarm_manager;
     Context context;
-    PendingIntent pending_intent, daily_pending_intent;
+    PendingIntent daily_pending_intent;
 
     //Animation layout
     ConstraintLayout constraintLayout;
@@ -66,23 +68,18 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager.getInstance(getApplicationContext());
         SuccessPopulator pop = new SuccessPopulator();
-        //if(NightService.getInstance().getLastNights().size()>0)
 
         NightPopulator.getInstance(getApplicationContext()).populate();
 
 
-
-        //LOGIN WITH FACEBOOK
+        //......................................................LOGIN WITH FACEBOOK
         this.context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
         initializeControls();
         logWithFacebook();
 
 
-        //DatabaseTester tester = new DatabaseTester(getApplicationContext());
-        //tester.runTests();
-
-        //...................................................SET STATE INTERFACE
+        //......................................................SET STATE INTERFACE
         ImageView imageView = findViewById(R.id.imageView);
         TextView textViewHi = findViewById(R.id.textViewHi);
         TextView textViewClock = findViewById(R.id.textViewClock);
@@ -93,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //...................................................Button developper inetrface
+        //......................................................Button developper inetrface
         Button devButton = (Button) findViewById(R.id.button8);
         devButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent nIntent = new Intent(MainActivity.this, DevelopperActivity.class);
                 startActivity(nIntent);
-
-
 
             }
         });
@@ -115,15 +110,11 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.MINUTE,00);
 
         daily_alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
         final Intent daily_intent = new Intent(this.context, NightReceiver.class);
-
         daily_pending_intent = PendingIntent.getBroadcast(MainActivity.this,0, daily_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //each 24 hrs
         daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
-        //NOW
-       //daily_alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), 24*60*60*1000, daily_pending_intent);
 
 
 
@@ -140,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         //...............................................................SEND NOTIFICATION "LATE" AT 13:00 PM
         //EACH DAY MORNING
         //AUTOMATIC DAILY SETTING NIGHT AND ALARM AT 13:00 AM
@@ -147,15 +139,12 @@ public class MainActivity extends AppCompatActivity {
         calendar3.set(Calendar.HOUR_OF_DAY,13);
         calendar3.set(Calendar.MINUTE,00);
 
-
         final AlarmManager daily_alarm_manager_morning = (AlarmManager) getSystemService(ALARM_SERVICE);
         final Intent daily_intent_morning = new Intent(this.context, HabitsReceiver.class);
         final PendingIntent daily_pending_intent_morning = PendingIntent.getBroadcast(MainActivity.this, 0, daily_intent_morning, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //each 24 hrs
         daily_alarm_manager_morning.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), 24*60*60*1000, daily_pending_intent_morning);
-
-
 
 
 
@@ -179,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //-------------------------------------------------------------------SUCCESS
+        //...................................................................SUCCESS
         Button successButton = findViewById(R.id.successButton);
         successButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,11 +196,8 @@ public class MainActivity extends AppCompatActivity {
 
     //.....................................................................LOGIN WITH FACEBOOK
     private void initializeControls(){
-
         callbackManager = CallbackManager.Factory.create();
-
         login_button = (LoginButton)findViewById(R.id.login_button);
-
     }
 
     private void logWithFacebook(){
@@ -242,7 +228,5 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
-
 
 }
