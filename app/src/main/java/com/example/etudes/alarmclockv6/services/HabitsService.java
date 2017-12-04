@@ -6,6 +6,7 @@ import com.example.etudes.alarmclockv6.services.modeles.Habits;
 
 /**
  * Created by Florian on 06/11/2017.
+ * Provides Habits services (CRUD)
  */
 
 public class HabitsService {

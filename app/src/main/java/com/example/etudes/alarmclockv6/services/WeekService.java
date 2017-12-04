@@ -11,6 +11,7 @@ import java.util.Random;
 
 /**
  * Created by Florian on 02/11/2017.
+ * Provides Week params services (CRUD)
  */
 
 public class WeekService {
@@ -51,11 +52,6 @@ public class WeekService {
             nightService.updateNextNight(week.getADaysTime(calendar.getTime()));
         }
         return week;
-    }
-
-
-    public boolean deleteWeek(Week week){
-        return database.deleteWeek(week.getId());
     }
 
     public Week getWeek(){

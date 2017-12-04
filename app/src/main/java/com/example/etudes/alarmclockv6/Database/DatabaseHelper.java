@@ -30,7 +30,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(context.getString(R.string.CREATE_TABLE_WEEK));
         sqLiteDatabase.execSQL(context.getString(R.string.CREATE_TABLE_HABITS));
         sqLiteDatabase.execSQL(context.getString(R.string.CREATE_TABLE_SUCCESS));
-        Log.d("DBHelper","Tables created !");
     }
 
     @Override

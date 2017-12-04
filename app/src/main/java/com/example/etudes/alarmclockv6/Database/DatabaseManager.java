@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Florian on 01/11/2017.
  *
- * TODO : Call the getInstance in the onCreate of the first activity, to initiate with the context
+ * Manages data with CRUD functions
  */
 
 public class DatabaseManager {
@@ -127,7 +127,6 @@ public class DatabaseManager {
                 boolean late = cursor.getInt(cursor.getColumnIndex(context.getString(R.string.WAS_LATE)))!=0;
                 night = new Night(id, gtbe, gtbr, wue, wur, sleep,late);
                 nights.add(night);
-                //Log.d("DATABASE MANAGER",night.toString());
             }while(cursor.moveToNext());
         }
         return nights;
@@ -215,7 +214,6 @@ public class DatabaseManager {
 
 
     public long insertHabits(Habits habits){
-        Log.d("DATABASE MANAGER","INSERT HABITS");
         ContentValues values = new ContentValues();
         values.put(context.getString(R.string.ID), habits.getId());
         values.put(context.getString(R.string.DAYS_OF_USE),habits.getDaysOfUse());

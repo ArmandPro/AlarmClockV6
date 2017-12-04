@@ -2,8 +2,6 @@ package com.example.etudes.alarmclockv6.MiniGames;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -62,7 +60,6 @@ public class MatrixGame extends AbstractGame {
     @Override
     protected void initGame() {
         timer.start();
-        Log.d(GAME_NAME, "SHUFFLING NUMBERS...");
         currentValueToMatch = 1;
         for (Button button : buttons) {
             button.setBackgroundColor(Color.parseColor("#093637"));
@@ -83,7 +80,6 @@ public class MatrixGame extends AbstractGame {
             currentValueToMatch++;
             return true;
         } else {
-            Log.d(GAME_NAME, "YOU LOST ! ");
             hasFailed();
             return false;
         }
@@ -92,11 +88,7 @@ public class MatrixGame extends AbstractGame {
     private void isGameFinised() {
         if (currentValueToMatch == 10) {
             timer.cancel();
-            Log.d(GAME_NAME, "YOU WON !");
-            Snackbar.make(findViewById(android.R.id.content), "Congratulations ! You are awaken !", Snackbar.LENGTH_LONG)
-                    .show();
             gameEnded();
-            //TODO : return to the menu OR close the app
         }
     }
 

@@ -12,6 +12,7 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.etudes.alarmclockv6.managers.GlobalAlarmManager;
 import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.WeekService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;

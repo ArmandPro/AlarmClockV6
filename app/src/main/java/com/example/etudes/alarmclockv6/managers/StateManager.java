@@ -1,11 +1,11 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.managers;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.R;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.WeekService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;

@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.broadcastServices;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,12 +9,12 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame;
+import com.example.etudes.alarmclockv6.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

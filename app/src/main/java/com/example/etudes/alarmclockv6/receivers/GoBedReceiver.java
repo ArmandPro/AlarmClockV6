@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.receivers;
 
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -14,6 +14,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.R;
 import com.example.etudes.alarmclockv6.services.NightService;
 
 /**
@@ -45,10 +46,6 @@ public class GoBedReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         DatabaseManager.getInstance(context);
-
-        NightService nightService = NightService.getInstance();
-        Night night = nightService.getNight(new SimpleDateFormat(Night.DATE_FORMAT).format(new Date()));
-
 
 
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)

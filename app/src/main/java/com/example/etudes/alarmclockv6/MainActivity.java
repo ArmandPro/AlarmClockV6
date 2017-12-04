@@ -13,12 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.Database.NightPopulator;
 import com.example.etudes.alarmclockv6.Database.SuccessPopulator;
-import com.example.etudes.alarmclockv6.services.GraphTest;
+import com.example.etudes.alarmclockv6.managers.StateManager;
+import com.example.etudes.alarmclockv6.receivers.HabitsReceiver;
+import com.example.etudes.alarmclockv6.receivers.SummaryReceiver;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -67,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         DatabaseManager.getInstance(getApplicationContext());
-        SuccessPopulator pop = new SuccessPopulator();
-
+        new SuccessPopulator();
         NightPopulator.getInstance(getApplicationContext()).populate();
 
 
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         stateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent stateIntent = new Intent(MainActivity.this, GraphTest.class);
+                Intent stateIntent = new Intent(MainActivity.this, StateActivity.class);
                 startActivity(stateIntent);
             }
         });

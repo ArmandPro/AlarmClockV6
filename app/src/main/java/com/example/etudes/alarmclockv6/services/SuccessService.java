@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by Florian on 18/11/2017.
+ * Provides Successes services (CRUD)
  */
 
 public class SuccessService {

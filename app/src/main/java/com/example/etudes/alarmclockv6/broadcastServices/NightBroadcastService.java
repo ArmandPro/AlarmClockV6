@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.broadcastServices;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,12 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,7 +34,7 @@ public class NightBroadcastService extends Service {
 
         Context context = getApplicationContext();
 
-        final Intent intent_alarm = new Intent(context, com.example.etudes.alarmclockv6.RingtonePlayingService.class);
+        final Intent intent_alarm = new Intent(context, RingtonePlayingService.class);
 
         final AlarmManager alarm_manager_night;
         String wakeUpEstimated;

@@ -28,21 +28,21 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".receivers.AlarmReceiver" />
         <receiver android:name=".AlarmReceiverMonday" />
         <receiver android:name=".NightReceiver" />
-        <receiver android:name=".HabitsReceiver" />
-        <receiver android:name=".GoBedReceiver" />
-        <receiver android:name=".SummaryReceiver" />
+        <receiver android:name=".receivers.HabitsReceiver" />
+        <receiver android:name=".receivers.GoBedReceiver" />
+        <receiver android:name=".receivers.SummaryReceiver" />
 
         <service
-            android:name=".NightBroadcastService"
+            android:name=".broadcastServices.NightBroadcastService"
             android:enabled="true" />
         <service
-            android:name=".RingtonePlayingService"
+            android:name=".broadcastServices.RingtonePlayingService"
             android:enabled="true" />
         <service
-            android:name=".HabitsBroadcastService"
+            android:name=".broadcastServices.HabitsBroadcastService"
             android:enabled="true" />
 
         <activity
@@ -62,7 +62,6 @@
         <activity android:name=".StateActivity" />
         <activity android:name=".DevelopperActivity"></activity>
         <activity android:name=".StateActivity" />
-        <activity android:name=".services.GraphTest"></activity>
     </application>
 
 </manifest>

@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.R;
-import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.managers.SuccessManager;
 import com.example.etudes.alarmclockv6.services.NightService;
 
@@ -61,7 +59,7 @@ public class AbstractGame extends AppCompatActivity {
         NightService.getInstance().wokeUp();
         if(counter<=5){
             SuccessManager.fasterThanLight();
-            Log.d(GAME_NAME,"Faster than light !");
+
         }
         SuccessManager.gameBeaten();
         AlertDialog.Builder alerBuilder = new AlertDialog.Builder(this);
@@ -99,7 +97,6 @@ public class AbstractGame extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                Log.d(GAME_NAME, "TIMED OUT");
                 hasFailed();
             }
         };

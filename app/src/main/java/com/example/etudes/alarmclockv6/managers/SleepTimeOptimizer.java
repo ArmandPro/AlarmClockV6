@@ -2,7 +2,6 @@ package com.example.etudes.alarmclockv6.managers;
 
 import android.content.Context;
 
-import com.example.etudes.alarmclockv6.GlobalAlarmManager;
 import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.NightService;
 import com.example.etudes.alarmclockv6.services.WeekService;

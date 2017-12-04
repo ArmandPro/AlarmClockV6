@@ -1,4 +1,4 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.managers;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -6,15 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.etudes.alarmclockv6.receivers.GoBedReceiver;
+import com.example.etudes.alarmclockv6.receivers.AlarmReceiver;
 import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.WeekService;
 import com.example.etudes.alarmclockv6.services.modeles.Habits;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
 import com.example.etudes.alarmclockv6.services.modeles.Week;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -58,7 +58,6 @@ public class GlobalAlarmManager {
                 break;
         }
 
-        Log.d("DayOfWeek", "number"+dayOfWek);
         return dayOfWek;
     }
 
@@ -107,7 +106,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedMonday = format.parse(wakeUpEstimatedMonday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date for monday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date for monday");
             }
 
                 if(dayOfWeek>1){
@@ -130,7 +129,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedTuesday = format.parse(wakeUpEstimatedTuesday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date at tuesday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date at tuesday");
             }
 
             if(dayOfWeek>2){
@@ -154,7 +153,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedWednesday = format.parse(wakeUpEstimatedWednesday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date in wednesday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date in wednesday");
             }
             if(dayOfWeek>3){
                 alarm_manager_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay+oneWeek,oneWeek,pendingIntentWednesday);
@@ -178,7 +177,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedThursday = format.parse(wakeUpEstimatedThursday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date thursday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date thursday");
             }
 
                 if(dayOfWeek>4){
@@ -202,7 +201,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedFriday = format.parse(wakeUpEstimatedFriday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date at friday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date at friday");
             }
                 if(dayOfWeek>5){
                     alarm_manager_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay+oneWeek ,oneWeek,pendingIntentFriday);
@@ -225,7 +224,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedSaturday = format.parse(wakeUpEstimatedSaturday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date in  Saturday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date in  Saturday");
             }
 
             if(dayOfWeek>6){
@@ -250,7 +249,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedSunday = format.parse(wakeUpEstimatedSunday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date in  Saturday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date in  Saturday");
             }
                 if(dayOfWeek>7){
                     //useless case
@@ -329,7 +328,7 @@ public class GlobalAlarmManager {
 
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date for monday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date for monday");
             }
 
                 if(dayOfWeek>1){
@@ -353,7 +352,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedTuesday = format.parse(wakeUpEstimatedTuesday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date at tuesday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date at tuesday");
             }
                 if(dayOfWeek>2){
                     alarm_manager_GTB_tue.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedTuesday.getTime()+1*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentTuesday_GTB);
@@ -376,7 +375,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedWednesday = format.parse(wakeUpEstimatedWednesday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date in wednesday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date in wednesday");
             }
                 if(dayOfWeek>3){
                     alarm_manager_GTB_wed.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedWednesday.getTime()+2*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentWednesday_GTB);
@@ -401,7 +400,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedThursday = format.parse(wakeUpEstimatedThursday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date thursday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date thursday");
             }
                 if(dayOfWeek>4){
                     alarm_manager_GTB_thu.setRepeating(AlarmManager.RTC_WAKEUP, (dateWakeUpEstimatedThursday.getTime()+3*oneDay-millisOfSleep+oneWeek),oneWeek,pendingIntentThursday_GTB);
@@ -424,7 +423,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedFriday = format.parse(wakeUpEstimatedFriday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date at friday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date at friday");
             }
                 if(dayOfWeek>5){
                     alarm_manager_GTB_fri.setRepeating(AlarmManager.RTC_WAKEUP,dateWakeUpEstimatedFriday.getTime()+4*oneDay-millisOfSleep+oneWeek ,oneWeek,pendingIntentFriday_GTB);
@@ -447,7 +446,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedSaturday = format.parse(wakeUpEstimatedSaturday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date in  Saturday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date in  Saturday");
             }
                 if(dayOfWeek>6){
                     alarm_manager_GTB_sat.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSaturday.getTime()+5*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentSaturday_GTB);
@@ -468,7 +467,7 @@ public class GlobalAlarmManager {
                 dateWakeUpEstimatedSunday = format.parse(wakeUpEstimatedSunday+DMY);
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d("hey","error when you convert string to date in  Saturday");
+                Log.d("GLOBAL ALARM MANAGER","error when you convert string to date in  Saturday");
             }
                 if(dayOfWeek>7){
                     alarm_manager_GTB_sun.setRepeating(AlarmManager.RTC_WAKEUP, dateWakeUpEstimatedSunday.getTime()+6*oneDay-millisOfSleep+oneWeek,oneWeek,pendingIntentSunday_GTB);

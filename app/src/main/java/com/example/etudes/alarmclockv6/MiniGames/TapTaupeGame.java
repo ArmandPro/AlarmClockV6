@@ -22,11 +22,11 @@ public class TapTaupeGame extends AbstractGame {
     private int winWidth, winHeight, score;
     private TextView scoreView;
 
-    //TODO add score and combo textViews update
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EXPLAINATION = "Pop at least 15 clouds !";
+        GAME_NAME = "Pop clouds";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tap_taupe_game);
         moles = new ArrayList<>();
@@ -68,8 +68,6 @@ public class TapTaupeGame extends AbstractGame {
                         }
                     }
                     if(mole !=null){
-                        Log.d("HITMOLE",""+mole.getMinimumWidth());
-                        Log.d("HITMOLE",""+mole.getMinimumHeight());
                         mole.setX(new Random().nextFloat()*(winWidth-mole.getWidth())+1);
                         mole.setY(new Random().nextFloat()*(winHeight-mole.getHeight())+1);
                         mole.setVisibility(View.VISIBLE);
@@ -125,7 +123,6 @@ public class TapTaupeGame extends AbstractGame {
             }
             @Override
             public void onFinish() {
-                Log.d(GAME_NAME, "TIMED OUT");
                 randomGenerator.cancel();
                 if(score<15) hasFailed();
                 else {

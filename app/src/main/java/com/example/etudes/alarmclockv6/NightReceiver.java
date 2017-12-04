@@ -1,23 +1,13 @@
 package com.example.etudes.alarmclockv6;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.*;
-
-import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 
-import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
-
+import com.example.etudes.alarmclockv6.broadcastServices.NightBroadcastService;
 
 
 /**
@@ -35,7 +25,7 @@ public class NightReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        final Intent intent_alarm = new Intent(context, com.example.etudes.alarmclockv6.NightBroadcastService.class);
+        final Intent intent_alarm = new Intent(context, NightBroadcastService.class);
 
         context.startService(intent_alarm);
 

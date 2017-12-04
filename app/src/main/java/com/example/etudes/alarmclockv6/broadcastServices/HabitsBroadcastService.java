@@ -1,13 +1,13 @@
-package com.example.etudes.alarmclockv6;
+package com.example.etudes.alarmclockv6.broadcastServices;
 
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
+import com.example.etudes.alarmclockv6.R;
 import com.example.etudes.alarmclockv6.managers.SleepTimeOptimizer;
 import com.example.etudes.alarmclockv6.managers.SuccessManager;
 import com.example.etudes.alarmclockv6.services.HabitsService;

@@ -1,7 +1,6 @@
 package com.example.etudes.alarmclockv6.services;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.modeles.Night;
@@ -10,11 +9,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Florian on 02/11/2017.
+ * Provides nights functionnalities and data access
  */
+
 
 public class NightService {
 
@@ -26,7 +26,7 @@ public class NightService {
         database = DatabaseManager.getInstance(context);
         lastId = database.getLastNightId();
         if( lastId<0)lastId=0;
-        Log.d("NIGHT SERV -LASTID",""+lastId);
+
     }
 
     public static NightService getInstance() {
@@ -91,7 +91,7 @@ public class NightService {
     public Night fellAsleep() {
         Calendar calendar = Calendar.getInstance();
         String goToBedReal = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).format(calendar.getTime());
-        calendar.add(Calendar.DAY_OF_YEAR, 1);//TODO Correct only if slumber before midnight
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         String date = new SimpleDateFormat(Night.DATE_FORMAT).format(calendar.getTime());
         Night night = getNight(date);
         night.setGotToBedReal(goToBedReal);
@@ -161,10 +161,6 @@ public class NightService {
         return 0;
     }
 
-
-    public List<Night>getLastNights(){
-        return database.getLastNights();
-    }
 
     public Night getLastWeekNight(){
         Calendar calendar = Calendar.getInstance();
