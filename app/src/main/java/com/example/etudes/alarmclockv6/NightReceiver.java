@@ -20,9 +20,12 @@ import com.example.etudes.alarmclockv6.services.modeles.Night;
 
 
 
-
 /**
- * Created by Etudes on 09/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: NightReceiver
+ * Fonction: receive the automation of create night
+ *
  */
 
 public class NightReceiver extends BroadcastReceiver {
@@ -32,11 +35,7 @@ public class NightReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
-        Log.d("hey","here we are in the night receiver");
         final Intent intent_alarm = new Intent(context, com.example.etudes.alarmclockv6.NightBroadcastService.class);
-
-
 
         context.startService(intent_alarm);
 

@@ -22,9 +22,12 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Etudes on 05/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: RingtonePlayingService
+ * Fonction: play alarm music and notify when it ring for opening the game app
+ *
  */
-
 public class RingtonePlayingService extends Service {
 
 
@@ -40,16 +43,11 @@ public class RingtonePlayingService extends Service {
 
     public int onStartCommand(Intent intent, int flag, int startId){
 
-        Log.d("yey", "We are on the ringstone command" + startId + " : "+ intent);
-
         List<Intent> gameList = new ArrayList<>();
         gameList.add(new Intent(this,MatrixGame.class));
         gameList.add(new Intent(this,TapTaupeGame.class));
         gameList.add(new Intent(this,RouletteGame.class));
         Collections.shuffle(gameList);
-        ////startActivity(gameList.get(0));//new Random().nextBoolean()?0:1));
-
-        //Intent myintent = new Intent(this, MatrixGame.class);
 
         PendingIntent pendingIntentOpenApp = PendingIntent.getActivity(this, 0, gameList.get(new Random().nextInt(gameList.size())), PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
@@ -61,7 +59,6 @@ public class RingtonePlayingService extends Service {
 
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
-
 
 
         thread=  new Thread(){
@@ -85,25 +82,25 @@ public class RingtonePlayingService extends Service {
             }
         };
 
-
         thread.start();
 
-        
         return START_NOT_STICKY;
     }
 
+
+
     public void onDestroy(){
-
         Toast.makeText(this, "onDestroy call", Toast.LENGTH_LONG).show();
-
     }
 
-    public void ring(){
 
-        Log.d("hey", "we are in the ringer");
+    public void ring(){
         MediaPlayer media_song;
         media_song = MediaPlayer.create(this, R.raw.nokia);
         media_song.start();
-
     }
+
+
+
+
 }

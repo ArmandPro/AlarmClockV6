@@ -17,12 +17,13 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Etudes on 30/11/2017.
+ *
+ * Created by: Armand and florian on 05/11/2017.
+ * This is: StateManager
+ * Fonction: manage the state of the user in the main activity
+ *
  */
-
 public class StateManager {
-
-
 
     public void updateState(Context context, ImageView imageView, TextView textViewHi, TextView textViewClock, TextView textViewComment){
 
@@ -33,18 +34,8 @@ public class StateManager {
         WeekService weekService = WeekService.getInstance();
         Week week = weekService.getWeek();
 
-
-
-
-
-
-        //..............................textViewHi
-
+        //...............................................................textViewHi
         Date now = new Date();
-
-        SimpleDateFormat hourFormat = new SimpleDateFormat(Night.HOUR_FORMAT);
-        SimpleDateFormat dayFormat = new SimpleDateFormat(Night.DATE_FORMAT);
-        SimpleDateFormat hourDayFormat = new SimpleDateFormat(Night.DATE_HOUR_FORMAT);
 
         Date morning = new Date();
             morning.setHours(10);
@@ -54,11 +45,9 @@ public class StateManager {
             evening.setHours(18);
             evening.setMinutes(00);
 
-
             imageView.setImageResource(R.drawable.bluehappymoon);
 
-
-            if(now.compareTo(evening)>0){
+        if(now.compareTo(evening)>0){
             //after evening
             textViewHi.setText("Good evening, I hope you had a good day.");
 
@@ -72,12 +61,10 @@ public class StateManager {
         }else{
             //other case
             textViewHi.setText("Hi you!"+now+morning+evening);
-
         }
 
 
-        //..........................................textViewClock
-
+        //........................................................textViewClock
         String wakeUpEstimated = "none";
         int currentDay = getDayOfWeek()+1;  // = tomorrow
         if(currentDay == 1){
@@ -125,11 +112,12 @@ public class StateManager {
         }else{
             textViewComment.setText("We think your last night wasn't perfect :(");
             imageView.setImageResource(R.drawable.sadmoon);
-
         }
-
-
     }
+
+
+
+
 
 
     //return 1 if we are an Monday, 2 if Tuesday...
@@ -160,8 +148,6 @@ public class StateManager {
                 dayOfWek = 7;
                 break;
         }
-
-        Log.d("DayOfWeek", "number"+dayOfWek);
         return dayOfWek;
     }
 

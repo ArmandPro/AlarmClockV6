@@ -18,7 +18,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Etudes on 13/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: NightBroadcastService
+ * Fonction: create night each day in database
+ *
  */
 
 public class NightBroadcastService extends Service {
@@ -34,9 +38,6 @@ public class NightBroadcastService extends Service {
 
         final Intent intent_alarm = new Intent(context, com.example.etudes.alarmclockv6.RingtonePlayingService.class);
 
-
-        Log.d("hey", "we are in the NightBroadcastService");
-
         final AlarmManager alarm_manager_night;
         String wakeUpEstimated;
         Date dateWakeUpEstimated ;
@@ -44,63 +45,22 @@ public class NightBroadcastService extends Service {
         calendar.add(Calendar.DAY_OF_YEAR,1);
         final PendingIntent pending_intent_alarm;
 
-
-
-
-
-
         Night night;
-        //HERE CREATE A NEW NIGHT
+
         SimpleDateFormat formatJour = new SimpleDateFormat(Night.DATE_FORMAT);
+
         NightService nightService = NightService.getInstance();
+
         if((night=nightService.getNight(formatJour.format(calendar.getTime())))==null){
             night = nightService.createNight();
-            Log.d("hey","night created");
 
         }
-
-
-
 
         alarm_manager_night = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
 
-
-        //pending_intent_alarm = PendingIntent.getBroadcast(context,0, intent_alarm, PendingIntent.FLAG_UPDATE_CURRENT);
-
         pending_intent_alarm = PendingIntent.getBroadcast(context,0, intent_alarm, PendingIntent.FLAG_UPDATE_CURRENT);
 
-
-
-        wakeUpEstimated = night.getWakeUpEstimated();
-        Log.d("hey","wakeUpestimated:"+wakeUpEstimated.toString());
-
-        SimpleDateFormat format = new SimpleDateFormat(Night.DATE_HOUR_FORMAT);
-
-        try {
-            dateWakeUpEstimated = format.parse(wakeUpEstimated);
-            Log.d("hey","dateWakeUpEstimated"+dateWakeUpEstimated.toString());
-            Log.d("hey","dateWakeUpEstimated in millis:"+dateWakeUpEstimated.getTime());
-            Calendar calendarTest = Calendar.getInstance();
-            calendarTest.set(2017,10,18,10,55);
-            Log.d("hey","calendar in millis:"+calendarTest.getTimeInMillis());
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            Log.d("hey","error when you convert string to date in he night receiver");
-        }
-
-
-
-
-        //alarm_manager_night.set(AlarmManager.RTC_WAKEUP, dateWakeUpEstimated.getTime(),pending_intent_alarm);
-
         alarm_manager_night.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(),pending_intent_alarm);
-
-
-        //Log.d("hey","We have setup the alarm at:"+dateWakeUpEstimated.toString());
-
-
-
 
         return START_NOT_STICKY;
     }

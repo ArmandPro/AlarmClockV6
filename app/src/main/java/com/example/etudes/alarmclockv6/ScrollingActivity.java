@@ -22,20 +22,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: ScrollingActivity
+ * Fonction: manage the page to setup the week
+ *
+ */
 
 public class ScrollingActivity extends AppCompatActivity {
 
     private List<TimePicker> timePickers;
     private List<Switch> switches;
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -111,7 +115,5 @@ public class ScrollingActivity extends AppCompatActivity {
                 switches.get(i).setChecked(false);
             }
         }
-
-
     }
 }

@@ -17,7 +17,11 @@ import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.NightService;
 
 /**
- * Created by Etudes on 22/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: GoBedReceiver
+ * Fonction: receive go to bed notification
+ *
  */
 
 public class GoBedReceiver extends BroadcastReceiver {
@@ -28,9 +32,8 @@ public class GoBedReceiver extends BroadcastReceiver {
     private SensorEventListener gyroscopeEventListener;
 
     int numberOfChecking = 10;
-    //long intervalOfChecking = 5*60*1000;
-    //FOR TEST :
-    long intervalOfChecking = 5000;
+    long intervalOfChecking = 5*60*1000;
+    //long intervalOfChecking = 5000; //FOR TEST
     boolean probablySleeping[] = {false,false,false,false,false,false,false,false,false,false,false};
     boolean gyroMoved = false;
     boolean fallAsleepDetected = false;
@@ -38,18 +41,13 @@ public class GoBedReceiver extends BroadcastReceiver {
 
 
 
-
-
-
-
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.d("test","we are in the GoBedReceiver");
-
         DatabaseManager.getInstance(context);
 
-
+        NightService nightService = NightService.getInstance();
+        Night night = nightService.getNight(new SimpleDateFormat(Night.DATE_FORMAT).format(new Date()));
 
 
 
@@ -69,11 +67,11 @@ public class GoBedReceiver extends BroadcastReceiver {
 
 
 
+    //this method launch a thread and check if the user sleep
     void testIfSleep(final Context context){
         thread=  new Thread(){
             @Override
             public void run(){
-
 
                 //gyroscope
                 sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -84,7 +82,6 @@ public class GoBedReceiver extends BroadcastReceiver {
                     public void onSensorChanged(SensorEvent sensorEvent) {
                         if(sensorEvent.values[2] > 0.5f || sensorEvent.values[2] < (-0.5f)){
                             gyroMoved=true;
-                            Log.d("gyrosope", "move");
                         }
                     }
 
@@ -101,14 +98,10 @@ public class GoBedReceiver extends BroadcastReceiver {
                 int i = 0;
                 while(i < numberOfChecking && !fallAsleepDetected){
 
-
-                    Log.d("GoBedReceiver", "test nbr"+i);
                         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
                         Intent batteryStatus = context.registerReceiver(null, ifilter);
                         //if charging
                         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-
-
 
                         probablySleeping[i]=(status == BatteryManager.BATTERY_STATUS_CHARGING);
                         if(i>3){
@@ -118,11 +111,9 @@ public class GoBedReceiver extends BroadcastReceiver {
                                 NightService.getInstance().fellAsleep();
 
                                 fallAsleepDetected=true;
-                                Log.d("GoBedReceiver", "he fall asleep");
                             }
                         }
 
-                        //Thread.sleep(intervalOfChecking);
                         try {
                             synchronized(this){
                                 wait(intervalOfChecking);
@@ -131,8 +122,6 @@ public class GoBedReceiver extends BroadcastReceiver {
                         catch(InterruptedException ex){
                         }
 
-
-
                     gyroMoved = false;
                     i++;
                 }
@@ -140,21 +129,10 @@ public class GoBedReceiver extends BroadcastReceiver {
                 if(!fallAsleepDetected){
                     //user is probably sleeping
                     NightService.getInstance().fellAsleep();
-                    Log.d("GoBedReceiver", "smartphone not pluged");
                 }
-
             }
         };
 
         thread.start();
-
     }
-
-
-
-
-
-
-
-
 }

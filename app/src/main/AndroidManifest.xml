@@ -42,9 +42,6 @@
             android:name=".RingtonePlayingService"
             android:enabled="true" />
         <service
-            android:name=".RingtonePlayingServiceMon"
-            android:enabled="true" />
-        <service
             android:name=".HabitsBroadcastService"
             android:enabled="true" />
 

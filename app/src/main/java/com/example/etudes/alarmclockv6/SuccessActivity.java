@@ -15,6 +15,14 @@ import com.example.etudes.alarmclockv6.services.modeles.Success;
 
 import java.util.List;
 
+/**
+ *
+ * Created by: Florian on 05/11/2017.
+ * This is: SuccessActivity
+ * Fonction: show the succes
+ *
+ */
+
 public class SuccessActivity extends AppCompatActivity {
 
     private List<Success> successes;
@@ -59,10 +67,7 @@ public class SuccessActivity extends AppCompatActivity {
 
         }else {
             box.setBackgroundColor(getResources().getColor(R.color.black_overlay));
-
-
         }
-
 
         box.addView(title);
         box.addView(desc);

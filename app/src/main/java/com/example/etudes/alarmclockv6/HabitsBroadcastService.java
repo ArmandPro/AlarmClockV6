@@ -14,20 +14,21 @@ import com.example.etudes.alarmclockv6.services.HabitsService;
 import com.example.etudes.alarmclockv6.services.NightService;
 
 /**
- * Created by Etudes on 13/11/2017.
+ *
+ * Created by: Armand on 05/11/2017.
+ * This is: HabitsBroadcastService
+ * Fonction: service for the habits
+ *
  */
-
 public class HabitsBroadcastService extends Service {
     MediaPlayer media_song;
 
     public int onStartCommand(Intent intent, int flag, int startId){
 
-        Log.d("yey", "We are on the HabitsBroadcastService " + startId + " : "+ intent);
 
         media_song = MediaPlayer.create(this, R.raw.oldsncf);
         media_song.start();
 
-        //INSERT HERE IN THE SQLLITE: THE USER WAS LATE
         DatabaseManager.getInstance(getApplicationContext());
         NightService.getInstance().wasLate();
         HabitsService.getInstance().getHabits().incrementDaysOfLateness();
