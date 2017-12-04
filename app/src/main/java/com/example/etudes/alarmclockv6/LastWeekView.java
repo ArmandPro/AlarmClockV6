@@ -48,7 +48,7 @@ public class LastWeekView extends View {
         super.onDraw(canvas);
         this.canvas = canvas;
         midnightLine = new Rect();
-        midnightLine.set(0,canvas.getHeight()/2-1,canvas.getWidth(),1+canvas.getHeight()/2);
+        midnightLine.set(0,(int)(0.75*canvas.getHeight()/2)+14,canvas.getWidth(),16+(int)(0.75*canvas.getHeight()/2));
         Paint midnightColor = new Paint();
         midnightColor.setColor(getResources().getColor(R.color.cardview_shadow_start_color));
         midnightColor.setStyle(Paint.Style.FILL);
@@ -67,18 +67,17 @@ public class LastWeekView extends View {
             try {
                 long start = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).parse(night.getGotToBedReal()).getTime();
                 long end = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).parse(night.getWakeUpReal()).getTime();
-                int height = (int)(start-end)/60000;
+                int height = (int)(end -start)/60000;
                 realsDim.add(height);
                 if(height>max) max = height;
                 if(height<min) min = height;
-                Log.d("GRAPHIC","height : "+height);
                 start = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).parse(night.getGoToBedEstimated()).getTime();
                 end = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).parse(night.getWakeUpEstimated()).getTime();
                 height = (int)(end-start)/60000;
                 estimatedDim.add(height);
                 if(height>max) max = height;
                 if(height<min) min = height;
-                Log.d("GRAPHIC","height : "+height);
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -94,21 +93,19 @@ public class LastWeekView extends View {
 
 
         for(int i = 0; i<count; i++){
-            int left = (int)(i*canvas.getWidth()/(float)(count+1));
-            int right= left+10;
-            int top = (int)(canvas.getHeight()*((float)estimatedDim.get(i)/max));
-            int bottom =canvas.getHeight()-top;
-            Log.d("GRAPHIC","left : "+left+"\t right : "+right+"\n top :"+top+"\t bottom :"+bottom);
-            estimated.add(new Rect());
-            estimated.get(i).set(left, top, right, bottom);
+            int left = (int)((i+1)*canvas.getWidth()/(float)(count+1));
+            int right= left+15;
+            int top = 15+(int)(0.75*canvas.getHeight()*((float)estimatedDim.get(i)/max));
+            int bottom =15+(int)(0.75*canvas.getHeight()-top);
+            //Log.d("GRAPHIC","left : "+left+"\t right : "+right+"\n top :"+top+"\t bottom :"+bottom);
+            estimated.add(new Rect(left, bottom, right, top));
 
-            left = (int)(i/(float)(count+1)*canvas.getWidth())+5;
-            right= left+10;
-            top = (int)(canvas.getHeight()*((float)realsDim.get(i)/max));
-            bottom = canvas.getHeight()-top;//(int)((0.9*canvas.getHeight()-top)/2.0);
-            Log.d("GRAPHIC","left : "+left+"\t right : "+right+"\n top :"+top+"\t bottom :"+bottom);
-            estimated.add(new Rect());
-            estimated.get(i).set(left, top, right, bottom);
+            left = (int)((i+1)/(float)(count+1)*canvas.getWidth())+10;
+            right= left+15;
+            top = 15+(int)(0.75*canvas.getHeight()*((float)realsDim.get(i)/max));
+            bottom = 15+(int)(0.75*canvas.getHeight()-top);
+            //Log.d("GRAPHIC","left : "+left+"\t right : "+right+"\n top :"+top+"\t bottom :"+bottom);
+            reals.add(new Rect(left, bottom, right, top));
         }
 
 

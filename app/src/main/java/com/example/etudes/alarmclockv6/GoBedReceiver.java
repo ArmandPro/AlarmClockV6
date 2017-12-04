@@ -15,10 +15,6 @@ import android.util.Log;
 
 import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.services.NightService;
-import com.example.etudes.alarmclockv6.services.modeles.Night;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Etudes on 22/11/2017.
@@ -53,11 +49,8 @@ public class GoBedReceiver extends BroadcastReceiver {
 
         DatabaseManager.getInstance(context);
 
-        NightService nightService = NightService.getInstance();
-        Night night = nightService.getNight(new SimpleDateFormat(Night.DATE_FORMAT).format(new Date()));
 
 
-        String today = new SimpleDateFormat(Night.DATE_FORMAT).format(new Date());
 
 
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
@@ -69,14 +62,14 @@ public class GoBedReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
 
-        testIfSleep(context, night);
+        testIfSleep(context);
 
 
     }
 
 
 
-    void testIfSleep(final Context context, final Night night){
+    void testIfSleep(final Context context){
         thread=  new Thread(){
             @Override
             public void run(){
@@ -122,7 +115,7 @@ public class GoBedReceiver extends BroadcastReceiver {
                             if(probablySleeping[i]&&probablySleeping[i-1]&&probablySleeping[i-2]&&probablySleeping[i-3]&&(!gyroMoved)){
 
                                 //user is probably sleeping
-                                night.setGotToBedReal(new SimpleDateFormat(Night.DATE_HOUR_FORMAT).format(new Date(new Date().getTime()-4*intervalOfChecking)));
+                                NightService.getInstance().fellAsleep();
 
                                 fallAsleepDetected=true;
                                 Log.d("GoBedReceiver", "he fall asleep");
@@ -146,8 +139,7 @@ public class GoBedReceiver extends BroadcastReceiver {
 
                 if(!fallAsleepDetected){
                     //user is probably sleeping
-                    night.setGotToBedReal(new SimpleDateFormat(Night.DATE_HOUR_FORMAT).format(new Date()));
-
+                    NightService.getInstance().fellAsleep();
                     Log.d("GoBedReceiver", "smartphone not pluged");
                 }
 

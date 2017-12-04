@@ -91,7 +91,7 @@ public class NightService {
     public Night fellAsleep() {
         Calendar calendar = Calendar.getInstance();
         String goToBedReal = new SimpleDateFormat(Night.DATE_HOUR_FORMAT).format(calendar.getTime());
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);//TODO Correct only if slumber before midnight
         String date = new SimpleDateFormat(Night.DATE_FORMAT).format(calendar.getTime());
         Night night = getNight(date);
         night.setGotToBedReal(goToBedReal);

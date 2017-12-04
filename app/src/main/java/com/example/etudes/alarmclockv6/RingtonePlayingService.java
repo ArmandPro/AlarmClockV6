@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.etudes.alarmclockv6.MiniGames.MatrixGame;
 import com.example.etudes.alarmclockv6.MiniGames.RouletteGame;
 import com.example.etudes.alarmclockv6.MiniGames.TapTaupeGame;
-import com.example.etudes.alarmclockv6.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

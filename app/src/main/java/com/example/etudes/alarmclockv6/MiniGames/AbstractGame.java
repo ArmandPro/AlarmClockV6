@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.etudes.alarmclockv6.R;
+import com.example.etudes.alarmclockv6.Database.DatabaseManager;
 import com.example.etudes.alarmclockv6.managers.SuccessManager;
 import com.example.etudes.alarmclockv6.services.NightService;
 
@@ -25,6 +26,7 @@ public class AbstractGame extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DatabaseManager.getInstance(getApplicationContext());
         setContentView(R.layout.activity_abstract_game);
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
